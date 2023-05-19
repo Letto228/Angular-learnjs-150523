@@ -11,6 +11,9 @@
 				"plugin:@angular-eslint/template/process-inline-templates"
 			],
 			"rules": {
+				"@angular-eslint/no-output-on-prefix": "error",
+				"@angular-eslint/no-lifecycle-call": "error",
+				"@angular-eslint/use-lifecycle-interface": "error",
 				"@angular-eslint/directive-selector": [
 					"error",
 					{
@@ -27,6 +30,9 @@
 						"style": "kebab-case"
 					}
 				],
+				"@typescript-eslint/comma-spacing": "error",
+				"@typescript-eslint/unified-signatures": "error",
+				"@typescript-eslint/func-call-spacing": "error",
 				"@typescript-eslint/naming-convention": [
 					"error",
 					{
@@ -37,7 +43,10 @@
 							"match": true
 						}
 					}
-				]
+				],
+				"array-element-newline": ["error", "consistent"],
+				"arrow-spacing": "error",
+				"no-constructor-return": "error"
 			}
 		},
 		{
