@@ -36,6 +36,21 @@
 							"regex": "^I[A-Z]",
 							"match": true
 						}
+					},
+					{
+						"selector": "enum",
+						"prefix": ["E"],
+						"format": ["PascalCase"],
+						"leadingUnderscore": "forbid"
+					},
+					{
+						"selector": "function",
+						"format": ["camelCase"]
+					},
+					{
+						"selector": "variable",
+						"format": ["camelCase", "UPPER_CASE"],
+						"leadingUnderscore": "forbid"
 					}
 				]
 			}
