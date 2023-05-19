@@ -8,9 +8,17 @@
 				"eslint:recommended",
 				"plugin:@typescript-eslint/recommended",
 				"plugin:@angular-eslint/recommended",
-				"plugin:@angular-eslint/template/process-inline-templates"
+				"plugin:@angular-eslint/template/process-inline-templates",
+				"airbnb-base"
 			],
 			"rules": {
+				"linebreak-style": "off",
+				"indent": ["error", "tab"],
+				"no-undef": "off",
+				"import/no-unresolved": "off",
+				"import/prefer-default-export": "off",
+				"no-console": "off",
+				"no-tabs": "off",
 				"@angular-eslint/directive-selector": [
 					"error",
 					{
