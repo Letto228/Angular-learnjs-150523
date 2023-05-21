@@ -36,8 +36,20 @@
 							"regex": "^I[A-Z]",
 							"match": true
 						}
+					},
+					{
+						"selector": "variableLike",
+						"format": ["camelCase"]
+					},
+					{
+						"selector": "variable",
+						"types": ["boolean"],
+						"format": ["PascalCase"],
+						"prefix": ["is", "should", "has", "can", "did", "will"]
 					}
-				]
+				],
+
+				"@typescript-eslint/explicit-function-return-type": "error"
 			}
 		},
 		{
