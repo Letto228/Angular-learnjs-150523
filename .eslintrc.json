@@ -8,7 +8,8 @@
 				"eslint:recommended",
 				"plugin:@typescript-eslint/recommended",
 				"plugin:@angular-eslint/recommended",
-				"plugin:@angular-eslint/template/process-inline-templates"
+				"plugin:@angular-eslint/template/process-inline-templates",
+				"airbnb-base"
 			],
 			"rules": {
 				"@angular-eslint/directive-selector": [
@@ -27,17 +28,23 @@
 						"style": "kebab-case"
 					}
 				],
-				"@typescript-eslint/naming-convention": [
+				"no-duplicate-imports": [
 					"error",
 					{
-						"selector": "interface",
-						"format": ["PascalCase"],
-						"custom": {
-							"regex": "^I[A-Z]",
-							"match": true
-						}
+						"includeExports": true
 					}
-				]
+				],
+				"no-use-before-define": [
+					"error",
+					{
+						"functions": true,
+						"classes": true,
+						"variables": true,
+						"allowNamedExports": false
+					}
+				],
+				"linebreak-style": 0,
+				"no-tabs": 0
 			}
 		},
 		{
