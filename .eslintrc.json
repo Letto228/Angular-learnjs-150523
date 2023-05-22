@@ -36,6 +36,18 @@
 							"regex": "^I[A-Z]",
 							"match": true
 						}
+					},
+					{
+						"selector": "typeAlias",
+						"format": ["PascalCase"],
+						"custom": {
+							"regex": "^T[A-Z]",
+							"match": true
+						}
+					},
+					{
+						"selector": ["variable", "function"],
+						"format": ["camelCase"]
 					}
 				]
 			}

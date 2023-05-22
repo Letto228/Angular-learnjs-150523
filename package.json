@@ -1,9 +1,9 @@
 {
 	"name": "angular-learnjs-150523",
-	"version": "0.0.0",
+	"version": "0.1.0",
 	"scripts": {
 		"ng": "ng",
-		"start": "ng serve",
+		"start": "ng serve -o",
 		"build:dev": "ng build --configuration development",
 		"build:prod": "ng build --configuration production",
 		"watch": "ng build --watch --configuration development",
