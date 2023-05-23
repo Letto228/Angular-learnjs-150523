@@ -8,5 +8,5 @@ import {productMock} from '../../../../shared/products/product.mock';
     styleUrls: ['./card.component.css'],
 })
 export class CardComponent {
-    product: IProduct = productMock;
+    readonly product: IProduct = productMock;
 }
