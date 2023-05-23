@@ -1,5 +1,5 @@
 {
-	"*.{ts,js}": ["npm run prettier:fix", "npx eslint"],
-	"*.css": ["npm run prettier:fix"],
-	"*.json": ["npm run prettier:fix"]
+	"*.{ts,js}": ["npm run prt", "ng lint"],
+	"*.css": ["npm run prt"],
+	"*.json": ["npm run prt"]
 }

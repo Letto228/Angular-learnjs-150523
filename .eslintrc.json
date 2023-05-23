@@ -33,7 +33,15 @@
 						"selector": "interface",
 						"format": ["PascalCase"],
 						"custom": {
-							"regex": "^I[A-Z]",
+							"regex": "^SomeDeliciousInterface[A-Z]",
+							"match": true
+						}
+					},
+					{
+						"selector": "enum",
+						"format": ["PascalCase"],
+						"custom": {
+							"regex": "^AwesomeEnum[A-Z]",
 							"match": true
 						}
 					}
