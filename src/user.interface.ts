@@ -1,3 +1,3 @@
-export interface SomeDeliciousInterfaceUser {
+export interface IUser {
 	name: string;
 }
