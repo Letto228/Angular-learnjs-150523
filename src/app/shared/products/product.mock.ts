@@ -1,4 +1,4 @@
-import {IProduct} from './product.interface';
+import { IProduct } from './product.interface';
 
 export const productMock: IProduct = {
     // eslint-disable-next-line @typescript-eslint/naming-convention
