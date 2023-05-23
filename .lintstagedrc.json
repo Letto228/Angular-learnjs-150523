@@ -1,5 +1,5 @@
 {
-	"*.{ts,js}": ["npm run prt", "ng lint"],
+	"*.{ts,js}": ["npm run prt", "npx eslint"],
 	"*.css": ["npm run prt"],
 	"*.json": ["npm run prt"]
 }
