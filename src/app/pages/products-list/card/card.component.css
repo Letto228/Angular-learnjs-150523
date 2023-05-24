@@ -1,0 +1,8 @@
+mat-card-title {
+    font-size: calc(0.8rem + 0.5vw);
+}
+
+mat-card img {
+    max-width: 300px;
+    margin: auto;
+}

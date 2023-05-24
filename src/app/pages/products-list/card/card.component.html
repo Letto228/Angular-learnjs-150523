@@ -8,6 +8,6 @@
         <p>price: {{ product.price }}$</p>
     </mat-card-content>
     <mat-card-actions>
-        <button mat-button>BUY</button>
+        <button mat-button (click)="clickHandler($event)">BUY</button>
     </mat-card-actions>
 </mat-card>

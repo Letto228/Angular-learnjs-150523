@@ -1,6 +1,6 @@
 import {Component} from '@angular/core';
-import {IProduct} from '../../../../shared/products/product.interface';
-import {productMock} from '../../../../shared/products/product.mock';
+import {IProduct} from '../../../shared/products/product.interface';
+import {productMock} from '../../../shared/products/product.mock';
 
 @Component({
     selector: 'app-card',
@@ -9,4 +9,8 @@ import {productMock} from '../../../../shared/products/product.mock';
 })
 export class CardComponent {
     readonly product: IProduct = productMock;
+
+    clickHandler(event: MouseEvent) {
+        event.stopPropagation();
+    }
 }

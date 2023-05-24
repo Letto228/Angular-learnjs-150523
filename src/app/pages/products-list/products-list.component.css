@@ -1,0 +1,8 @@
+:host {
+    width: 100%;
+}
+.card {
+    display: block;
+    height: fit-content;
+    width: fit-content;
+}
