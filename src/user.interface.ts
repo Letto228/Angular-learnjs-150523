@@ -1,3 +1,3 @@
-export interface MISTAKEUser {
+export interface SomeDeliciousInterfaceUser {
 	name: string;
 }
