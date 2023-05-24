@@ -11,10 +11,10 @@
             </mat-card-subtitle>
             <img
                 mat-card-xl-image
-                ngSrc="{{ cardImage.url }}"
                 width="240"
                 height="240"
-                alt="cardName"
+                alt="{{ cardName }}"
+                [ngSrc]="cardImage.url"
                 [title]="cardName"
             />
         </mat-card-title-group>
