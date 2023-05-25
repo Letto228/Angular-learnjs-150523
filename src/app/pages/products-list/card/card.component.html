@@ -1,15 +1,17 @@
 <mat-card class="example-card">
     <mat-card-header>
-        <mat-card-title>Карточка товара</mat-card-title>
-        <mat-card-subtitle>Здесь находится доп. информация о товаре</mat-card-subtitle>
+        <mat-card-title>{{ card.name }}</mat-card-title>
+        <mat-card-subtitle>{{ card.subCategory }}</mat-card-subtitle>
     </mat-card-header>
-    <img
-        mat-card-image
-        src="https://sberbusiness.live/uploads/media/post_detail/0001/16/thumb_15175_post_detail_tablet.png"
-        alt="Photo of a products"
-    />
+    <div class="card-img">
+        <div *ngFor="let cardImage of card.images">
+            <img mat-card-image alt="Photo of a products" [src]="cardImage.url" />
+        </div>
+    </div>
     <mat-card-content>
-        <p>1 000 $</p>
+        <p>Rating: {{ card.rating }}</p>
+        <p>Price: {{ card.price }}</p>
+        <p>Feedbacks Count: {{ card.feedbacksCount }}</p>
     </mat-card-content>
     <mat-card-actions>
         <button mat-button (click)="buy($event)">Купить</button>

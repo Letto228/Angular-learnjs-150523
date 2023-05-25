@@ -1,4 +1,5 @@
 import {Component} from '@angular/core';
+import {productMock} from '../../../shared/products/product.mock';
 
 @Component({
     selector: 'app-card',
@@ -6,8 +7,9 @@ import {Component} from '@angular/core';
     styleUrls: ['./card.component.css'],
 })
 export class CardComponent {
+    readonly card = productMock;
+
     buy(event: Event): void {
-        // console.log('Товар куплен!');
         event.stopPropagation();
     }
 }
