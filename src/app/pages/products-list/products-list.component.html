@@ -1,34 +1,3 @@
 <div class="container">
-    <mat-card class="card">
-        <mat-card-header class="header">
-            <mat-card-title>
-                {{ product.name }}
-            </mat-card-title>
-            <mat-card-subtitle>
-                {{ product.subCategory }}
-            </mat-card-subtitle>
-        </mat-card-header>
-        <img src="{{ product.images[0].url }}" alt="картинка товара" class="image" />
-        <mat-card-content class="description">
-            <p>
-                Рейтинг:
-                <span>{{ product.rating }}</span>
-            </p>
-            <p>
-                Цена:
-                <span>{{ product.price }}</span>
-                &#8381;
-            </p>
-            <p>
-                Отзывов:
-                <span>{{ product.feedbacksCount }}</span>
-            </p>
-        </mat-card-content>
-        <mat-card-actions class="buttons">
-            <button mat-raised-button color="primary" (click)="onClick($event)">Купить</button>
-            <button *ngIf="count > 0" mat-raised-button color="primary">
-                В корзине {{ count }} шт.
-            </button>
-        </mat-card-actions>
-    </mat-card>
+    <app-card></app-card>
 </div>
