@@ -12,4 +12,9 @@ export class CardComponent {
     price = this.productData.price;
     rating = this.productData.rating;
     imgUrl = this.productData.images[0].url;
+
+    onClickBuy() {
+        // eslint-disable-next-line no-console
+        console.log('clicked');
+    }
 }
