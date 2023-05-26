@@ -1,7 +1,3 @@
-<app-card class="card"></app-card>
-<!-- <app-card class="card"></app-card>
-<app-card class="card"></app-card>
-<app-card class="card"></app-card>
-<app-card class="card"></app-card>
-<app-card class="card"></app-card>
-<app-card class="card"></app-card> -->
+<ng-container *ngFor="let productItem of product">
+    <app-card class="card" [product]="productItem" (buyProduct)="onProductClick($event)"></app-card>
+</ng-container>
