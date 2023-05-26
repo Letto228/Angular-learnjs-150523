@@ -1,4 +1,3 @@
-<p>card works!</p>
 <mat-card class="card">
     <mat-card-header>
         <mat-card-title>{{ name }}</mat-card-title>
@@ -10,6 +9,6 @@
     </mat-card-content>
     <mat-card-actions class="card__actions">
         <p class="card__price">{{ price }}₽</p>
-        <button mat-raised-button color="primary" (click)="onClickBuy()">Купить</button>
+        <button mat-raised-button color="primary" (click)="onClickBuy($event)">Купить</button>
     </mat-card-actions>
 </mat-card>

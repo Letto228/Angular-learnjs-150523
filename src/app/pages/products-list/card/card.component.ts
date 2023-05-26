@@ -13,7 +13,8 @@ export class CardComponent {
     rating = this.productData.rating;
     imgUrl = this.productData.images[0].url;
 
-    onClickBuy() {
+    onClickBuy(event: Event) {
+        event.stopPropagation();
         // eslint-disable-next-line no-console
         console.log('clicked');
     }
