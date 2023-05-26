@@ -1,9 +1,22 @@
-<app-header (click)="onClick()"></app-header>
+<app-header
+    [applicationConfig]="applicationConfig"
+    (menuClickOutput)="onMenuClickApp()"
+></app-header>
+<!--
+    HeaderComponent(<app-header>).menuClickOutput.subscribe($event => {
+        onMenuClickApp($event);
+    })
+-->
 <app-products-list></app-products-list>
-<!-- <h1>Application works!</h1> -->
-<!-- <p>Title is: {{this.title}}</p> -->
-<!-- <p>Title is: {{ title }}</p>
-<p>Summ: {{ 12 + 44 }}</p>
-<p>Summ: {{ window.Promise }}</p>
-<input (keydown.enter)="onKeyDown()" />
-<span>Test</span> -->
+<!-- <app-sidenav
+    [isSidenavOpenedChild]="isSidenavOpenedApp"
+    (isSidenavOpenedChildChange)="onSidenavOpenedChange($event)"
+></app-sidenav> -->
+
+<!-- <app-sidenav
+    [isSidenavOpenedChild]="isSidenavOpenedApp"
+    (isSidenavOpenedChildChange)="isSidenavOpenedApp = $event"
+></app-sidenav> -->
+<!-- <app-sidenav [(isSidenavOpenedChild)]="isSidenavOpenedApp"></app-sidenav> -->
+
+<!-- <app-sidenav #sidenav></app-sidenav> -->

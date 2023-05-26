@@ -1,27 +1,29 @@
-import { Component, ViewEncapsulation } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
+import { applicationConfigMock } from './shared/application-config/application-config.mock';
+import { SidenavComponent } from './components/sidenav/sidenav.component';
 
 @Component({
     selector: 'app-root',
-    // template: `
-    //     <h1>Application works!</h1>
-    // `,
-    // styles: [`h1 {color: red}`],
     templateUrl: './app.component.html',
     styleUrls: ['./app.component.css'],
-    interpolation: ['{{', '}}'],
-    encapsulation: ViewEncapsulation.Emulated,
 })
 export class AppComponent {
-    title = 'Angular-learnjs-150523';
-    window = window;
+    // title = 'Angular-learnjs-150523';
+    readonly applicationConfig = applicationConfigMock;
 
-    onClick() {
+    @ViewChild('sidenav')
+    private readonly sidenavComponent: SidenavComponent | undefined;
+
+    // isSidenavOpenedApp = false;
+
+    onMenuClickApp() {
         // eslint-disable-next-line no-console
-        console.log('App clicked');
+        // console.log('Menu click event in app component', clientXObj);
+        // this.isSidenavOpenedApp = !this.isSidenavOpenedApp;
+        this.sidenavComponent?.toggleSidenavOpened();
     }
 
-    onKeyDown() {
-        // eslint-disable-next-line no-console
-        console.log('is Entre');
-    }
+    // onSidenavOpenedChange(newIsSidenavOpened: boolean) {
+    //     this.isSidenavOpenedApp = newIsSidenavOpened;
+    // }
 }

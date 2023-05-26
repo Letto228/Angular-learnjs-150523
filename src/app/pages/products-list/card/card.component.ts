@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { productMock } from 'src/app/shared/products/product.mock';
+import { productsMock } from '../../../shared/products/products.mock';
 
 @Component({
     selector: 'app-card',
@@ -7,15 +7,16 @@ import { productMock } from 'src/app/shared/products/product.mock';
     styleUrls: ['./card.component.css'],
 })
 export class CardComponent {
-    productData = productMock;
-    name = this.productData.name;
-    price = this.productData.price;
-    rating = this.productData.rating;
-    imgUrl = this.productData.images[0].url;
+    readonly product = productsMock[0];
 
-    onClickBuy(event: Event) {
+    onProductBuy(event: Event) {
         event.stopPropagation();
+
         // eslint-disable-next-line no-console
-        console.log('clicked');
+        console.log('Buy product');
+    }
+
+    isStarActive(starIndex: number): boolean {
+        return this.product.rating >= starIndex;
     }
 }

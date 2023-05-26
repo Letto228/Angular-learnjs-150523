@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { IApplicationConfig } from '../../shared/application-config/application-config.interface';
 
 @Component({
     selector: 'app-header',
@@ -6,14 +7,16 @@ import { Component } from '@angular/core';
     styleUrls: ['./header.component.css'],
 })
 export class HeaderComponent {
-    readonly title = 'Angular-learnjs-150523';
-    readonly iconSrc = '../../../favicon.ico';
+    // readonly title = 'Angular-learnjs-150523';
+    // readonly iconSrc = '../../../favicon.ico';
+    @Input() applicationConfig: IApplicationConfig | null = null;
 
-    // iconWidth = 300;
+    @Output() menuClickOutput = new EventEmitter<{ clientX: number }>();
 
-    onClick(event: Event) {
+    onMenuClickHeader(event: MouseEvent) {
         // eslint-disable-next-line no-console
-        console.log('Clicked', event);
-        // event.stopPropagation();
+        console.log('Menu click');
+        // this.menuClick.next(event.clientX);
+        this.menuClickOutput.emit({ clientX: event.clientX });
     }
 }

@@ -7,7 +7,3 @@
     width: 30px;
     height: 30px;
 }
-
-::ng-deep .header button {
-    background-color: black;
-}
