@@ -1,0 +1,13 @@
+.rating {
+    display: flex;
+}
+
+.rating__star {
+    width: 24px;
+    height: 24px;
+    color: var(--grey-3);
+}
+
+.rating__star_active {
+    color: var(--orange);
+}

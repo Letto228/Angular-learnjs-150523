@@ -1,0 +1,40 @@
+<mat-card class="card">
+    <div class="card__images-slider">
+        <button
+            mat-icon-button
+            matTooltip="Previous"
+            class="card__slider-prev"
+            (click)="showPrevImage($event)"
+        >
+            <mat-icon>arrow_left</mat-icon>
+        </button>
+        <img
+            mat-card-image
+            alt="Photo of a product"
+            class="card__image"
+            [src]="product.images[currentImageIndex].url"
+        />
+        <button
+            mat-icon-button
+            matTooltip="Next"
+            class="card__slider-next"
+            (click)="showNextImage($event)"
+        >
+            <mat-icon>arrow_right</mat-icon>
+        </button>
+    </div>
+    <mat-card-header>
+        <mat-card-title class="card__title">{{ product.name }}</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+        <div class="card__rating">
+            <app-rating [rating]="product.rating"></app-rating>
+        </div>
+        <div class="card__footer">
+            <div class="card__price">
+                <strong>{{ product.price | currency : 'EUR' }}</strong>
+            </div>
+            <button mat-flat-button color="primary" (click)="buyProduct($event)">Buy</button>
+        </div>
+    </mat-card-content>
+</mat-card>
