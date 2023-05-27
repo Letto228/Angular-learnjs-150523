@@ -1,0 +1,9 @@
+.example-spacer {
+    flex: 1 1 auto;
+}
+
+.shop-icon {
+    margin: 0 8px;
+    width: 30px;
+    height: 30px;
+}

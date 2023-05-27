@@ -1,0 +1,22 @@
+<app-header
+    [applicationConfig]="applicationConfig"
+    (menuClickOutput)="onMenuClickApp()"
+></app-header>
+<!--
+    HeaderComponent(<app-header>).menuClickOutput.subscribe($event => {
+        onMenuClickApp($event);
+    })
+-->
+<app-products-list></app-products-list>
+<!-- <app-sidenav
+    [isSidenavOpenedChild]="isSidenavOpenedApp"
+    (isSidenavOpenedChildChange)="onSidenavOpenedChange($event)"
+></app-sidenav> -->
+
+<!-- <app-sidenav
+    [isSidenavOpenedChild]="isSidenavOpenedApp"
+    (isSidenavOpenedChildChange)="isSidenavOpenedApp = $event"
+></app-sidenav> -->
+<!-- <app-sidenav [(isSidenavOpenedChild)]="isSidenavOpenedApp"></app-sidenav> -->
+
+<!-- <app-sidenav #sidenav></app-sidenav> -->
