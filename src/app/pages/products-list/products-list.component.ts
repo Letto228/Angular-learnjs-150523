@@ -5,4 +5,8 @@ import {Component} from '@angular/core';
     templateUrl: './products-list.component.html',
     styleUrls: ['./products-list.component.css'],
 })
-export class ProductsListComponent {}
+export class ProductsListComponent {
+    openProductDetails(): void {
+        console.info('Open Product Details');
+    }
+}
