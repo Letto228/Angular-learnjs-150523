@@ -37,7 +37,10 @@
 							"match": true
 						}
 					}
-				]
+				],
+				"max-len": ["error", 120],
+				"no-useless-constructor": "error",
+				"no-unused-expressions": "error"
 			}
 		},
 		{
