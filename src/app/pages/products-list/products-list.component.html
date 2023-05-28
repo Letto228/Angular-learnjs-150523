@@ -1,4 +1,12 @@
-<app-card class="card"></app-card>
+<app-card
+    class="card"
+    [product]="productList[0]"
+    (isProductBuy)="addProductToCart($event)"
+></app-card>
+d>
+<div>
+    {{ shopCart }}
+</div>
 <!-- <app-card class="card"></app-card>
 <app-card class="card"></app-card>
 <app-card class="card"></app-card>
