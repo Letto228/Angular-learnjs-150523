@@ -1,5 +1,5 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { IApplicationConfig } from '../../shared/application-config/application-config.interface';
+import {Component, EventEmitter, Input, Output} from '@angular/core';
+import {IApplicationConfig} from '../../shared/application-config/application-config.interface';
 
 @Component({
     selector: 'app-header',
@@ -11,12 +11,12 @@ export class HeaderComponent {
     // readonly iconSrc = '../../../favicon.ico';
     @Input() applicationConfig: IApplicationConfig | null = null;
 
-    @Output() menuClickOutput = new EventEmitter<{ clientX: number }>();
+    @Output() menuClickOutput = new EventEmitter<{clientX: number}>();
 
     onMenuClickHeader(event: MouseEvent) {
         // eslint-disable-next-line no-console
         console.log('Menu click');
         // this.menuClick.next(event.clientX);
-        this.menuClickOutput.emit({ clientX: event.clientX });
+        this.menuClickOutput.emit({clientX: event.clientX});
     }
 }

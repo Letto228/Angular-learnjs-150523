@@ -1,6 +1,6 @@
-import { Component, ViewChild } from '@angular/core';
-import { applicationConfigMock } from './shared/application-config/application-config.mock';
-import { SidenavComponent } from './components/sidenav/sidenav.component';
+import {Component, ViewChild} from '@angular/core';
+import {applicationConfigMock} from './shared/application-config/application-config.mock';
+import {SidenavComponent} from './components/sidenav/sidenav.component';
 
 @Component({
     selector: 'app-root',

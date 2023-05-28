@@ -1,5 +1,5 @@
-import { Component, ElementRef, ViewChild } from '@angular/core';
-import { MatDrawer } from '@angular/material/sidenav';
+import {Component, ElementRef, ViewChild} from '@angular/core';
+import {MatDrawer} from '@angular/material/sidenav';
 
 @Component({
     selector: 'app-sidenav',
@@ -14,10 +14,10 @@ export class SidenavComponent {
     // @Output() isSidenavOpenedChildChange = new EventEmitter<boolean>();
 
     // @ViewChild('drawer')
-    @ViewChild(MatDrawer, { read: MatDrawer })
+    @ViewChild(MatDrawer, {read: MatDrawer})
     private readonly matDrawerComponent: MatDrawer | undefined;
 
-    @ViewChild(MatDrawer, { read: ElementRef })
+    @ViewChild(MatDrawer, {read: ElementRef})
     private readonly matDrawerElementRef: ElementRef<HTMLElement> | undefined;
 
     toggleSidenavOpened() {
