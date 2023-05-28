@@ -1,14 +1,23 @@
 <mat-card class="example-card">
     <mat-card-header>
-        <div mat-card-avatar class="example-header-image"></div>
-        <mat-card-title>Книжка</mat-card-title>
-        <mat-card-subtitle>Электронная</mat-card-subtitle>
+        <img
+            mat-card-avatar
+            alt="previewImg-{{ productMock._id }}"
+            class="example-header-image"
+            [src]="previewImg.url"
+        />
+        <mat-card-title>
+            {{ productMock.name }}
+        </mat-card-title>
+        <mat-card-subtitle>
+            {{ productMock.name }}
+        </mat-card-subtitle>
     </mat-card-header>
-    <img mat-card-image alt="previewImg-{{ productMock._id }}" [src]="previewImg.src" />
+    <img mat-card-image alt="previewImg-{{ productMock._id }}" [src]="previewImg.url" />
     <mat-card-content>
-        <p>Топ за свои деньги</p>
+        <p>{{ productMock.price }} Р.</p>
     </mat-card-content>
     <mat-card-actions>
-        <button mat-button (click)="buyItem($event)">Купить(Дорого)</button>
+        <button mat-button (click)="buyItem($event)">Купить</button>
     </mat-card-actions>
 </mat-card>
