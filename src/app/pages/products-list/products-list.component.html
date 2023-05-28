@@ -1,7 +1,3 @@
-<app-card class="card"></app-card>
-<!-- <app-card class="card"></app-card>
-<app-card class="card"></app-card>
-<app-card class="card"></app-card>
-<app-card class="card"></app-card>
-<app-card class="card"></app-card>
-<app-card class="card"></app-card> -->
+<ng-container *ngFor="let product of products; trackBy: trackById">
+    <app-card class="card" [product]="product" (productSelected$)="addToBasket($event)"></app-card>
+</ng-container>

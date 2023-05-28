@@ -1,4 +1,4 @@
-<mat-card class="card">
+<mat-card *ngIf="product; else noProductLoaded" class="card">
     <mat-card-header>
         <mat-card-title>{{ product.name }}</mat-card-title>
         <mat-card-subtitle>{{ product.price }} $</mat-card-subtitle>
@@ -27,3 +27,5 @@
         <button mat-button (click)="onProductBuy($event)">Buy</button>
     </mat-card-actions>
 </mat-card>
+
+<ng-template #noProductLoaded>No Product loaded.</ng-template>
