@@ -1,5 +1,5 @@
 import {Component} from '@angular/core';
-import {productMock} from 'src/app/shared/products/product.mock';
+import {productMock} from '../../../shared/products/product.mock';
 
 @Component({
     selector: 'app-card',
@@ -9,7 +9,8 @@ import {productMock} from 'src/app/shared/products/product.mock';
 export class CardComponent {
     readonly product = productMock;
 
-    onClick() {
+    onClick(event: Event) {
+        event.stopPropagation();
         /* eslint-disable no-console */
         console.log('click');
         /* eslint-enable no-console */
