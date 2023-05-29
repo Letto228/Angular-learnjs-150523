@@ -1,0 +1,14 @@
+.card {
+    width: 300px;
+    padding-bottom: 20px;
+}
+mat-card-header {
+    padding-bottom: 20px;
+}
+mat-card-actions {
+    display: flex;
+    justify-content: center;
+}
+.rating {
+    padding: 10px;
+}
