@@ -1,7 +1,9 @@
 <div class="rating">
-    <ng-container *ngFor="let index of [].constructor(ratingMax); let i = index">
-        <div class="rating__star" [ngClass]="{rating__star_active: i < rating}">
-            <mat-icon aria-hidden="false" aria-label="Rating star" fontIcon="star"></mat-icon>
-        </div>
-    </ng-container>
+    <div
+        *ngFor="let index of range; let i = index"
+        class="rating__star"
+        [ngClass]="{rating__star_active: i < rating}"
+    >
+        <mat-icon aria-hidden="false" aria-label="Rating star">star</mat-icon>
+    </div>
 </div>
