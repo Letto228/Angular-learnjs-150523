@@ -1,4 +1,18 @@
-<app-card class="card" [product]="products[0]"></app-card>
+<div class="test">
+    <p>id: {{ productsCart[0]?.id }}, count: {{ productsCart[0]?.count }}</p>
+    <p>id: {{ productsCart[1]?.id }}, count: {{ productsCart[1]?.count }}</p>
+</div>
+<app-card
+    #card1
+    class="card"
+    [product]="products[0]"
+    (shopCartChange)="updateCartProducts($event)"
+></app-card>
+<app-card
+    class="card"
+    [product]="products[1]"
+    (shopCartChange)="updateCartProducts($event)"
+></app-card>
 <!-- <app-card class="card"></app-card>
 <app-card class="card"></app-card>
 <app-card class="card"></app-card>
