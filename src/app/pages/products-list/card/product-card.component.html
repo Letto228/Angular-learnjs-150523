@@ -1,0 +1,43 @@
+<mat-card class="container">
+    <mat-card-header class="card-header">
+        <div class="header">
+            <h2 class="header-text">{{ product.name }}</h2>
+        </div>
+    </mat-card-header>
+
+    <mat-card-content class="content">
+        <div class="carousel">
+            <button
+                #tooltip="matTooltip"
+                mat-icon-button
+                matTooltip="Previous image"
+                matTooltipPosition="above"
+            >
+                <mat-icon>chevron_left</mat-icon>
+            </button>
+            <img mat-card-lg-image alt="Photo product" [src]="product.images[0].url" />
+            <button
+                #tooltip="matTooltip"
+                mat-icon-button
+                matTooltip="Next image"
+                matTooltipPosition="above"
+            >
+                <mat-icon>chevron_right</mat-icon>
+            </button>
+        </div>
+        <div>
+            <p>category: {{ product.subCategory }}</p>
+            <p>id: {{ product._id }}</p>
+            <p class="rating">
+                rating:
+                <mat-icon *ngFor="let icon of getRatingIcons(product.rating)" class="star-icon">
+                    star
+                </mat-icon>
+            </p>
+        </div>
+    </mat-card-content>
+
+    <mat-card-actions align="end">
+        <button mat-raised-button color="primary">${{ product.price }} Добавить в корзину</button>
+    </mat-card-actions>
+</mat-card>

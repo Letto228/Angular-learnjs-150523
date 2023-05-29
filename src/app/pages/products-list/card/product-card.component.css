@@ -1,0 +1,41 @@
+img {
+    height: 100px;
+}
+
+.container {
+    width: 30%;
+}
+
+.header {
+    display: flex;
+    flex-direction: column;
+}
+
+.header {
+    border-radius: 2%;
+    background-color: rgb(245, 245, 245);
+    word-wrap: break-word;
+}
+
+.header-text {
+}
+
+.content {
+}
+
+.carousel {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 10px;
+}
+
+.rating {
+    display: flex;
+    align-items: center;
+}
+
+.star-icon {
+    transform: scale(0.7);
+    color: orange;
+}
