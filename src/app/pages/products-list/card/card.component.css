@@ -1,0 +1,11 @@
+.example-card {
+    width: 300px;
+}
+:host {
+    .mat-mdc-card-header {
+        margin-bottom: 10px;
+    }
+    .mdc-card__actions {
+        justify-content: center;
+    }
+}

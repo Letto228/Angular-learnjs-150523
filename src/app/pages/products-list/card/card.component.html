@@ -1,0 +1,11 @@
+<mat-card class="example-card">
+    <mat-card-header>
+        <mat-card-title>{{ card.name }}</mat-card-title>
+        <mat-card-subtitle>rating {{ card.rating }}</mat-card-subtitle>
+    </mat-card-header>
+    <img mat-card-image alt="" [src]="card.images[0].url" />
+    <mat-card-content></mat-card-content>
+    <mat-card-actions>
+        <button mat-raised-button color="primary">BUY</button>
+    </mat-card-actions>
+</mat-card>
