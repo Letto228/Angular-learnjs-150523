@@ -1,12 +1,12 @@
-<app-header
+<!-- <app-header
     [applicationConfig]="applicationConfig"
     (menuClickOutput)="sidenav.toggleSidenavOpened()"
-></app-header>
+></app-header> -->
 <!-- <app-sidenav #sidenav [listTemplate]="flag ? listTemplate : second"> -->
-<app-sidenav #sidenav>
-    <!-- <ng-template #listTemplate> -->
-    <!-- <div> -->
-    <div ngProjectAs="drawer-content">
+<!-- <app-sidenav #sidenav> -->
+<!-- <ng-template #listTemplate> -->
+<!-- <div> -->
+<!-- <div ngProjectAs="drawer-content">
         <h2>{{ applicationConfig.title }}</h2>
         <p>is title</p>
     </div>
@@ -17,10 +17,10 @@
             <mat-list-item role="listitem">Item 2</mat-list-item>
             <mat-list-item role="listitem">Item 3</mat-list-item>
         </mat-list>
-    </div>
-    <!-- </div> -->
-    <!-- </ng-template> -->
-</app-sidenav>
+    </div> -->
+<!-- </div> -->
+<!-- </ng-template> -->
+<!-- </app-sidenav> -->
 
 <!-- <ng-template #listTemplate>
     <h2>{{applicationConfig.title}}</h2>
@@ -34,7 +34,7 @@
     <h2>Second</h2>
 </ng-template> -->
 
-<!-- <app-products-list></app-products-list> -->
+<app-products-list [style]="!closeTemplate ? 'filter:blur(1px)' : ''"></app-products-list>
 
 <!-- Homework stand -->
 
@@ -42,13 +42,13 @@
 <!-- <app-popup-host [template]="switchTemplate ? first : second"></app-popup-host> -->
 <!-- or -->
 <!-- Close template -->
-<!-- <app-popup-host [template]="!closeTemplate ? first : null"></app-popup-host> -->
+<app-popup-host [template]="!closeTemplate ? first : null"></app-popup-host>
 
-<!-- <ng-template #first>
+<ng-template #first>
     <h2>First</h2>
     <p>Is first template</p>
 </ng-template>
-<ng-template #second>
+<!-- <ng-template #second>
     <h2>Second</h2>
     <p>Is second template</p>
 </ng-template> -->
