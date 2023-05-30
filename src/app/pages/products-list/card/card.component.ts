@@ -20,7 +20,7 @@ export class CardComponent {
         event.stopPropagation();
 
         if (this.product) {
-            this.buyAction.emit({[this.product.name]: {product: this.product, quantity: 1}});
+            this.buyAction.emit({[this.product._id]: {product: this.product, quantity: 1}});
         }
     }
 
