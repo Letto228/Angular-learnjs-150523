@@ -1,0 +1,7 @@
+<div class="popup-overlay" [ngClass]="{active: isOpen}">
+    <div class="popup-content">
+        <!--    <ng-content></ng-content>-->
+        <div #viewport></div>
+        <button class="close-btn" (click)="close()">Close</button>
+    </div>
+</div>

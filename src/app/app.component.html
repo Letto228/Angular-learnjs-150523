@@ -17,10 +17,26 @@
             <mat-list-item role="listitem">Item 2</mat-list-item>
             <mat-list-item role="listitem">Item 3</mat-list-item>
         </mat-list>
+        <button (click)="togglePopup()">popup</button>
     </div>
     <!-- </div> -->
     <!-- </ng-template> -->
 </app-sidenav>
+
+<app-popup-host [isOpen]="showPopup" [popupContent]="testList"></app-popup-host>
+<ng-template #testList>
+    <h2>Test</h2>
+    <mat-list role="list">
+        <mat-list-item role="listitem">Item 1</mat-list-item>
+        <mat-list-item role="listitem">Item 2</mat-list-item>
+        <mat-list-item role="listitem">Item 3</mat-list-item>
+    </mat-list>
+    <!--  <ul>-->
+    <!--    <li>1</li>-->
+    <!--    <li>2</li>-->
+    <!--    <li>3</li>-->
+    <!--  </ul>-->
+</ng-template>
 
 <!-- <ng-template #listTemplate>
     <h2>{{applicationConfig.title}}</h2>

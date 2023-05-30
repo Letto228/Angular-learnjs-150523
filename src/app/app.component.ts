@@ -11,6 +11,7 @@ export class AppComponent {
 
     switchTemplate = false;
     closeTemplate = true;
+    showPopup = false;
 
     constructor() {
         setTimeout(() => {
@@ -28,5 +29,9 @@ export class AppComponent {
             // or
             // this.closeTemplate = !this.closeTemplate;
         }, 9000);
+    }
+
+    togglePopup() {
+        this.showPopup = !this.showPopup;
     }
 }
