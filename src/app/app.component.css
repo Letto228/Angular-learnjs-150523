@@ -7,6 +7,6 @@ h1 {
     color: red;
 }
 
-::ng-deep span {
+/* ::ng-deep span {
     color: aquamarine;
-}
+} */
