@@ -18,13 +18,9 @@ export class ProductCardComponent {
         event.stopPropagation();
     }
 
-    getRatingIcons(rating: number): string[] {
-        const icons: string[] = [];
+    getRatingIcons(rating: number): number[] {
+        const iconsNew: number = Math.ceil(rating);
 
-        for (let i = 0; i < rating; i++) {
-            icons.push('star');
-        }
-
-        return icons;
+        return Array.from({length: iconsNew}, (_, index) => ++index);
     }
 }

@@ -1,26 +1,11 @@
-img {
-    height: 100px;
-}
-
 .container {
     width: 30%;
 }
 
 .header {
-    display: flex;
-    flex-direction: column;
-}
-
-.header {
-    border-radius: 2%;
+    border-radius: 3%;
     background-color: rgb(245, 245, 245);
     word-wrap: break-word;
-}
-
-.header-text {
-}
-
-.content {
 }
 
 .carousel {
