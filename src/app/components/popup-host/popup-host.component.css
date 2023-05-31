@@ -1,0 +1,24 @@
+.popup {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(0, 0, 0, 0.7);
+    z-index: 1000;
+}
+
+.popup.hide {
+    display: none;
+}
+
+.content {
+    min-height: 300px;
+    min-width: 400px;
+    background: #ffffff;
+    border-radius: 8px;
+    padding: 15px;
+}
