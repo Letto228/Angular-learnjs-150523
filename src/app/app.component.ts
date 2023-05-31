@@ -11,27 +11,22 @@ export class AppComponent {
 
     switchTemplate = false;
     closeTemplate = true;
-    showPopup = false;
 
     constructor() {
         setTimeout(() => {
-            this.switchTemplate = !this.switchTemplate;
+            // this.switchTemplate = !this.switchTemplate;
             // or
-            // this.closeTemplate = !this.closeTemplate;
+            this.closeTemplate = !this.closeTemplate;
         }, 3000);
         setTimeout(() => {
-            this.switchTemplate = !this.switchTemplate;
+            // this.switchTemplate = !this.switchTemplate;
             // or
-            // this.closeTemplate = !this.closeTemplate;
+            this.closeTemplate = !this.closeTemplate;
         }, 6000);
         setTimeout(() => {
-            this.switchTemplate = !this.switchTemplate;
+            // this.switchTemplate = !this.switchTemplate;
             // or
-            // this.closeTemplate = !this.closeTemplate;
+            this.closeTemplate = !this.closeTemplate;
         }, 9000);
-    }
-
-    togglePopup() {
-        this.showPopup = !this.showPopup;
     }
 }

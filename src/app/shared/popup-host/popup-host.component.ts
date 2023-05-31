@@ -1,37 +1,32 @@
-import {
-    Component,
-    Input,
-    OnChanges,
-    SimpleChanges,
-    TemplateRef,
-    ViewChild,
-    ViewContainerRef,
-} from '@angular/core';
+import {Component, Input, TemplateRef, ViewChild, ViewContainerRef} from '@angular/core';
 
 @Component({
     selector: 'app-popup-host',
     templateUrl: './popup-host.component.html',
     styleUrls: ['./popup-host.component.css'],
 })
-export class PopupHostComponent implements OnChanges {
-    @Input() popupContent!: TemplateRef<unknown>;
+export class PopupHostComponent {
+    showPopup = false;
+
+    @Input() set insertTemplate(template: TemplateRef<unknown> | null) {
+        this.insertPopupContent(template);
+    }
 
     @ViewChild('viewport', {read: ViewContainerRef, static: true})
     private readonly viewPortContainer!: ViewContainerRef;
 
-    @Input() isOpen = false;
+    insertPopupContent(template: TemplateRef<unknown> | null) {
+        this.viewPortContainer.clear();
 
-    close() {
-        this.isOpen = false;
-    }
-
-    ngOnChanges({popupContent}: SimpleChanges): void {
-        if (popupContent) {
-            this.insertPopupContent();
+        if (template) {
+            this.showPopup = true;
+            this.viewPortContainer.createEmbeddedView(template);
+        } else {
+            this.showPopup = false;
         }
     }
 
-    private insertPopupContent() {
-        this.viewPortContainer.createEmbeddedView(this.popupContent);
+    close() {
+        this.insertPopupContent(null);
     }
 }
