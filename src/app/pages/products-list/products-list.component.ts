@@ -1,10 +1,6 @@
 import {Component} from '@angular/core';
 import {productsMock} from 'src/app/shared/products/products.mock';
-
-interface IShopCart {
-    id: string | undefined;
-    count: number;
-}
+import {IShopCart} from './shop-cart.interface';
 
 @Component({
     selector: 'app-products-list',
@@ -13,21 +9,9 @@ interface IShopCart {
 })
 export class ProductsListComponent {
     readonly products = productsMock;
-    productsCart: IShopCart[] = [];
+    productsCart: IShopCart = {};
 
     updateCartProducts(shopCart: IShopCart) {
-        const isCartIncludes = this.productsCart.some(product => product.id === shopCart.id);
-
-        if (!isCartIncludes) {
-            this.productsCart = [...this.productsCart, {...shopCart}];
-        }
-
-        this.productsCart = this.productsCart.map(product => {
-            if (product.id === shopCart.id) {
-                return shopCart;
-            }
-
-            return product;
-        });
+        this.productsCart = shopCart;
     }
 }

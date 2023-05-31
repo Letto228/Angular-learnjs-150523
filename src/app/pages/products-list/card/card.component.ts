@@ -1,10 +1,6 @@
 import {Component, EventEmitter, Input, Output} from '@angular/core';
 import {IProduct} from 'src/app/shared/products/product.interface';
-
-interface IShopCart {
-    id: string | undefined;
-    count: number;
-}
+import {IShopCart} from '../shop-cart.interface';
 
 @Component({
     selector: 'app-card',
@@ -15,7 +11,8 @@ export class CardComponent {
     @Input()
     product: IProduct | undefined = undefined;
 
-    shopCart = {id: this.product?._id, count: 0};
+    @Input()
+    shopCart: IShopCart = {};
 
     @Output()
     shopCartChange = new EventEmitter<IShopCart>();
@@ -23,17 +20,20 @@ export class CardComponent {
     onProductBuy(event: Event) {
         event.stopPropagation();
 
-        this.shopCart = {...this.shopCart, id: this.product?._id, count: this.shopCart.count + 1};
+        if (!this.product?._id) {
+            return;
+        }
+
+        const idCard: string = this.product?._id;
+        const countCard: number = idCard in this.shopCart ? this.shopCart[idCard] + 1 : 0;
+
+        this.shopCart = {...this.shopCart, [idCard]: countCard};
         this.shopCartChange.emit(this.shopCart);
         // eslint-disable-next-line no-console
         console.log('Buy product');
     }
 
     isStarActive(starIndex: number): boolean {
-        if (this.product) {
-            return this.product.rating >= starIndex;
-        }
-
-        return false;
+        return this.product ? this.product.rating >= starIndex : false;
     }
 }
