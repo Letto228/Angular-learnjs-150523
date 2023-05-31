@@ -1,15 +1,13 @@
 <div class="card-item">
-    <header>
-        <p class="title">{{ title }}</p>
+    <header class="header">
+        <p class="title">{{ product.name }}</p>
+        <p class="price">{{ product.price }}USD</p>
     </header>
-    <!--    <img-->
-    <!--        [src]="image.source";-->
-    <!--        alt="Photo of goods"-->
-    <!--    />-->
+    <img alt="Photo of goods" class="card-image" [src]="product.images[0].url" />
     <div class="description">
-        <p>Description of item</p>
+        <p>{{ product._id }}</p>
     </div>
-    <div>
-        <button class="button">Add to Cart</button>
+    <div class="action">
+        <button class="button" (click)="addToCart($event)">Add to Cart</button>
     </div>
 </div>

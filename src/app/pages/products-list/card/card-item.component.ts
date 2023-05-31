@@ -7,7 +7,11 @@ import {productMock} from '../../../shared/products/product.mock';
     styleUrls: ['./card-item.component.css'],
 })
 export class CardItemComponent {
-    product = productMock;
-    title = productMock.name;
-    image = productMock.images[0];
+    readonly product = productMock;
+
+    addToCart(event: Event) {
+        event.stopPropagation();
+        // eslint-disable-next-line no-console
+        console.log(event);
+    }
 }
