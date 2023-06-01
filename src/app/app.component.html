@@ -3,18 +3,7 @@
     (menuClickOutput)="sidenav.toggleSidenavOpened()"
 ></app-header>
 <app-sidenav #sidenav>
-    <div ngProjectAs="drawer-content">
-        <h2>{{ applicationConfig.title }}</h2>
-        <p>is title</p>
-    </div>
-    <div ngProjectAs="content">
-        <h2>Test</h2>
-        <mat-list role="list">
-            <mat-list-item role="listitem">Item 1</mat-list-item>
-            <mat-list-item role="listitem">Item 2</mat-list-item>
-            <mat-list-item role="listitem">Item 3</mat-list-item>
-        </mat-list>
-    </div>
+    <app-products-list></app-products-list>
 </app-sidenav>
 
 <!-- <app-popup-host></app-popup-host> -->

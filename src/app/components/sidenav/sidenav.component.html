@@ -1,11 +1,14 @@
 <mat-drawer-container autosize class="example-container">
     <mat-drawer mode="side" class="example-sidenav">
-        <h2>Drawer content</h2>
-        <ng-content select="drawer-content"></ng-content>
+        <h2>Navigation</h2>
+        <mat-list role="list">
+            <mat-list-item appInsertShadow role="listitem">Item 1</mat-list-item>
+            <mat-list-item appInsertShadow role="listitem">Item 2</mat-list-item>
+            <mat-list-item appInsertShadow role="listitem">Item 3</mat-list-item>
+        </mat-list>
     </mat-drawer>
 
     <div class="example-sidenav-content">
-        <h2>Content</h2>
-        <ng-content select="content"></ng-content>
+        <ng-content></ng-content>
     </div>
 </mat-drawer-container>
