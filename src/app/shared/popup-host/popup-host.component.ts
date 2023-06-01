@@ -14,7 +14,7 @@ import {
     styleUrls: ['./popup-host.component.css'],
 })
 export class PopupHostComponent implements OnChanges {
-    @Input() template: TemplateRef<unknown> | null | undefined;
+    @Input() template: TemplateRef<unknown> | null = null;
 
     @ViewChild('viewport', {read: ViewContainerRef, static: true})
     private readonly viewport!: ViewContainerRef;
@@ -23,7 +23,7 @@ export class PopupHostComponent implements OnChanges {
 
     ngOnChanges({template}: SimpleChanges): void {
         if (template) {
-            this.isVisible = template.currentValue;
+            this.isVisible = !!this.template;
 
             if (this.isVisible) {
                 this._insertTemplate();
