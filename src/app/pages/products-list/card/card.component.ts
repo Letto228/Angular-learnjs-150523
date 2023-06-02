@@ -25,7 +25,7 @@ export class CardComponent {
         }
 
         const idCard: string = this.product?._id;
-        const countCard: number = idCard in this.shopCart ? this.shopCart[idCard] + 1 : 0;
+        const countCard: number = idCard in this.shopCart ? this.shopCart[idCard] + 1 : 1;
 
         this.shopCart = {...this.shopCart, [idCard]: countCard};
         this.shopCartChange.emit(this.shopCart);
