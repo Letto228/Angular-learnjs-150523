@@ -12,7 +12,7 @@ export class CardComponent {
     product: IProduct | undefined = undefined;
 
     @Input()
-    shopCart: IShopCart = {};
+    countBuy = 0;
 
     @Output()
     shopCartChange = new EventEmitter<IShopCart>();
@@ -25,10 +25,9 @@ export class CardComponent {
         }
 
         const idCard: string = this.product?._id;
-        const countCard: number = idCard in this.shopCart ? this.shopCart[idCard] + 1 : 1;
+        const countCard: number = this.countBuy ? this.countBuy + 1 : 1;
 
-        this.shopCart = {...this.shopCart, [idCard]: countCard};
-        this.shopCartChange.emit(this.shopCart);
+        this.shopCartChange.emit({[idCard]: countCard});
         // eslint-disable-next-line no-console
         console.log('Buy product');
     }

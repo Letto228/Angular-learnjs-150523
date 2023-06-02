@@ -4,13 +4,13 @@
 <app-card
     class="card"
     [product]="products[0]"
-    [shopCart]="productsCart"
+    [countBuy]="productsCart[products[0]._id]"
     (shopCartChange)="updateCartProducts($event)"
 ></app-card>
 <app-card
     class="card"
     [product]="products[1]"
-    [shopCart]="productsCart"
+    [countBuy]="productsCart[products[1]._id]"
     (shopCartChange)="updateCartProducts($event)"
 ></app-card>
 <!-- <app-card class="card"></app-card>

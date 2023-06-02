@@ -12,6 +12,6 @@ export class ProductsListComponent {
     productsCart: IShopCart = {};
 
     updateCartProducts(shopCart: IShopCart) {
-        this.productsCart = shopCart;
+        this.productsCart = {...this.productsCart, ...shopCart};
     }
 }
