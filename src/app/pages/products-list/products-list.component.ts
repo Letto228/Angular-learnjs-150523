@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {productsMock} from '../../shared/products/products.mock';
 import {IProduct} from '../../shared/products/product.interface';
+import {LoadDirection} from '../../shared/scroll-with-loading/scroll-with-loading.directive';
 
 @Component({
     selector: 'app-products-list',
@@ -25,5 +26,10 @@ export class ProductsListComponent implements OnInit {
     onToggle(event: unknown) {
         // eslint-disable-next-line no-console
         console.log(event);
+    }
+
+    onLoad(direction: LoadDirection | null) {
+        // eslint-disable-next-line no-console
+        console.log(direction);
     }
 }
