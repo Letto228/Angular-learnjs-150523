@@ -1,5 +1,13 @@
-import {Directive, ElementRef, EventEmitter, OnDestroy, OnInit, Output} from '@angular/core';
-import {debounceTime, fromEvent, map, Subject, Subscription} from 'rxjs';
+import {
+    Directive,
+    ElementRef,
+    EventEmitter,
+    HostListener,
+    OnDestroy,
+    OnInit,
+    Output,
+} from '@angular/core';
+import {debounceTime, filter, fromEvent, map, Subject, Subscription} from 'rxjs';
 
 export enum LoadDirection {
     UP = 'up',
@@ -15,6 +23,7 @@ export class ScrollWithLoadingDirective implements OnInit, OnDestroy {
     scrollSubject = new Subject<MouseEvent>();
     lastScrollTop = 0;
     borderOffset = 100;
+    private timerId!: number;
 
     constructor(private readonly elementRef: ElementRef) {}
 
@@ -23,13 +32,20 @@ export class ScrollWithLoadingDirective implements OnInit, OnDestroy {
         const scrollHeight = (target as Element).scrollHeight;
         const scrollTop = (target as Element).scrollTop;
 
+        const scrollDirection =
+            scrollTop - this.lastScrollTop > 0 ? LoadDirection.DOWN : LoadDirection.UP;
+
         this.lastScrollTop = scrollTop;
 
         if (
-            scrollHeight - scrollTop - this.borderOffset <= clientHeight ||
-            scrollTop <= this.borderOffset
+            scrollHeight - scrollTop - this.borderOffset <= clientHeight &&
+            scrollDirection !== LoadDirection.UP
         ) {
-            return this.lastScrollTop > 0 ? LoadDirection.DOWN : LoadDirection.UP;
+            return scrollDirection;
+        }
+
+        if (scrollTop <= this.borderOffset && scrollDirection !== LoadDirection.DOWN) {
+            return scrollDirection;
         }
 
         return null;
@@ -48,6 +64,9 @@ export class ScrollWithLoadingDirective implements OnInit, OnDestroy {
 
                     return null;
                 }),
+                filter(direction => {
+                    return Boolean(direction);
+                }),
             )
             .subscribe(this.loadData);
 
@@ -58,5 +77,36 @@ export class ScrollWithLoadingDirective implements OnInit, OnDestroy {
 
     ngOnDestroy(): void {
         this.scrollSubscription?.unsubscribe();
+    }
+
+    // **************************************************//
+    // Чтобы его включить нужно снять коминтарии c 93 и 97 строк.
+    // И закоментировать строки 64 - 66.
+    // Этот вариант вариант сделал изначально.
+    @HostListener('scroll', ['$event'])
+    onScroll({target}: MouseEvent) {
+        const clientHeight = (target as Element).clientHeight;
+        const scrollHeight = (target as Element).scrollHeight;
+        const scrollTop = (target as Element).scrollTop;
+
+        const scrollDirection =
+            scrollTop - this.lastScrollTop > 0 ? LoadDirection.DOWN : LoadDirection.UP;
+
+        this.lastScrollTop = scrollTop;
+
+        clearTimeout(this.timerId);
+
+        this.timerId = setTimeout(() => {
+            if (
+                scrollHeight - scrollTop - this.borderOffset <= clientHeight &&
+                scrollDirection === 'down'
+            ) {
+                // this.loadData.emit(scrollDirection);
+            }
+
+            if (scrollTop <= this.borderOffset && scrollDirection === 'up') {
+                //     this.loadData.emit(scrollDirection);
+            }
+        }, 150);
     }
 }
