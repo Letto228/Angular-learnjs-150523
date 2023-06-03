@@ -26,4 +26,9 @@ export class ProductsListComponent implements OnInit {
         // eslint-disable-next-line no-console
         console.log(event);
     }
+
+    onLoad(event: unknown): void {
+        // eslint-disable-next-line no-console
+        console.warn(`LOAD DATA: ${event}`);
+    }
 }
