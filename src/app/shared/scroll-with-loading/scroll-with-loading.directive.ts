@@ -21,18 +21,15 @@ export class ScrollWithLoadingDirective implements OnInit, OnDestroy {
     monitoringDirection({target}: MouseEvent) {
         const clientHeight = (target as Element).clientHeight;
         const scrollHeight = (target as Element).scrollHeight;
-        const lastScrollTop = (target as Element).scrollTop;
+        const scrollTop = (target as Element).scrollTop;
+
+        this.lastScrollTop = scrollTop;
 
         if (
-            scrollHeight - this.lastScrollTop - this.borderOffset <= clientHeight ||
-            this.lastScrollTop <= this.borderOffset
+            scrollHeight - scrollTop - this.borderOffset <= clientHeight ||
+            scrollTop <= this.borderOffset
         ) {
-            const direction =
-                this.lastScrollTop - lastScrollTop > 0 ? LoadDirection.DOWN : LoadDirection.UP;
-
-            this.lastScrollTop = lastScrollTop;
-
-            return direction;
+            return this.lastScrollTop > 0 ? LoadDirection.DOWN : LoadDirection.UP;
         }
 
         return null;
