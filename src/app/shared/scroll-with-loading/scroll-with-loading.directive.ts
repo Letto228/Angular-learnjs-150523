@@ -2,6 +2,7 @@ import {
     Directive,
     ElementRef,
     EventEmitter,
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     HostListener,
     OnDestroy,
     OnInit,
@@ -23,6 +24,7 @@ export class ScrollWithLoadingDirective implements OnInit, OnDestroy {
     scrollSubject = new Subject<MouseEvent>();
     lastScrollTop = 0;
     borderOffset = 100;
+    // eslint-disable-next-line @typescript-eslint/prefer-readonly
     private timerId!: number;
 
     constructor(private readonly elementRef: ElementRef) {}
@@ -79,34 +81,35 @@ export class ScrollWithLoadingDirective implements OnInit, OnDestroy {
         this.scrollSubscription?.unsubscribe();
     }
 
-    // **************************************************//
-    // Чтобы его включить нужно снять коминтарии c 104 и 108 строк.
+    // Этот вариант сделал изначально.
+    // Чтобы его включить нужно снять коминтарии между строк со звездочками.
     // И закоментировать c 73 по 75 строку.
-    // Этот вариант вариант сделал изначально.
-    @HostListener('scroll', ['$event'])
-    onScroll({target}: MouseEvent) {
-        const clientHeight = (target as Element).clientHeight;
-        const scrollHeight = (target as Element).scrollHeight;
-        const scrollTop = (target as Element).scrollTop;
-
-        const scrollDirection =
-            scrollTop - this.lastScrollTop > 0 ? LoadDirection.DOWN : LoadDirection.UP;
-
-        this.lastScrollTop = scrollTop;
-
-        clearTimeout(this.timerId);
-
-        this.timerId = setTimeout(() => {
-            if (
-                scrollHeight - scrollTop - this.borderOffset <= clientHeight &&
-                scrollDirection === 'down'
-            ) {
-                // this.loadData.emit(scrollDirection);
-            }
-
-            if (scrollTop <= this.borderOffset && scrollDirection === 'up') {
-                //     this.loadData.emit(scrollDirection);
-            }
-        }, 150);
-    }
+    // **************************************************//
+    // @HostListener('scroll', ['$event'])
+    // onScroll({target}: MouseEvent) {
+    //     const clientHeight = (target as Element).clientHeight;
+    //     const scrollHeight = (target as Element).scrollHeight;
+    //     const scrollTop = (target as Element).scrollTop;
+    //
+    //     const scrollDirection =
+    //         scrollTop - this.lastScrollTop > 0 ? LoadDirection.DOWN : LoadDirection.UP;
+    //
+    //     this.lastScrollTop = scrollTop;
+    //
+    //     clearTimeout(this.timerId);
+    //
+    //     this.timerId = setTimeout(() => {
+    //         if (
+    //             scrollHeight - scrollTop - this.borderOffset <= clientHeight &&
+    //             scrollDirection === 'down'
+    //         ) {
+    //             // this.loadData.emit(scrollDirection);
+    //         }
+    //
+    //         if (scrollTop <= this.borderOffset && scrollDirection === 'up') {
+    //             //     this.loadData.emit(scrollDirection);
+    //         }
+    //     }, 150);
+    // }
+    // **************************************************//
 }
