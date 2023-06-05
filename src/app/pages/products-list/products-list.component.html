@@ -1,5 +1,5 @@
 <ng-template let-productsFromNgIf [ngIf]="getFilteredProducts" [ngIfElse]="loader">
-    <div appScrollWithLoading class="scroll-wrapper" (loadData)="onLoad($event)">
+    <div appScrollWithLoading class="scroll-container" (loadData)="onLoad($event)">
         <!-- <ng-template [appDumpNgIf]="getFilteredProducts" let-productsFromNgIf> -->
         <!-- {{productsFromNgIf}} -->
         <app-card class="card" [product]="productsFromNgIf?.[0]"></app-card>

@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {productsMock} from '../../shared/products/products.mock';
 import {IProduct} from '../../shared/products/product.interface';
+import {LoadDirection} from '../../shared/scroll-with-loading/load-direction';
 
 @Component({
     selector: 'app-products-list',
@@ -27,8 +28,7 @@ export class ProductsListComponent implements OnInit {
         console.log(event);
     }
 
-    onLoad(event: unknown): void {
-        // eslint-disable-next-line no-console
+    onLoad(event: LoadDirection) {
         console.warn(`LOAD DATA: ${event}`);
     }
 }
