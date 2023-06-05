@@ -1,5 +1,10 @@
 import {Directive, Input, TemplateRef, ViewContainerRef} from '@angular/core';
 
+interface DumpNgIfContext<T> {
+    value: T;
+    $implicit: T;
+}
+
 @Directive({
     selector: '[appDumpNgIf]',
 })
@@ -28,6 +33,21 @@ export class DumpNgIfDirective<T> {
         private readonly viewContainer: ViewContainerRef,
         private readonly tempalte: TemplateRef<{value: T; $implicit: T}>,
     ) {}
+
+    static ngTemplateContextGuard<T>(
+        _directive: DumpNgIfDirective<T>,
+        _context: DumpNgIfContext<T> | undefined,
+    ): _context is DumpNgIfContext<T> {
+        return true;
+    }
+
+    // eslint-disable-next-line @typescript-eslint/naming-convention
+    static ngTemplateGuard_appDumpNgIf<T>(
+        _directive: DumpNgIfDirective<T>,
+        _inputValue: T | null | undefined,
+    ): _inputValue is T {
+        return true;
+    }
 }
 
 // @Directive({

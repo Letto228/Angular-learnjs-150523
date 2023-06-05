@@ -1,4 +1,5 @@
 import {
+    ChangeDetectionStrategy,
     Component,
     Input,
     OnChanges,
@@ -12,6 +13,7 @@ import {
     selector: 'app-popup-host',
     templateUrl: './popup-host.component.html',
     styleUrls: ['./popup-host.component.css'],
+    changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class PopupHostComponent implements OnChanges {
     @Input() template: TemplateRef<unknown> | null = null;

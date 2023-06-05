@@ -1,17 +1,31 @@
-<ng-template let-productsFromNgIf [ngIf]="getFilteredProducts" [ngIfElse]="loader">
-    <div class="scroll-container">
-        <app-card class="card" [product]="productsFromNgIf[0]"></app-card>
-        <app-card class="card" [product]="productsFromNgIf[1]"></app-card>
-        <app-card class="card" [product]="productsFromNgIf[2]"></app-card>
-        <app-card class="card" [product]="productsFromNgIf[3]"></app-card>
-        <app-card class="card" [product]="productsFromNgIf[4]"></app-card>
-        <app-card class="card" [product]="productsFromNgIf[0]"></app-card>
-        <app-card class="card" [product]="productsFromNgIf[1]"></app-card>
-        <app-card class="card" [product]="productsFromNgIf[2]"></app-card>
-        <app-card class="card" [product]="productsFromNgIf[3]"></app-card>
-        <app-card class="card" [product]="productsFromNgIf[4]"></app-card>
-    </div>
-</ng-template>
+<!-- <ng-template let-productsFromNgIf [ngIf]="getFilteredProducts" [ngIfElse]="loader"> -->
+<!-- <div
+    *ngIf="getFilteredProducts; else: loader; let productsFromNgIf = ngIf"
+    class="scroll-container"
+> -->
+
+<!-- Раскомментировать при выполнении ДЗ -->
+<!-- <ng-container *appPagination="let chank of productsFromContext; chankSize: 4"> -->
+<div *ngIf="getFilteredProducts as productsFromNgIf; else loader" class="scroll-container">
+    <!-- <ng-template ngFor [ngForOf]="productsFromNgIf" [ngForTrackBy]="trackBy" let-product> -->
+    <app-card
+        *ngFor="
+            let product of productsFromNgIf as ngForOfValue;
+            trackBy: trackBy;
+            let localIndex = index
+        "
+        class="card"
+        [product]="ngForOfValue[localIndex]"
+    ></app-card>
+    <!-- </ng-template> -->
+</div>
+<!-- </ng-container> -->
+
+<!-- </ng-template> -->
+
+<!-- <div *appDumpNgIf="testUser; let user = value">
+    {{testUser.name}}
+</div> -->
 
 <ng-template #loader>
     <mat-spinner></mat-spinner>
