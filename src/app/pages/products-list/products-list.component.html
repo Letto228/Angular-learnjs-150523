@@ -1,11 +1,19 @@
 <ng-template let-productsFromNgIf [ngIf]="getFilteredProducts" [ngIfElse]="loader">
-    <!-- <ng-template [appDumpNgIf]="getFilteredProducts" let-productsFromNgIf> -->
-    <!-- {{productsFromNgIf}} -->
-    <app-card class="card" [product]="productsFromNgIf?.[0]"></app-card>
-    <app-card class="card" [product]="productsFromNgIf?.[1]"></app-card>
-    <app-card class="card" [product]="productsFromNgIf?.[2]"></app-card>
-    <app-card class="card" [product]="productsFromNgIf?.[3]"></app-card>
-    <app-card class="card" [product]="productsFromNgIf?.[4]"></app-card>
+    <!-- Раскомментировать div при выполнении ДЗ -->
+    <div appScrollWithLoading class="scroll-container" (loadData)="onLoad($event)">
+        <!-- <ng-template [appDumpNgIf]="getFilteredProducts" let-productsFromNgIf> -->
+        <!-- {{productsFromNgIf}} -->
+        <app-card class="card" [product]="productsFromNgIf?.[0]"></app-card>
+        <app-card class="card" [product]="productsFromNgIf?.[1]"></app-card>
+        <app-card class="card" [product]="productsFromNgIf?.[2]"></app-card>
+        <app-card class="card" [product]="productsFromNgIf?.[3]"></app-card>
+        <app-card class="card" [product]="productsFromNgIf?.[4]"></app-card>
+        <app-card class="card" [product]="productsFromNgIf?.[0]"></app-card>
+        <app-card class="card" [product]="productsFromNgIf?.[1]"></app-card>
+        <app-card class="card" [product]="productsFromNgIf?.[2]"></app-card>
+        <app-card class="card" [product]="productsFromNgIf?.[3]"></app-card>
+        <app-card class="card" [product]="productsFromNgIf?.[4]"></app-card>
+    </div>
 </ng-template>
 
 <!-- <ng-template [ngIf]="!products"> -->
