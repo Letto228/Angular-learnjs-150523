@@ -13,7 +13,7 @@ export class ProductsListComponent implements OnInit {
     ngOnInit(): void {
         setTimeout(() => {
             this.products = productsMock;
-        }, 3000);
+        }, 2000);
     }
 
     get getFilteredProducts(): IProduct[] | null {
@@ -25,5 +25,10 @@ export class ProductsListComponent implements OnInit {
     onToggle(event: unknown) {
         // eslint-disable-next-line no-console
         console.log(event);
+    }
+
+    onLoad(direction: string) {
+        // eslint-disable-next-line no-console
+        console.log(direction);
     }
 }
