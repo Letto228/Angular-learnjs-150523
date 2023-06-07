@@ -23,10 +23,12 @@ export class PopupHostComponent implements OnChanges {
     isVisible = false;
 
     ngOnChanges({template}: SimpleChanges) {
-        this.isVisible = template.currentValue;
+        if (template) {
+            this.isVisible = !!this.template;
 
-        if (this.isVisible) {
-            this._insertTemplate();
+            if (this.isVisible) {
+                this._insertTemplate();
+            }
         }
     }
 
