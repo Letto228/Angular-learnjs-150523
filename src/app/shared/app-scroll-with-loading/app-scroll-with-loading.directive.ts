@@ -6,8 +6,8 @@ import {LoadDirection} from './app-scroll-with-loading.enum';
     selector: '[appScrollWithLoading]',
 })
 export class AppScrollWithLoadingDirective implements OnInit, OnDestroy {
-    @Output() loadData = new EventEmitter<string>();
-    private readonly borderOffsetTop$ = new Subject<number>();
+    @Output() loadData = new EventEmitter<LoadDirection>();
+    // private readonly borderOffsetTop$ = new Subject<number>();
     private readonly borderOffsetBottom$ = new Subject<number>();
     private readonly destroy$ = new Subject<void>();
 
@@ -20,7 +20,7 @@ export class AppScrollWithLoadingDirective implements OnInit, OnDestroy {
         const borderOffset = invisibleOffset - scrollTop;
 
         this.borderOffsetBottom$.next(borderOffset);
-        this.borderOffsetTop$.next(scrollTop);
+        // this.borderOffsetTop$.next(scrollTop);
     }
 
     ngOnInit() {
@@ -38,13 +38,13 @@ export class AppScrollWithLoadingDirective implements OnInit, OnDestroy {
             });
 
         // подписка на отступ сверху
-        this.borderOffsetTop$
-            .pipe(debounceTime(100), takeUntil(this.destroy$))
-            .subscribe((pixels: number) => {
-                if (pixels <= 100) {
-                    this.loadData.emit(LoadDirection.SCROLLUP);
-                }
-            });
+        // this.borderOffsetTop$
+        //     .pipe(debounceTime(100), takeUntil(this.destroy$))
+        //     .subscribe((pixels: number) => {
+        //         if (pixels <= 100) {
+        //             this.loadData.emit(LoadDirection.SCROLLUP);
+        //         }
+        //     });
     }
 
     ngOnDestroy() {
