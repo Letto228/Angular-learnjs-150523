@@ -5,21 +5,51 @@
 > -->
 
 <!-- Раскомментировать при выполнении ДЗ -->
-<!-- <ng-container *appPagination="let chank of productsFromContext; chankSize: 4"> -->
 <div *ngIf="getFilteredProducts as productsFromNgIf; else loader" class="scroll-container">
-    <!-- <ng-template ngFor [ngForOf]="productsFromNgIf" [ngForTrackBy]="trackBy" let-product> -->
-    <app-card
-        *ngFor="
-            let product of productsFromNgIf as ngForOfValue;
-            trackBy: trackBy;
-            let localIndex = index
+    <ng-container
+        *appPagination="
+            let chank of products;
+            let next = next;
+            let back = back;
+            let index = index;
+            let getPage = getPage;
+            let pages = pages
         "
-        class="card"
-        [product]="ngForOfValue[localIndex]"
-    ></app-card>
-    <!-- </ng-template> -->
+    >
+        <div class="pagination-container">
+            <button mat-icon-button (click)="back(); $event.stopPropagation()">
+                <mat-icon>chevron_left</mat-icon>
+            </button>
+            <button
+                *ngFor="let page of pages"
+                mat-button
+                [ngClass]="{current: page === index}"
+                (click)="getPage(page)"
+            >
+                {{ page + 1 }}
+            </button>
+            <button mat-icon-button (click)="next(); $event.stopPropagation()">
+                <mat-icon>chevron_right</mat-icon>
+            </button>
+        </div>
+        <app-card
+            *ngFor="let product of chank; trackBy: trackBy; let index = index"
+            class="card"
+            [product]="product"
+        ></app-card>
+    </ng-container>
+    <!--      &lt;!&ndash; <ng-template ngFor [ngForOf]="productsFromNgIf" [ngForTrackBy]="trackBy" let-product> &ndash;&gt;-->
+    <!--      <app-card-->
+    <!--          *ngFor="-->
+    <!--              let product of productsFromNgIf as ngForOfValue;-->
+    <!--              trackBy: trackBy;-->
+    <!--              let localIndex = index-->
+    <!--          "-->
+    <!--          class="card"-->
+    <!--          [product]="ngForOfValue[localIndex]"-->
+    <!--      ></app-card>-->
+    <!--      &lt;!&ndash; </ng-template> &ndash;&gt;-->
 </div>
-<!-- </ng-container> -->
 
 <!-- </ng-template> -->
 

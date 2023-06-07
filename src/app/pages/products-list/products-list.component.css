@@ -24,3 +24,15 @@
 .card {
     margin: 10px;
 }
+
+.pagination-container {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    justify-content: center;
+}
+
+.current {
+    background: rgba(0, 150, 140, 0.5);
+    outline: 1px solid rgba(255, 165, 0, 0.5);
+}
