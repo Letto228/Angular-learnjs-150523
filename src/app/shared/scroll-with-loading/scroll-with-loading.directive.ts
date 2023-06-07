@@ -1,11 +1,10 @@
-import {Directive, EventEmitter, HostListener, OnDestroy, Output} from '@angular/core';
-import {Subject} from 'rxjs';
+import {Directive, EventEmitter, HostListener, Output} from '@angular/core';
 import {LoadDirectionEnum} from './load-direction.enum';
 
 @Directive({
     selector: '[appScrollWithLoading]',
 })
-export class ScrollWithLoadingDirective implements OnDestroy {
+export class ScrollWithLoadingDirective {
     @Output() loadData = new EventEmitter<LoadDirectionEnum>();
     @HostListener('scroll', ['$event.target'])
     onScroll(event: HTMLElement): void {
@@ -13,7 +12,7 @@ export class ScrollWithLoadingDirective implements OnDestroy {
             clearTimeout(this.timeoutID);
         }
 
-        setTimeout(() => {
+        this.timeoutID = setTimeout(() => {
             if (this.isTop(event.scrollTop)) {
                 this.sendLoadData(LoadDirectionEnum.Top);
             }
@@ -24,10 +23,9 @@ export class ScrollWithLoadingDirective implements OnDestroy {
         }, 500);
     }
 
-    private readonly timeoutID: number = -1;
+    private timeoutID = -1;
     private readonly onTop = 0;
     private readonly borderOffset = 100;
-    private readonly destroy$ = new Subject<void>();
 
     private isTop(currentTop: number): boolean {
         return currentTop <= this.onTop + this.borderOffset;
@@ -39,10 +37,5 @@ export class ScrollWithLoadingDirective implements OnDestroy {
 
     private sendLoadData(content: LoadDirectionEnum) {
         this.loadData.emit(content);
-    }
-
-    ngOnDestroy(): void {
-        this.destroy$.next();
-        this.destroy$.complete();
     }
 }
