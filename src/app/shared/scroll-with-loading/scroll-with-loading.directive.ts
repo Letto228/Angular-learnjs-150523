@@ -1,14 +1,5 @@
-import {
-    Directive,
-    ElementRef,
-    EventEmitter,
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    HostListener,
-    OnDestroy,
-    OnInit,
-    Output,
-} from '@angular/core';
-import {debounceTime, filter, fromEvent, map, Subject, Subscription} from 'rxjs';
+import {Directive, ElementRef, EventEmitter, OnDestroy, OnInit, Output} from '@angular/core';
+import {debounceTime, filter, fromEvent, map, Subscription} from 'rxjs';
 
 export enum LoadDirection {
     UP = 'up',
@@ -19,30 +10,30 @@ export enum LoadDirection {
     selector: '[appScrollWithLoading]',
 })
 export class ScrollWithLoadingDirective implements OnInit, OnDestroy {
-    @Output() loadData = new EventEmitter<LoadDirection | null>();
-    scrollSubscription?: Subscription;
-    scrollSubject = new Subject<MouseEvent>();
+    @Output() loadData = new EventEmitter<LoadDirection>();
+    fromEventSubscription?: Subscription;
     lastScrollTop = 0;
     borderOffset = 100;
-    // eslint-disable-next-line @typescript-eslint/prefer-readonly
-    private timerId!: number;
 
     constructor(private readonly elementRef: ElementRef) {}
 
-    monitoringDirection({target}: MouseEvent) {
-        const clientHeight = (target as Element).clientHeight;
-        const scrollHeight = (target as Element).scrollHeight;
-        const scrollTop = (target as Element).scrollTop;
+    ngOnInit(): void {
+        this.setupScrollSubscription();
+    }
+
+    private monitoringDirection({
+        clientHeight,
+        scrollHeight,
+        scrollTop,
+    }: Element): LoadDirection | null {
+        const visibleContentHeight = scrollHeight - scrollTop - this.borderOffset;
 
         const scrollDirection =
-            scrollTop - this.lastScrollTop > 0 ? LoadDirection.DOWN : LoadDirection.UP;
+            scrollTop > this.lastScrollTop ? LoadDirection.DOWN : LoadDirection.UP;
 
         this.lastScrollTop = scrollTop;
 
-        if (
-            scrollHeight - scrollTop - this.borderOffset <= clientHeight &&
-            scrollDirection !== LoadDirection.UP
-        ) {
+        if (visibleContentHeight <= clientHeight && scrollDirection !== LoadDirection.UP) {
             return scrollDirection;
         }
 
@@ -53,63 +44,21 @@ export class ScrollWithLoadingDirective implements OnInit, OnDestroy {
         return null;
     }
 
-    ngOnInit(): void {
-        this.scrollSubscription = this.scrollSubject
+    setupScrollSubscription() {
+        this.fromEventSubscription = fromEvent<MouseEvent>(this.elementRef.nativeElement, 'scroll')
             .pipe(
                 debounceTime(150),
-                map(event => {
-                    const direction = this.monitoringDirection(event);
-
-                    if (direction) {
-                        return direction;
-                    }
-
-                    return null;
-                }),
-                filter(direction => {
-                    return Boolean(direction);
-                }),
+                map(event => this.monitoringDirection(event.target as Element)),
+                filter(direction => Boolean(direction)),
             )
-            .subscribe(this.loadData);
-
-        fromEvent<MouseEvent>(this.elementRef.nativeElement, 'scroll').subscribe(
-            this.scrollSubject,
-        );
+            .subscribe(direction => {
+                if (direction) {
+                    this.loadData.emit(direction);
+                }
+            });
     }
 
     ngOnDestroy(): void {
-        this.scrollSubscription?.unsubscribe();
+        this.fromEventSubscription?.unsubscribe();
     }
-
-    // Этот вариант сделал изначально.
-    // Чтобы его включить нужно снять коминтарии между строк со звездочками.
-    // И закоментировать c 73 по 75 строку.
-    // **************************************************//
-    // @HostListener('scroll', ['$event'])
-    // onScroll({target}: MouseEvent) {
-    //     const clientHeight = (target as Element).clientHeight;
-    //     const scrollHeight = (target as Element).scrollHeight;
-    //     const scrollTop = (target as Element).scrollTop;
-    //
-    //     const scrollDirection =
-    //         scrollTop - this.lastScrollTop > 0 ? LoadDirection.DOWN : LoadDirection.UP;
-    //
-    //     this.lastScrollTop = scrollTop;
-    //
-    //     clearTimeout(this.timerId);
-    //
-    //     this.timerId = setTimeout(() => {
-    //         if (
-    //             scrollHeight - scrollTop - this.borderOffset <= clientHeight &&
-    //             scrollDirection === 'down'
-    //         ) {
-    //             // this.loadData.emit(scrollDirection);
-    //         }
-    //
-    //         if (scrollTop <= this.borderOffset && scrollDirection === 'up') {
-    //             //     this.loadData.emit(scrollDirection);
-    //         }
-    //     }, 150);
-    // }
-    // **************************************************//
 }
