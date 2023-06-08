@@ -28,6 +28,8 @@ export class PopupHostComponent implements OnChanges {
 
             if (this.isVisible) {
                 this._insertTemplate();
+            } else {
+                this._clearViewPort();
             }
         }
     }
