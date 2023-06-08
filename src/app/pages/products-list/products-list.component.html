@@ -5,21 +5,45 @@
 > -->
 
 <!-- Раскомментировать при выполнении ДЗ -->
-<!-- <ng-container *appPagination="let chank of productsFromContext; chankSize: 4"> -->
 <div *ngIf="getFilteredProducts as productsFromNgIf; else loader" class="scroll-container">
-    <!-- <ng-template ngFor [ngForOf]="productsFromNgIf" [ngForTrackBy]="trackBy" let-product> -->
-    <app-card
-        *ngFor="
-            let product of productsFromNgIf as ngForOfValue;
-            trackBy: trackBy;
-            let localIndex = index
+    <ng-container
+        *appPagination="
+            let chank of productsFromNgIf;
+            chankSize: 4;
+            let next = next;
+            let back = back;
+            let index = index;
+            let chunksNum = chunksNum;
+            let changePage = changePage
         "
-        class="card"
-        [product]="ngForOfValue[localIndex]"
-    ></app-card>
-    <!-- </ng-template> -->
+    >
+        <!-- <ng-template ngFor [ngForOf]="productsFromNgIf" [ngForTrackBy]="trackBy" let-product> -->
+        <app-card
+            *ngFor="let product of chank as ngForOfValue; trackBy: trackBy; let localIndex = index"
+            class="card"
+            [product]="ngForOfValue[localIndex]"
+        ></app-card>
+        <!-- </ng-template> -->
+
+        <mat-card class="pagination">
+            <button mat-icon-button (click)="back()">
+                <mat-icon>chevron_left</mat-icon>
+            </button>
+            <mat-button-toggle-group>
+                <mat-button-toggle
+                    *ngFor="let page of chunksNum"
+                    [ngClass]="index == page ? 'chosen' : ''"
+                    (click)="changePage(page)"
+                >
+                    {{ page + 1 }}
+                </mat-button-toggle>
+            </mat-button-toggle-group>
+            <button mat-icon-button (click)="next()">
+                <mat-icon>chevron_right</mat-icon>
+            </button>
+        </mat-card>
+    </ng-container>
 </div>
-<!-- </ng-container> -->
 
 <!-- </ng-template> -->
 

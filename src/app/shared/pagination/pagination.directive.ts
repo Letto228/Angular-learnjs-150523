@@ -17,10 +17,11 @@ import {IPaginationContext} from './pagination-context.interface';
 export class PaginationDirective<T> implements OnChanges, OnInit, OnDestroy {
     @Input() appPaginationOf: T[] | null | undefined;
     // Количество элементов в чанке
-    // @Input() appPaginationChankSize: number = 4;
+    @Input() appPaginationChankSize = 4;
 
     private readonly currentIndex$ = new BehaviorSubject<number>(0);
     private readonly destroy$ = new Subject<void>();
+    private chunkedArrays: T[] = [];
 
     constructor(
         private readonly viewContainer: ViewContainerRef,
@@ -34,7 +35,7 @@ export class PaginationDirective<T> implements OnChanges, OnInit, OnDestroy {
     }
 
     ngOnInit() {
-        this.listenCurrentIndexChange();
+        this.initializeListeners();
     }
 
     ngOnDestroy() {
@@ -51,13 +52,18 @@ export class PaginationDirective<T> implements OnChanges, OnInit, OnDestroy {
             return;
         }
 
+        // делим исходный массив на чанки
+        // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+        this.chunkedArrays = this.makeChunks(this.appPaginationOf!, this.appPaginationChankSize);
+
+        // устанавливаем index = 0
         this.currentIndex$.next(0);
     }
 
-    private listenCurrentIndexChange() {
+    private initializeListeners() {
         this.currentIndex$
             .pipe(
-                map(currentIndex => this.getCurrentContext(currentIndex)),
+                map(currentIndex => this.getCurrentContext(currentIndex, this.chunkedArrays)),
                 takeUntil(this.destroy$),
             )
             .subscribe((context: IPaginationContext<T>) => {
@@ -66,32 +72,55 @@ export class PaginationDirective<T> implements OnChanges, OnInit, OnDestroy {
             });
     }
 
-    private getCurrentContext(currentIndex: number): IPaginationContext<T> {
+    private makeChunks(array: T[], chunkSize: number) {
+        const newArray: T[] = [...array];
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        const chunkArrays: any = [];
+
+        for (let i = 0; i < newArray.length; i += chunkSize) {
+            chunkArrays.push(newArray.slice(i, i + chunkSize));
+        }
+
+        return chunkArrays;
+    }
+
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    private getCurrentContext(currentIndex: number, chunkArrays: any): IPaginationContext<T> {
+        const chunksNum = [...new Array(chunkArrays.length).keys()].map(i => i);
+
         return {
             // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-            $implicit: this.appPaginationOf![currentIndex],
+            $implicit: chunkArrays[currentIndex],
             index: currentIndex,
             appPaginationOf: this.appPaginationOf as T[],
+            chunksNum,
             next: () => {
                 this.next();
             },
             back: this.back.bind(this),
+            changePage: this.changePage.bind(this),
         };
     }
 
     private next() {
         const nextIndex = this.currentIndex$.value + 1;
+        const currentChunk = this.chunkedArrays[this.currentIndex$.value] as T[];
         // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-        const newIndex = nextIndex < this.appPaginationOf!.length ? nextIndex : 0;
+        const newIndex = nextIndex < currentChunk.length ? nextIndex : 0;
 
         this.currentIndex$.next(newIndex);
     }
 
     private back() {
         const previousIndex = this.currentIndex$.value - 1;
+        const currentChunk = this.chunkedArrays[this.currentIndex$.value] as T[];
         // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-        const newIndex = previousIndex >= 0 ? previousIndex : this.appPaginationOf!.length - 1;
+        const newIndex = previousIndex >= 0 ? previousIndex : currentChunk.length - 2;
 
         this.currentIndex$.next(newIndex);
+    }
+
+    private changePage(page: string) {
+        this.currentIndex$.next(Number(page));
     }
 }
