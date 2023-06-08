@@ -7,12 +7,34 @@ export class ScrollWithLoadingDirective {
     @Output()
     loadData = new EventEmitter();
 
-    @HostListener('scroll', ['$event.target.scrollTop'])
-    onScroll(scrollTop: number) {
-        if (scrollTop > 100) {
-            // eslint-disable-next-line no-console
-            console.log('directive', scrollTop);
-            this.loadData.emit(scrollTop);
+    // eslint-disable-next-line @typescript-eslint/naming-convention
+    private readonly BORDER_OFFSET_X = 100;
+    private prevPosition = 0;
+
+    @HostListener('scroll', [
+        '$event.target.scrollTop',
+        '$event.target.clientHeight',
+        '$event.target.scrollHeight',
+    ])
+    onScroll(scrollTop: number, clientHeight: number, scrollHeight: number) {
+        const tmpPrevPosition = this.prevPosition;
+
+        this.prevPosition = scrollTop;
+
+        const isLoadCardDown = scrollTop > this.BORDER_OFFSET_X && scrollTop > tmpPrevPosition;
+
+        if (isLoadCardDown) {
+            this.loadData.emit('Down');
+
+            return;
+        }
+
+        const scrollBottom = scrollHeight - clientHeight;
+        const isLoadCardUp =
+            scrollTop < scrollBottom - this.BORDER_OFFSET_X && scrollTop < tmpPrevPosition;
+
+        if (isLoadCardUp) {
+            this.loadData.emit('UP');
         }
     }
 }
