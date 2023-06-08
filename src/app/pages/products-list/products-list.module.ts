@@ -7,6 +7,7 @@ import {ProductsListComponent} from './products-list.component';
 import {CardModule} from './card/card.module';
 import {DumpNgIfModule} from '../../shared/dump-ng-if/dump-ng-if.module';
 import {PaginationModule} from '../../shared/pagination/pagination.module';
+import {MyAsyncModule} from '../../shared/my-async/my-async.module';
 
 @NgModule({
     declarations: [ProductsListComponent],
@@ -18,7 +19,11 @@ import {PaginationModule} from '../../shared/pagination/pagination.module';
         PaginationModule,
         MatIconModule,
         MatButtonModule,
+        MyAsyncModule,
     ],
+    // providers: [
+    //     ...CardModule.providers
+    // ],
     exports: [ProductsListComponent],
 })
 export class ProductsListModule {}

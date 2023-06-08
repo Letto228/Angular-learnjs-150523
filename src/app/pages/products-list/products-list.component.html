@@ -1,4 +1,30 @@
-<ng-container *ngIf="products; else loader">
+<ng-container *ngIf="products$ | async as products; else loader">
+    <!-- easy -->
+    <!-- <ng-container
+		*appPagination="
+			let productsGroup of (products | productsFilter : name);
+			chankSize: 6;
+			let pageIndexes = pageIndexes;
+			let activeIndex = index;
+			let next = next;
+			let back = back;
+			let selectIndex = selectIndex
+		"
+	> -->
+
+    <!-- hard -->
+    <!-- <ng-container
+		*appPagination="
+			let productsGroup of products | filterByProperty : propertyName : searchPropertyValue;
+			chankSize: 6;
+			let pageIndexes = pageIndexes;
+			let activeIndex = index;
+			let next = next;
+			let back = back;
+			let selectIndex = selectIndex
+		"
+	> -->
+
     <ng-container
         *appPagination="
             let productsGroup of products;

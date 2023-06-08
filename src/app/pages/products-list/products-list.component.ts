@@ -1,6 +1,6 @@
-import {ChangeDetectionStrategy, ChangeDetectorRef, Component, OnInit} from '@angular/core';
-import {productsMock} from '../../shared/products/products.mock';
+import {ChangeDetectionStrategy, Component, OnInit} from '@angular/core';
 import {IProduct} from '../../shared/products/product.interface';
+import {ProductsStoreService} from '../../shared/products/products-store.service';
 
 @Component({
     selector: 'app-products-list',
@@ -9,15 +9,49 @@ import {IProduct} from '../../shared/products/product.interface';
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ProductsListComponent implements OnInit {
-    products: IProduct[] | null = null;
+    // readonly products$ = of(productsMock).pipe(delay(2000));
 
-    constructor(private readonly changeDetectorRef: ChangeDetectorRef) {}
+    // ls = new LocalStorageService();
+    // private readonly productsStoreService = new ProductsStoreService(
+    //     new ProductsApiService(
+    //         new HttpService(
+    //             this.ls,
+    //         ),
+    //         new ParamsService(
+    //             this.ls,
+    //         ),
+    //     )
+    // );
+
+    // private readonly productsStoreService = inject(ProductsStoreService);
+    readonly products$ = this.productsStoreService.products$;
+
+    // products: IProduct[] | null = null;
+
+    name = 'Мышь';
+
+    readonly propertyName = 'feedbacksCount' as const; // keyof IProduct
+    searchPropertyValue = 2;
+
+    constructor(
+        // @Inject(ChangeDetectorRef) private readonly changeDetectorRef: ChangeDetectorRef,
+        // private readonly changeDetectorRef: ChangeDetectorRef,
+        // @Inject(ProductsStoreService) private readonly productsStoreService: ProductsStoreService,
+        private readonly productsStoreService: ProductsStoreService, // @Inject('ProductsStoreServiceString') // private readonly productsStoreServiceString: ProductsStoreService, // @Inject('multiToken') // private readonly multiToken: string[],
+    ) {
+        // console.log(this.multiToken);
+    }
 
     ngOnInit(): void {
-        setTimeout(() => {
-            this.products = productsMock;
-            this.changeDetectorRef.markForCheck();
-        }, 3000);
+        this.productsStoreService.loadProducts();
+        //     this.products$.pipe().subscribe(products => {
+        //         this.products = products;
+        //         this.changeDetectorRef.markForCheck();
+        //     });
+        // setTimeout(() => {
+        //     this.products = productsMock;
+        //     this.changeDetectorRef.markForCheck();
+        // }, 3000);
     }
 
     trackBy(_index: number, item: IProduct) {
