@@ -1,11 +1,4 @@
-<!-- <ng-template let-productsFromNgIf [ngIf]="getFilteredProducts" [ngIfElse]="loader"> -->
-<!-- <div
-    *ngIf="getFilteredProducts; else: loader; let productsFromNgIf = ngIf"
-    class="scroll-container"
-> -->
-
-<!-- Раскомментировать при выполнении ДЗ -->
-<div *ngIf="getFilteredProducts as productsFromNgIf; else loader" class="scroll-container">
+<ng-container *ngIf="products; else loader">
     <ng-container
         *appPagination="
             let productsGroup of products;
@@ -17,16 +10,11 @@
             let selectIndex = selectIndex
         "
     >
-        <!-- <ng-template ngFor [ngForOf]="productsFromNgIf" [ngForTrackBy]="trackBy" let-product> -->
         <div class="cards-container">
             <app-card
-                *ngFor="
-                    let product of productsGroup as ngForOfValue;
-                    trackBy: trackBy;
-                    let localIndex = index
-                "
+                *ngFor="let product of productsGroup; trackBy: trackBy"
                 class="card"
-                [product]="ngForOfValue[localIndex]"
+                [product]="product"
             ></app-card>
         </div>
         <div class="pagination-container">
@@ -48,16 +36,9 @@
                 <mat-icon>chevron_right</mat-icon>
             </button>
         </div>
-        <!-- </ng-template> -->
     </ng-container>
-</div>
-
-<!-- </ng-template> -->
-
-<!-- <div *appDumpNgIf="testUser; let user = value">
-    {{testUser.name}}
-</div> -->
+</ng-container>
 
 <ng-template #loader>
-    <mat-spinner></mat-spinner>
+    <mat-spinner class="loader"></mat-spinner>
 </ng-template>

@@ -36,7 +36,6 @@ export class CarouselDirective<T> implements OnChanges, OnInit, OnDestroy {
     }
 
     ngOnDestroy() {
-        // this.subscription.unsubscribe();
         this.destroy$.next();
         this.destroy$.complete();
     }
@@ -53,14 +52,10 @@ export class CarouselDirective<T> implements OnChanges, OnInit, OnDestroy {
         this.currentIndex$.next(0);
     }
 
-    // subscription!: Subscription;
-
     private listenCurrentIndexChange() {
-        // this.subscription = this.currentIndex$
         this.currentIndex$
             .pipe(
                 map(currentIndex => this.getCurrentContext(currentIndex)),
-                // filter(Boolean), // filter(value => Boolean(value))
                 takeUntil(this.destroy$),
             )
             .subscribe((context: ICarouselContext<T>) => {
@@ -70,10 +65,6 @@ export class CarouselDirective<T> implements OnChanges, OnInit, OnDestroy {
     }
 
     private getCurrentContext(currentIndex: number): ICarouselContext<T> {
-        // if (!this.appCarouselOf?.length) {
-        //     return null;
-        // }
-
         return {
             // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
             $implicit: this.appCarouselOf![currentIndex],

@@ -1,11 +1,4 @@
-import {
-    ChangeDetectionStrategy,
-    Component,
-    EventEmitter,
-    Input,
-    OnInit,
-    Output,
-} from '@angular/core';
+import {ChangeDetectionStrategy, Component, EventEmitter, Input, Output} from '@angular/core';
 import {IProduct} from '../../../shared/products/product.interface';
 
 @Component({
@@ -14,15 +7,10 @@ import {IProduct} from '../../../shared/products/product.interface';
     styleUrls: ['./card.component.css'],
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class CardComponent implements OnInit {
+export class CardComponent {
     @Input() product: IProduct | undefined;
 
     @Output() buy = new EventEmitter<IProduct['_id']>();
-
-    ngOnInit(): void {
-        // eslint-disable-next-line no-console
-        console.log('Card created');
-    }
 
     onProductBuy(event: Event) {
         event.stopPropagation();
