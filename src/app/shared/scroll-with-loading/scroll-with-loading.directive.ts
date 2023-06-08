@@ -1,11 +1,12 @@
 import {Directive, EventEmitter, HostListener, Output} from '@angular/core';
+import {LoadDirection} from './load-direction.type';
 
 @Directive({
     selector: '[appScrollWithLoading]',
 })
 export class ScrollWithLoadingDirective {
     @Output()
-    loadData = new EventEmitter();
+    loadData = new EventEmitter<LoadDirection>();
 
     // eslint-disable-next-line @typescript-eslint/naming-convention
     private readonly BORDER_OFFSET_X = 100;
@@ -24,7 +25,7 @@ export class ScrollWithLoadingDirective {
         const isLoadCardDown = scrollTop > this.BORDER_OFFSET_X && scrollTop > tmpPrevPosition;
 
         if (isLoadCardDown) {
-            this.loadData.emit('Down');
+            this.loadData.emit(LoadDirection.Down);
 
             return;
         }
@@ -34,7 +35,7 @@ export class ScrollWithLoadingDirective {
             scrollTop < scrollBottom - this.BORDER_OFFSET_X && scrollTop < tmpPrevPosition;
 
         if (isLoadCardUp) {
-            this.loadData.emit('UP');
+            this.loadData.emit(LoadDirection.Up);
         }
     }
 }
