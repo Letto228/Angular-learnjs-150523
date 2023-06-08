@@ -36,28 +36,28 @@ export class ProductsListComponent implements OnInit {
 
         // });
 
-        this.changeDetectorRef.detach();
-        this.changeDetectorRef.detectChanges();
+        // this.changeDetectorRef.detach();
+        // this.changeDetectorRef.detectChanges();
 
         setTimeout(() => {
             this.products = productsMock;
-            // this.changeDetectorRef.markForCheck();
-            this.changeDetectorRef.detectChanges();
-        }, 3000);
-        setTimeout(() => {
-            this.products = productsMock.map(item => ({...item, rating: 5}));
-            // this.changeDetectorRef.markForCheck();
-            this.changeDetectorRef.detectChanges();
-        }, 6000);
-
-        setTimeout(() => {
-            this.changeDetectorRef.reattach();
-        }, 7000);
-
-        setTimeout(() => {
-            this.products = productsMock.map(item => ({...item, rating: 1}));
             this.changeDetectorRef.markForCheck();
-        }, 9000);
+            // this.changeDetectorRef.detectChanges();
+        }, 3000);
+        // setTimeout(() => {
+        //     this.products = productsMock.map(item => ({...item, rating: 5}));
+        //     // this.changeDetectorRef.markForCheck();
+        //     this.changeDetectorRef.detectChanges();
+        // }, 6000);
+
+        // setTimeout(() => {
+        //     this.changeDetectorRef.reattach();
+        // }, 7000);
+
+        // setTimeout(() => {
+        //     this.products = productsMock.map(item => ({...item, rating: 1}));
+        //     this.changeDetectorRef.markForCheck();
+        // }, 9000);
     }
 
     get getFilteredProducts(): IProduct[] | null {
