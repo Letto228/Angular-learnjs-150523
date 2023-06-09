@@ -1,0 +1,14 @@
+:host {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    width: 100%;
+    height: auto;
+    min-height: 0;
+    padding: 10px;
+    box-sizing: border-box;
+    overflow: auto;
+}
+.product-list {
+    margin: 20px;
+}

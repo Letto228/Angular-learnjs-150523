@@ -5,7 +5,8 @@
 }
 
 .card-item {
-    width: 100%;
+    display: inline-flex;
+    width: 300px;
     height: 100%;
     flex-direction: column;
     margin: 20px;
@@ -25,7 +26,7 @@
     text-align: center;
 }
 .price {
-    font-size: 24px;
+    font-size: 20px;
     color: darkblue;
     text-align: right;
     margin-top: 10px;
@@ -35,12 +36,15 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 90%;
+    width: 260px;
     height: auto;
     padding: 5px;
     margin: auto;
 }
-
+img {
+    width: 90%;
+    height: auto;
+}
 .description {
     font-size: 16px;
     color: black;
@@ -50,8 +54,9 @@
 .action {
     display: flex;
     justify-content: center;
+    vertical-align: bottom;
     align-items: center;
-    margin: 10px auto;
+    margin-bottom: 10px;
 }
 
 .button {
