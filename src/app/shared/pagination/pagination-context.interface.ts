@@ -5,5 +5,5 @@ export interface IPaginationContext<T> {
     chunksNum: number[];
     next: () => void;
     back: () => void;
-    changePage: (page: string) => void;
+    changePage: (page: number) => void;
 }

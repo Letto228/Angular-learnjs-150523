@@ -10,6 +10,7 @@ import {
 } from '@angular/core';
 import {BehaviorSubject, Subject, map, takeUntil} from 'rxjs';
 import {IPaginationContext} from './pagination-context.interface';
+import {makeChunks} from './utils/make-chunks';
 
 @Directive({
     selector: '[appPagination]',
@@ -21,7 +22,7 @@ export class PaginationDirective<T> implements OnChanges, OnInit, OnDestroy {
 
     private readonly currentIndex$ = new BehaviorSubject<number>(0);
     private readonly destroy$ = new Subject<void>();
-    private chunkedArrays: T[] = [];
+    private chunkedArrays: T[][] = [];
 
     constructor(
         private readonly viewContainer: ViewContainerRef,
@@ -54,7 +55,7 @@ export class PaginationDirective<T> implements OnChanges, OnInit, OnDestroy {
 
         // делим исходный массив на чанки
         // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-        this.chunkedArrays = this.makeChunks(this.appPaginationOf!, this.appPaginationChankSize);
+        this.chunkedArrays = makeChunks(this.appPaginationOf!, this.appPaginationChankSize);
 
         // устанавливаем index = 0
         this.currentIndex$.next(0);
@@ -72,21 +73,21 @@ export class PaginationDirective<T> implements OnChanges, OnInit, OnDestroy {
             });
     }
 
-    private makeChunks(array: T[], chunkSize: number) {
-        const newArray: T[] = [...array];
-        // eslint-disable-next-line @typescript-eslint/no-explicit-any
-        const chunkArrays: any = [];
+    // private makeChunks(array: T[], chunkSize: number) {
+    //     const newArray: T[] = [...array];
+    //     // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    //     const chunkArrays = [] as T[][];
 
-        for (let i = 0; i < newArray.length; i += chunkSize) {
-            chunkArrays.push(newArray.slice(i, i + chunkSize));
-        }
+    //     for (let i = 0; i < newArray.length; i += chunkSize) {
+    //         chunkArrays.push(newArray.slice(i, i + chunkSize));
+    //     }
 
-        return chunkArrays;
-    }
+    //     return chunkArrays;
+    // }
 
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    private getCurrentContext(currentIndex: number, chunkArrays: any): IPaginationContext<T> {
-        const chunksNum = [...new Array(chunkArrays.length).keys()].map(i => i);
+    private getCurrentContext(currentIndex: number, chunkArrays: T[][]): IPaginationContext<T> {
+        const chunksNum = [...new Array(chunkArrays.length).keys()].map(i => Number(i));
 
         return {
             // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
@@ -120,7 +121,7 @@ export class PaginationDirective<T> implements OnChanges, OnInit, OnDestroy {
         this.currentIndex$.next(newIndex);
     }
 
-    private changePage(page: string) {
-        this.currentIndex$.next(Number(page));
+    private changePage(page: number) {
+        this.currentIndex$.next(page);
     }
 }
