@@ -75,7 +75,7 @@ export class PaginationDirective<T> implements OnChanges, OnInit, OnDestroy {
 
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     private getCurrentContext(currentIndex: number, chunkArrays: T[][]): IPaginationContext<T> {
-        const chunksNum = [...new Array(chunkArrays.length).keys()].map(i => Number(i));
+        const chunksNum = [...new Array(chunkArrays.length).keys()];
 
         return {
             // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
