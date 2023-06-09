@@ -2,6 +2,7 @@ import {NgModule} from '@angular/core';
 import {BrowserModule} from '@angular/platform-browser';
 
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import {HttpClientModule} from '@angular/common/http';
 import {AppRoutingModule} from './app-routing.module';
 import {AppComponent} from './app.component';
 import {HeaderModule} from './components/header/header.module';
@@ -12,7 +13,7 @@ import {ProductsStoreService} from './shared/products/products-store.service';
 import {ProductsApiService} from './shared/products/products-api.service';
 import {baseUrl} from './shared/base-url/base-url.const';
 import {BASE_URL} from './shared/base-url/base-url.token';
-import {HttpClientModule} from '@angular/common/http';
+import {FilterByValueModule} from './shared/filter-by-value/filter-by-value.module';
 
 @NgModule({
     declarations: [AppComponent],
@@ -25,6 +26,7 @@ import {HttpClientModule} from '@angular/common/http';
         SidenavModule,
         PopupHostModule,
         HttpClientModule,
+        FilterByValueModule,
     ],
     providers: [
         // ...HttpClientModule.providers,
