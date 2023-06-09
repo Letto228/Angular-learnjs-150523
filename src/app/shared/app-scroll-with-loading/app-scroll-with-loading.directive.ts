@@ -14,7 +14,7 @@ export class AppScrollWithLoadingDirective implements OnInit, OnDestroy {
 
     @HostListener('wheel', ['$event'])
     onWheel(event: WheelEvent) {
-        this.deltaY = (<WheelEvent>event).deltaY;
+        this.deltaY = event.deltaY;
     }
 
     @HostListener('scroll', ['$event.target'])
