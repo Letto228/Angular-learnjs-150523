@@ -73,18 +73,6 @@ export class PaginationDirective<T> implements OnChanges, OnInit, OnDestroy {
             });
     }
 
-    // private makeChunks(array: T[], chunkSize: number) {
-    //     const newArray: T[] = [...array];
-    //     // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    //     const chunkArrays = [] as T[][];
-
-    //     for (let i = 0; i < newArray.length; i += chunkSize) {
-    //         chunkArrays.push(newArray.slice(i, i + chunkSize));
-    //     }
-
-    //     return chunkArrays;
-    // }
-
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     private getCurrentContext(currentIndex: number, chunkArrays: T[][]): IPaginationContext<T> {
         const chunksNum = [...new Array(chunkArrays.length).keys()].map(i => Number(i));
