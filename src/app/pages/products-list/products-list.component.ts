@@ -30,6 +30,10 @@ export class ProductsListComponent implements OnInit {
 
     name = 'Мышь';
 
+    propertyNameToFilter: keyof IProduct = 'feedbacksCount';
+
+    searchProperty = '2';
+
     readonly propertyName = 'feedbacksCount' as const; // keyof IProduct
     searchPropertyValue = 2;
 
