@@ -83,18 +83,18 @@ export class PaginationDirective<T> implements OnChanges, OnInit, OnDestroy {
             $implicit: this.getCurrentPages(startIndex),
             index: currentIndex,
             appPaginationOf: this.appPaginationOf as T[],
-            pages: [...new Array(this.totalPages).keys()],
+            pages: Array.from(new Array(this.totalPages).keys()),
             next: () => {
                 this.next();
             },
             back: this.back.bind(this),
             getPage: index => {
-                this.getPage(index);
+                this.setCurrentPage(index);
             },
         };
     }
 
-    private getPage(page: number) {
+    private setCurrentPage(page: number) {
         this.currentIndex$.next(page);
     }
 

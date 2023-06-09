@@ -23,7 +23,7 @@
             <button
                 *ngFor="let page of pages"
                 mat-button
-                [ngClass]="{current: page === index}"
+                [class.current]="page === index"
                 (click)="getPage(page)"
             >
                 {{ page + 1 }}
