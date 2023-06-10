@@ -24,3 +24,56 @@
 .card {
     margin: 10px;
 }
+.container {
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    justify-content: center;
+}
+.cart-container {
+    display: flex;
+    flex-direction: row;
+}
+
+.pagination-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem; /* you can adjust this for more or less space between elements */
+    margin-top: 2rem; /* add some margin at the top to separate pagination from other content */
+}
+
+.pagination-container button {
+    border: none;
+    background-color: #007bff;
+    color: white;
+    padding: 0.5rem 1rem;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    transition-duration: 0.4s;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.pagination-container button:hover {
+    background-color: white;
+    color: #007bff;
+    border: 1px solid #007bff;
+}
+
+.pagination-container .page-indexes {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.pagination-container .page-indexes span {
+    padding: 0.5rem;
+    cursor: pointer;
+}
+
+.pagination-container .page-indexes span.active {
+    color: #007bff;
+    font-weight: bold;
+}

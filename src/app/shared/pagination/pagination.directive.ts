@@ -10,6 +10,7 @@ import {
 } from '@angular/core';
 import {BehaviorSubject, Subject, map, takeUntil} from 'rxjs';
 import {IPaginationContext} from './pagination-context.interface';
+import {getChunksArray} from './utils/get-chunks-array';
 
 @Directive({
     selector: '[appPagination]',
@@ -17,10 +18,11 @@ import {IPaginationContext} from './pagination-context.interface';
 export class PaginationDirective<T> implements OnChanges, OnInit, OnDestroy {
     @Input() appPaginationOf: T[] | null | undefined;
     // Количество элементов в чанке
-    // @Input() appPaginationChankSize: number = 4;
+    @Input() appPaginationChunkSize = 4;
 
     private readonly currentIndex$ = new BehaviorSubject<number>(0);
     private readonly destroy$ = new Subject<void>();
+    private chunkArray: T[][] = [];
 
     constructor(
         private readonly viewContainer: ViewContainerRef,
@@ -51,6 +53,7 @@ export class PaginationDirective<T> implements OnChanges, OnInit, OnDestroy {
             return;
         }
 
+        this.chunkArray = getChunksArray(this.appPaginationOf as T[], this.appPaginationChunkSize);
         this.currentIndex$.next(0);
     }
 
@@ -68,30 +71,37 @@ export class PaginationDirective<T> implements OnChanges, OnInit, OnDestroy {
 
     private getCurrentContext(currentIndex: number): IPaginationContext<T> {
         return {
-            // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-            $implicit: this.appPaginationOf![currentIndex],
+            $implicit: this.chunkArray![currentIndex],
             index: currentIndex,
             appPaginationOf: this.appPaginationOf as T[],
+            pageIndexes: this.chunkArray?.map((item, index) => index),
             next: () => {
                 this.next();
             },
-            back: this.back.bind(this),
+            back: () => {
+                this.back();
+            },
+            selectedIndex: (index: number) => {
+                this.selectedIndex(index);
+            },
         };
     }
 
     private next() {
         const nextIndex = this.currentIndex$.value + 1;
-        // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-        const newIndex = nextIndex < this.appPaginationOf!.length ? nextIndex : 0;
+        const newIndex = nextIndex < this.chunkArray!.length ? nextIndex : 0;
 
         this.currentIndex$.next(newIndex);
     }
 
     private back() {
         const previousIndex = this.currentIndex$.value - 1;
-        // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-        const newIndex = previousIndex >= 0 ? previousIndex : this.appPaginationOf!.length - 1;
+        const newIndex = previousIndex >= 0 ? previousIndex : this.chunkArray!.length - 1;
 
         this.currentIndex$.next(newIndex);
+    }
+
+    private selectedIndex(index: number) {
+        this.currentIndex$.next(index);
     }
 }
