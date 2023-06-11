@@ -1,0 +1,15 @@
+{
+	"html.format.wrapAttributes": "force-expand-multiline",
+	"html.format.preserveNewLines": false,
+	"css.lint.duplicateProperties": "warning",
+	"[scss]": {
+		"editor.defaultFormatter": "michelemelluso.code-beautifier"
+	},
+	"javascript.preferences.quoteStyle": "single",
+	"editor.minimap.enabled": true,
+	"editor.tabSize": 4,
+	"editor.insertSpaces": false,
+	"editor.detectIndentation": false,
+	"editor.formatOnSave": true,
+	"diffEditor.ignoreTrimWhitespace": false
+}

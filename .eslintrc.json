@@ -11,6 +11,80 @@
 				"plugin:@angular-eslint/template/process-inline-templates"
 			],
 			"rules": {
+				"eqeqeq": "error",
+				"dot-notation": "off",
+				"no-shadow": "warn",
+				"arrow-parens": "off",
+				"max-classes-per-file": "off",
+				"no-empty": "off",
+				"no-fallthrough": "error",
+				"no-use-before-define": "error",
+				"sort-keys": "off",
+				"sort-imports": "off",
+				"comma-dangle": "off",
+				"eol-last": "off",
+				"no-magic-numbers": "warn",
+				"no-useless-constructor": "off",
+				"prefer-const": "warn",
+				"prefer-template": "warn",
+				"no-irregular-whitespace": "error",
+				"no-trailing-spaces": "error",
+				"no-var": "error",
+				"spaced-comment": "error",
+				"no-multi-spaces": "error",
+				"no-multiple-empty-lines": "error",
+				"block-spacing": "error",
+				"indent": [
+					"warn",
+					4,
+					{
+						"SwitchCase": 1
+					}
+				],
+				"semi": ["warn", "always"],
+				"curly": "off",
+				"no-restricted-imports": ["error", "rxjs/Rx"],
+				"quotes": ["error", "single"],
+				"quote-props": ["error", "as-needed"],
+				"max-len": [
+					"error",
+					{
+						"code": 280
+					}
+				],
+				"no-console": [
+					"warn",
+					{
+						"allow": ["log", "error", "warn"]
+					}
+				],
+				"@typescript-eslint/no-explicit-any": "warn",
+				"@typescript-eslint/no-var-requires": "error",
+				"@typescript-eslint/no-non-null-assertion": "error",
+				"@typescript-eslint/explicit-member-accessibility": "off",
+				"@typescript-eslint/interface-name": "off",
+				"@typescript-eslint/arrow-type": "off",
+				"@typescript-eslint/no-inferrable-types": [
+					"off",
+					{
+						"ignoreParameters": true
+					}
+				],
+				"@angular-eslint/no-conflicting-lifecycle": "error",
+				"@angular-eslint/no-host-metadata-property": "error",
+				"@angular-eslint/no-input-rename": "error",
+				"@angular-eslint/no-inputs-metadata-property": "error",
+				"@angular-eslint/no-output-native": "error",
+				"@angular-eslint/no-output-on-prefix": "error",
+				"@angular-eslint/no-output-rename": "error",
+				"@angular-eslint/no-outputs-metadata-property": "error",
+				"@angular-eslint/component-class-suffix": "error",
+				"@angular-eslint/directive-class-suffix": "error",
+				"@angular-eslint/contextual-lifecycle": "error",
+				"@angular-eslint/use-lifecycle-interface": "error",
+				"@angular-eslint/use-pipe-transform-interface": "error",
+				"@angular-eslint/prefer-on-push-component-change-detection": "error",
+				"@angular-eslint/no-empty-lifecycle-method": "off",
 				"@angular-eslint/directive-selector": [
 					"error",
 					{
