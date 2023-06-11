@@ -1,0 +1,12 @@
+.card {
+    max-width: 350px;
+    margin: 30px;
+}
+
+.card-header-image {
+    background-size: cover;
+}
+
+.card-image {
+    padding: 15px;
+}
