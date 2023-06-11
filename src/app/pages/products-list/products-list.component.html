@@ -5,21 +5,55 @@
 > -->
 
 <!-- Раскомментировать при выполнении ДЗ -->
-<!-- <ng-container *appPagination="let chank of productsFromContext; chankSize: 4"> -->
 <div *ngIf="getFilteredProducts as productsFromNgIf; else loader" class="scroll-container">
-    <!-- <ng-template ngFor [ngForOf]="productsFromNgIf" [ngForTrackBy]="trackBy" let-product> -->
-    <app-card
-        *ngFor="
-            let product of productsFromNgIf as ngForOfValue;
-            trackBy: trackBy;
-            let localIndex = index
+    <ng-container
+        *appPagination="
+            let chank of productsFromNgIf;
+            chankSize: 4;
+            let index = index;
+            let next = next;
+            let back = back;
+            let pageIndexes = pageIndexes;
+            let selectPage = selectPage
         "
-        class="card"
-        [product]="ngForOfValue[localIndex]"
-    ></app-card>
-    <!-- </ng-template> -->
+    >
+        <div class="card-container">
+            <app-card
+                *ngFor="
+                    let product of chank as ngForOfValue;
+                    trackBy: trackBy;
+                    let localIndex = index
+                "
+                class="card"
+                [product]="ngForOfValue[localIndex]"
+            ></app-card>
+        </div>
+
+        <div class="pagination-container">
+            <button mat-icon-button matTooltip="Back" [disabled]="index === 0" (click)="back()">
+                <mat-icon>chevron_left</mat-icon>
+            </button>
+            <div class="pagination__pages-container">
+                <div
+                    *ngFor="let pageIndex of pageIndexes"
+                    class="pagination__page"
+                    [ngClass]="{pagination__page_active: pageIndex === index}"
+                    (click)="selectPage(pageIndex)"
+                >
+                    {{ pageIndex + 1 }}
+                </div>
+            </div>
+            <button
+                mat-icon-button
+                matTooltip="Next"
+                [disabled]="index === pageIndexes[pageIndexes.length - 1]"
+                (click)="next()"
+            >
+                <mat-icon>chevron_right</mat-icon>
+            </button>
+        </div>
+    </ng-container>
 </div>
-<!-- </ng-container> -->
 
 <!-- </ng-template> -->
 

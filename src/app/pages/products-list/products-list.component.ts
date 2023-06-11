@@ -22,42 +22,10 @@ export class ProductsListComponent implements OnInit {
     };
 
     ngOnInit(): void {
-        // // eslint-disable-next-line @typescript-eslint/no-unused-vars
-        // let count = 0;
-
-        // setInterval(() => {
-        //     count += 1;
-        // }, 1000);
-
-        // this.ngZone.runOutsideAngular(() => {
-
-        // });
-        // this.ngZone.run(() => {
-
-        // });
-
-        this.changeDetectorRef.detach();
-        this.changeDetectorRef.detectChanges();
-
         setTimeout(() => {
             this.products = productsMock;
-            // this.changeDetectorRef.markForCheck();
-            this.changeDetectorRef.detectChanges();
-        }, 3000);
-        setTimeout(() => {
-            this.products = productsMock.map(item => ({...item, rating: 5}));
-            // this.changeDetectorRef.markForCheck();
-            this.changeDetectorRef.detectChanges();
-        }, 6000);
-
-        setTimeout(() => {
-            this.changeDetectorRef.reattach();
-        }, 7000);
-
-        setTimeout(() => {
-            this.products = productsMock.map(item => ({...item, rating: 1}));
             this.changeDetectorRef.markForCheck();
-        }, 9000);
+        }, 3000);
     }
 
     get getFilteredProducts(): IProduct[] | null {
