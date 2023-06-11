@@ -119,7 +119,7 @@ export class PaginationDirective<T> implements OnChanges, OnInit, OnDestroy {
     }
 
     private selectPage(index: number): void {
-        if (this.currentIndex$.value === index || index > this.chanks.length) {
+        if (this.currentIndex$.value === index || index >= this.chanks.length) {
             return;
         }
 
