@@ -324,4 +324,211 @@ export const productsMock: IProduct[] = [
         price: 81,
         rating: 4.4,
     },
+    {
+        // eslint-disable-next-line @typescript-eslint/naming-convention
+        _id: 'vitaa-para-skynet-csl-ftp-4-cu1',
+        feedbacksCount: 5,
+        subCategory: 'professionalnoe-setevoe-oborudovanie',
+        images: [
+            {
+                url: 'https://c.dns-shop.ru/thumb/st1/fit/wm/2000/1292/f1da10dcd92bc5800ad808a443c1c57b/a67f341c37067c12bb959fb5bcfd95288e973fe7cef6ef4e262d517cd382620f.jpg',
+                source: 'a67f341c37067c12bb959fb5bcfd95288e973fe7cef6ef4e262d517cd382620f.jpg',
+            },
+            {
+                url: 'https://c.dns-shop.ru/thumb/st1/fit/wm/1500/2000/91a43fdccf9c83937ff6d72b9be34e62/f5367f92fe34dfe2cdfbc16d6a5d6d90ae100e5550ddba068631468a47506f48.jpg',
+                source: 'f5367f92fe34dfe2cdfbc16d6a5d6d90ae100e5550ddba068631468a47506f48.jpg',
+            },
+            {
+                url: 'https://c.dns-shop.ru/thumb/st1/fit/wm/2000/1500/7153b01ca5f9b31832191a43ca0853f4/0858cc144b2d2ed4ee2b05b98a961d8288579efbb90c5ac0e1f6ec0c5ef4f7a4.jpg',
+                source: '0858cc144b2d2ed4ee2b05b98a961d8288579efbb90c5ac0e1f6ec0c5ef4f7a4.jpg',
+            },
+        ],
+        name: 'Витая пара SkyNet CSL-FTP-4-CU',
+        price: 81,
+        rating: 4.4,
+    },
+    {
+        // eslint-disable-next-line @typescript-eslint/naming-convention
+        _id: 'vitaa-para-skynet-csl-ftp-4-cu2',
+        feedbacksCount: 5,
+        subCategory: 'professionalnoe-setevoe-oborudovanie',
+        images: [
+            {
+                url: 'https://c.dns-shop.ru/thumb/st1/fit/wm/2000/1292/f1da10dcd92bc5800ad808a443c1c57b/a67f341c37067c12bb959fb5bcfd95288e973fe7cef6ef4e262d517cd382620f.jpg',
+                source: 'a67f341c37067c12bb959fb5bcfd95288e973fe7cef6ef4e262d517cd382620f.jpg',
+            },
+            {
+                url: 'https://c.dns-shop.ru/thumb/st1/fit/wm/1500/2000/91a43fdccf9c83937ff6d72b9be34e62/f5367f92fe34dfe2cdfbc16d6a5d6d90ae100e5550ddba068631468a47506f48.jpg',
+                source: 'f5367f92fe34dfe2cdfbc16d6a5d6d90ae100e5550ddba068631468a47506f48.jpg',
+            },
+            {
+                url: 'https://c.dns-shop.ru/thumb/st1/fit/wm/2000/1500/7153b01ca5f9b31832191a43ca0853f4/0858cc144b2d2ed4ee2b05b98a961d8288579efbb90c5ac0e1f6ec0c5ef4f7a4.jpg',
+                source: '0858cc144b2d2ed4ee2b05b98a961d8288579efbb90c5ac0e1f6ec0c5ef4f7a4.jpg',
+            },
+        ],
+        name: 'Витая пара SkyNet CSL-FTP-4-CU',
+        price: 81,
+        rating: 4.4,
+    },
+    {
+        // eslint-disable-next-line @typescript-eslint/naming-convention
+        _id: 'vitaa-para-skynet-csl-ftp-4-cu3',
+        feedbacksCount: 5,
+        subCategory: 'professionalnoe-setevoe-oborudovanie',
+        images: [
+            {
+                url: 'https://c.dns-shop.ru/thumb/st1/fit/wm/2000/1292/f1da10dcd92bc5800ad808a443c1c57b/a67f341c37067c12bb959fb5bcfd95288e973fe7cef6ef4e262d517cd382620f.jpg',
+                source: 'a67f341c37067c12bb959fb5bcfd95288e973fe7cef6ef4e262d517cd382620f.jpg',
+            },
+            {
+                url: 'https://c.dns-shop.ru/thumb/st1/fit/wm/1500/2000/91a43fdccf9c83937ff6d72b9be34e62/f5367f92fe34dfe2cdfbc16d6a5d6d90ae100e5550ddba068631468a47506f48.jpg',
+                source: 'f5367f92fe34dfe2cdfbc16d6a5d6d90ae100e5550ddba068631468a47506f48.jpg',
+            },
+            {
+                url: 'https://c.dns-shop.ru/thumb/st1/fit/wm/2000/1500/7153b01ca5f9b31832191a43ca0853f4/0858cc144b2d2ed4ee2b05b98a961d8288579efbb90c5ac0e1f6ec0c5ef4f7a4.jpg',
+                source: '0858cc144b2d2ed4ee2b05b98a961d8288579efbb90c5ac0e1f6ec0c5ef4f7a4.jpg',
+            },
+        ],
+        name: 'Витая пара SkyNet CSL-FTP-4-CU',
+        price: 81,
+        rating: 4.4,
+    },
+    {
+        // eslint-disable-next-line @typescript-eslint/naming-convention
+        _id: 'vitaa-para-skynet-csl-ftp-4-cu4',
+        feedbacksCount: 5,
+        subCategory: 'professionalnoe-setevoe-oborudovanie',
+        images: [
+            {
+                url: 'https://c.dns-shop.ru/thumb/st1/fit/wm/2000/1292/f1da10dcd92bc5800ad808a443c1c57b/a67f341c37067c12bb959fb5bcfd95288e973fe7cef6ef4e262d517cd382620f.jpg',
+                source: 'a67f341c37067c12bb959fb5bcfd95288e973fe7cef6ef4e262d517cd382620f.jpg',
+            },
+            {
+                url: 'https://c.dns-shop.ru/thumb/st1/fit/wm/1500/2000/91a43fdccf9c83937ff6d72b9be34e62/f5367f92fe34dfe2cdfbc16d6a5d6d90ae100e5550ddba068631468a47506f48.jpg',
+                source: 'f5367f92fe34dfe2cdfbc16d6a5d6d90ae100e5550ddba068631468a47506f48.jpg',
+            },
+            {
+                url: 'https://c.dns-shop.ru/thumb/st1/fit/wm/2000/1500/7153b01ca5f9b31832191a43ca0853f4/0858cc144b2d2ed4ee2b05b98a961d8288579efbb90c5ac0e1f6ec0c5ef4f7a4.jpg',
+                source: '0858cc144b2d2ed4ee2b05b98a961d8288579efbb90c5ac0e1f6ec0c5ef4f7a4.jpg',
+            },
+        ],
+        name: 'Витая пара SkyNet CSL-FTP-4-CU',
+        price: 81,
+        rating: 4.4,
+    },
+    {
+        // eslint-disable-next-line @typescript-eslint/naming-convention
+        _id: 'vitaa-para-skynet-csl-ftp-4-cu5',
+        feedbacksCount: 5,
+        subCategory: 'professionalnoe-setevoe-oborudovanie',
+        images: [
+            {
+                url: 'https://c.dns-shop.ru/thumb/st1/fit/wm/2000/1292/f1da10dcd92bc5800ad808a443c1c57b/a67f341c37067c12bb959fb5bcfd95288e973fe7cef6ef4e262d517cd382620f.jpg',
+                source: 'a67f341c37067c12bb959fb5bcfd95288e973fe7cef6ef4e262d517cd382620f.jpg',
+            },
+            {
+                url: 'https://c.dns-shop.ru/thumb/st1/fit/wm/1500/2000/91a43fdccf9c83937ff6d72b9be34e62/f5367f92fe34dfe2cdfbc16d6a5d6d90ae100e5550ddba068631468a47506f48.jpg',
+                source: 'f5367f92fe34dfe2cdfbc16d6a5d6d90ae100e5550ddba068631468a47506f48.jpg',
+            },
+            {
+                url: 'https://c.dns-shop.ru/thumb/st1/fit/wm/2000/1500/7153b01ca5f9b31832191a43ca0853f4/0858cc144b2d2ed4ee2b05b98a961d8288579efbb90c5ac0e1f6ec0c5ef4f7a4.jpg',
+                source: '0858cc144b2d2ed4ee2b05b98a961d8288579efbb90c5ac0e1f6ec0c5ef4f7a4.jpg',
+            },
+        ],
+        name: 'Витая пара SkyNet CSL-FTP-4-CU',
+        price: 81,
+        rating: 4.4,
+    },
+    {
+        // eslint-disable-next-line @typescript-eslint/naming-convention
+        _id: 'vitaa-para-skynet-csl-ftp-4-cu6',
+        feedbacksCount: 5,
+        subCategory: 'professionalnoe-setevoe-oborudovanie',
+        images: [
+            {
+                url: 'https://c.dns-shop.ru/thumb/st1/fit/wm/2000/1292/f1da10dcd92bc5800ad808a443c1c57b/a67f341c37067c12bb959fb5bcfd95288e973fe7cef6ef4e262d517cd382620f.jpg',
+                source: 'a67f341c37067c12bb959fb5bcfd95288e973fe7cef6ef4e262d517cd382620f.jpg',
+            },
+            {
+                url: 'https://c.dns-shop.ru/thumb/st1/fit/wm/1500/2000/91a43fdccf9c83937ff6d72b9be34e62/f5367f92fe34dfe2cdfbc16d6a5d6d90ae100e5550ddba068631468a47506f48.jpg',
+                source: 'f5367f92fe34dfe2cdfbc16d6a5d6d90ae100e5550ddba068631468a47506f48.jpg',
+            },
+            {
+                url: 'https://c.dns-shop.ru/thumb/st1/fit/wm/2000/1500/7153b01ca5f9b31832191a43ca0853f4/0858cc144b2d2ed4ee2b05b98a961d8288579efbb90c5ac0e1f6ec0c5ef4f7a4.jpg',
+                source: '0858cc144b2d2ed4ee2b05b98a961d8288579efbb90c5ac0e1f6ec0c5ef4f7a4.jpg',
+            },
+        ],
+        name: 'Витая пара SkyNet CSL-FTP-4-CU',
+        price: 81,
+        rating: 4.4,
+    },
+    {
+        // eslint-disable-next-line @typescript-eslint/naming-convention
+        _id: 'vitaa-para-skynet-csl-ftp-4-cu7',
+        feedbacksCount: 5,
+        subCategory: 'professionalnoe-setevoe-oborudovanie',
+        images: [
+            {
+                url: 'https://c.dns-shop.ru/thumb/st1/fit/wm/2000/1292/f1da10dcd92bc5800ad808a443c1c57b/a67f341c37067c12bb959fb5bcfd95288e973fe7cef6ef4e262d517cd382620f.jpg',
+                source: 'a67f341c37067c12bb959fb5bcfd95288e973fe7cef6ef4e262d517cd382620f.jpg',
+            },
+            {
+                url: 'https://c.dns-shop.ru/thumb/st1/fit/wm/1500/2000/91a43fdccf9c83937ff6d72b9be34e62/f5367f92fe34dfe2cdfbc16d6a5d6d90ae100e5550ddba068631468a47506f48.jpg',
+                source: 'f5367f92fe34dfe2cdfbc16d6a5d6d90ae100e5550ddba068631468a47506f48.jpg',
+            },
+            {
+                url: 'https://c.dns-shop.ru/thumb/st1/fit/wm/2000/1500/7153b01ca5f9b31832191a43ca0853f4/0858cc144b2d2ed4ee2b05b98a961d8288579efbb90c5ac0e1f6ec0c5ef4f7a4.jpg',
+                source: '0858cc144b2d2ed4ee2b05b98a961d8288579efbb90c5ac0e1f6ec0c5ef4f7a4.jpg',
+            },
+        ],
+        name: 'Витая пара SkyNet CSL-FTP-4-CU',
+        price: 81,
+        rating: 4.4,
+    },
+    {
+        // eslint-disable-next-line @typescript-eslint/naming-convention
+        _id: 'vitaa-para-skynet-csl-ftp-4-cu8',
+        feedbacksCount: 5,
+        subCategory: 'professionalnoe-setevoe-oborudovanie',
+        images: [
+            {
+                url: 'https://c.dns-shop.ru/thumb/st1/fit/wm/2000/1292/f1da10dcd92bc5800ad808a443c1c57b/a67f341c37067c12bb959fb5bcfd95288e973fe7cef6ef4e262d517cd382620f.jpg',
+                source: 'a67f341c37067c12bb959fb5bcfd95288e973fe7cef6ef4e262d517cd382620f.jpg',
+            },
+            {
+                url: 'https://c.dns-shop.ru/thumb/st1/fit/wm/1500/2000/91a43fdccf9c83937ff6d72b9be34e62/f5367f92fe34dfe2cdfbc16d6a5d6d90ae100e5550ddba068631468a47506f48.jpg',
+                source: 'f5367f92fe34dfe2cdfbc16d6a5d6d90ae100e5550ddba068631468a47506f48.jpg',
+            },
+            {
+                url: 'https://c.dns-shop.ru/thumb/st1/fit/wm/2000/1500/7153b01ca5f9b31832191a43ca0853f4/0858cc144b2d2ed4ee2b05b98a961d8288579efbb90c5ac0e1f6ec0c5ef4f7a4.jpg',
+                source: '0858cc144b2d2ed4ee2b05b98a961d8288579efbb90c5ac0e1f6ec0c5ef4f7a4.jpg',
+            },
+        ],
+        name: 'Витая пара SkyNet CSL-FTP-4-CU',
+        price: 81,
+        rating: 4.4,
+    },
+    {
+        // eslint-disable-next-line @typescript-eslint/naming-convention
+        _id: 'vitaa-para-skynet-csl-ftp-4-cu9',
+        feedbacksCount: 5,
+        subCategory: 'professionalnoe-setevoe-oborudovanie',
+        images: [
+            {
+                url: 'https://c.dns-shop.ru/thumb/st1/fit/wm/2000/1292/f1da10dcd92bc5800ad808a443c1c57b/a67f341c37067c12bb959fb5bcfd95288e973fe7cef6ef4e262d517cd382620f.jpg',
+                source: 'a67f341c37067c12bb959fb5bcfd95288e973fe7cef6ef4e262d517cd382620f.jpg',
+            },
+            {
+                url: 'https://c.dns-shop.ru/thumb/st1/fit/wm/1500/2000/91a43fdccf9c83937ff6d72b9be34e62/f5367f92fe34dfe2cdfbc16d6a5d6d90ae100e5550ddba068631468a47506f48.jpg',
+                source: 'f5367f92fe34dfe2cdfbc16d6a5d6d90ae100e5550ddba068631468a47506f48.jpg',
+            },
+            {
+                url: 'https://c.dns-shop.ru/thumb/st1/fit/wm/2000/1500/7153b01ca5f9b31832191a43ca0853f4/0858cc144b2d2ed4ee2b05b98a961d8288579efbb90c5ac0e1f6ec0c5ef4f7a4.jpg',
+                source: '0858cc144b2d2ed4ee2b05b98a961d8288579efbb90c5ac0e1f6ec0c5ef4f7a4.jpg',
+            },
+        ],
+        name: 'Витая пара SkyNet CSL-FTP-4-CU',
+        price: 81,
+        rating: 4.4,
+    },
 ];

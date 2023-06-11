@@ -5,27 +5,49 @@
 > -->
 
 <!-- Раскомментировать при выполнении ДЗ -->
-<!-- <ng-container *appPagination="let chank of productsFromContext; chankSize: 4"> -->
-<div *ngIf="getFilteredProducts as productsFromNgIf; else loader" class="scroll-container">
-    <!-- <ng-template ngFor [ngForOf]="productsFromNgIf" [ngForTrackBy]="trackBy" let-product> -->
-    <app-card
-        *ngFor="
-            let product of productsFromNgIf as ngForOfValue;
-            trackBy: trackBy;
-            let localIndex = index
-        "
-        class="card"
-        [product]="ngForOfValue[localIndex]"
-    ></app-card>
-    <!-- </ng-template> -->
-</div>
-<!-- </ng-container> -->
 
-<!-- </ng-template> -->
-
-<!-- <div *appDumpNgIf="testUser; let user = value">
-    {{testUser.name}}
-</div> -->
+<ng-container
+    *appPagination="
+        let currentItems of products;
+        let setChunkSize = setChunkSize;
+        let chunkSizes = chunkSizes;
+        let currentChunkSize = currentChunkSize;
+        let currentPage = currentPage;
+        let pages = pages;
+        let setPage = setPage;
+        chunkSize: 4
+    "
+>
+    <div *ngIf="currentItems?.length; else loader" class="scroll-container">
+        <div *ngIf="chunkSizes" class="pagination-chunks-sizes">
+            <button
+                *ngFor="let size of chunkSizes; let i = index"
+                mat-button
+                [ngClass]="{active: currentChunkSize == size}"
+                (click)="setChunkSize(i)"
+            >
+                {{ size }}
+            </button>
+        </div>
+        <div class="app-products-list-container">
+            <app-card
+                *ngFor="let item of currentItems; trackBy: trackBy"
+                class="card"
+                [product]="item"
+            ></app-card>
+        </div>
+        <div *ngIf="pages.length" class="pagination-pages">
+            <button
+                *ngFor="let page of pages"
+                mat-button
+                [ngClass]="{active: currentPage == page}"
+                (click)="setPage(page)"
+            >
+                {{ page }}
+            </button>
+        </div>
+    </div>
+</ng-container>
 
 <ng-template #loader>
     <mat-spinner></mat-spinner>

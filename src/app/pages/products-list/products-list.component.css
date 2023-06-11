@@ -1,12 +1,9 @@
 :host {
+    width: 100%;
+    height: 100%;
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    width: 100%;
-    height: 100%;
-    min-height: 0;
-    padding: 10px;
-    box-sizing: border-box;
     overflow: auto;
 }
 
@@ -21,6 +18,31 @@
     overflow: auto;
 }
 
+:host div.app-products-list-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    width: 100%;
+    min-height: 0;
+    box-sizing: border-box;
+    padding: 10px;
+}
+
 .card {
     margin: 10px;
+}
+
+.pagination-pages .mat-mdc-button.mat-mdc-button-base,
+.pagination-chunks-sizes .mat-mdc-button.mat-mdc-button-base {
+    height: 36px;
+    min-width: 36px;
+    width: 36px;
+    margin-left: 4px;
+    margin-right: 4px;
+}
+
+.pagination-pages button.active,
+.pagination-chunks-sizes button.active {
+    background: #3f51b5;
+    color: white;
 }
