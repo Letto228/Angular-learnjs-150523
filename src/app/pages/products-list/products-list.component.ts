@@ -26,4 +26,9 @@ export class ProductsListComponent implements OnInit {
         // eslint-disable-next-line no-console
         console.log(event);
     }
+
+    loadEvent(event: string) {
+        // eslint-disable-next-line no-console
+        console.log(event);
+    }
 }
