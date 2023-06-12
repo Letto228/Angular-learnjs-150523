@@ -1,7 +1,6 @@
-<app-card class="card"></app-card>
-<!-- <app-card class="card"></app-card>
-<app-card class="card"></app-card>
-<app-card class="card"></app-card>
-<app-card class="card"></app-card>
-<app-card class="card"></app-card>
-<app-card class="card"></app-card> -->
+<app-card
+    *ngFor="let product of products"
+    class="card"
+    [product]="product"
+    (buyBtnClicked)="handleBuyBtnClicked($event)"
+></app-card>
