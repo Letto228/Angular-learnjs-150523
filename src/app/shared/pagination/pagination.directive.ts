@@ -3,7 +3,6 @@ import {
     Input,
     OnChanges,
     OnDestroy,
-    OnInit,
     SimpleChanges,
     TemplateRef,
     ViewContainerRef,
@@ -14,7 +13,7 @@ import {IPaginationContext} from './pagination-context.interface';
 @Directive({
     selector: '[appPagination]',
 })
-export class PaginationDirective<T> implements OnChanges, OnInit, OnDestroy {
+export class PaginationDirective<T> implements OnChanges, OnDestroy {
     @Input() appPaginationOf: T[] | null | undefined;
     // Количество элементов в чанке
     @Input() appPaginationChankSize = 4;
@@ -32,9 +31,7 @@ export class PaginationDirective<T> implements OnChanges, OnInit, OnDestroy {
         if (appPaginationOf) {
             this.updateView();
         }
-    }
 
-    ngOnInit() {
         this.totalPages = this.appPaginationOf
             ? Math.ceil(this.appPaginationOf.length / this.appPaginationChankSize)
             : 0;
