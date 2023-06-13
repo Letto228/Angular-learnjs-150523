@@ -4,21 +4,19 @@ import {Pipe, PipeTransform} from '@angular/core';
     name: 'filterByValue',
 })
 export class FilterByValuePipe implements PipeTransform {
-    transform<T>(
-        array: T[] | undefined,
-        searchProductName: unknown,
-        value: unknown,
-    ): T[] | undefined {
-        if (array?.length) {
-            if (searchProductName instanceof String) {
-                return array.filter(element =>
-                    String(element[searchProductName as keyof T]).startsWith(String(value)),
-                );
-            }
-
-            return array.filter(element => element[searchProductName as keyof T] === value);
+    transform<T, P extends keyof T>(
+        array: T[] | undefined | null,
+        searchValue: P,
+        value: T[P] | null,
+    ): T[] | undefined | null {
+        if (!array?.length) {
+            return array;
         }
 
-        return array;
+        if (value instanceof String) {
+            return array.filter(element => String(element[searchValue]).startsWith(String(value)));
+        }
+
+        return array.filter(element => element[searchValue] === value);
     }
 }
