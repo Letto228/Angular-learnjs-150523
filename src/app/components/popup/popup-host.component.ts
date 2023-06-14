@@ -29,6 +29,8 @@ export class PopupHostComponent implements OnChanges {
         if (this.template) {
             this.viewPort.clear();
             this.viewPort.createEmbeddedView(this.template);
+        } else {
+            this.viewPort.clear();
         }
     }
 }
