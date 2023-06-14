@@ -13,7 +13,7 @@ export class FilterByValuePipe implements PipeTransform {
             return array;
         }
 
-        if (value instanceof String) {
+        if (typeof value === 'string') {
             return array.filter(element => String(element[searchValue]).startsWith(String(value)));
         }
 
