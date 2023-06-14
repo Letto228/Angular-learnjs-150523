@@ -1,0 +1,24 @@
+.popup-backdrop {
+    top: 0px;
+    left: 0px;
+    bottom: 0px;
+    width: 100%;
+    z-index: 100;
+    position: fixed;
+    background: rgba(108, 108, 108, 0.7);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.popup-wrapper {
+    background-color: white;
+    min-width: 40vw;
+    min-height: 30vh;
+    border-radius: 6px;
+    padding: 40px;
+}
+
+[hidden] {
+    display: none;
+}
