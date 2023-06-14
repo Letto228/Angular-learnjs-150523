@@ -14,7 +14,7 @@ import {
     styleUrls: ['./popup-host.component.css'],
 })
 export class PopupHostComponent implements OnChanges {
-    @Input() template!: TemplateRef<unknown>;
+    @Input() template!: TemplateRef<unknown> | null;
 
     @ViewChild('viewPort', {read: ViewContainerRef, static: true})
     private readonly viewPort!: ViewContainerRef;
@@ -26,7 +26,9 @@ export class PopupHostComponent implements OnChanges {
     }
 
     private insertRefTemplate() {
-        this.viewPort.clear();
-        this.viewPort.createEmbeddedView(this.template);
+        if (this.template) {
+            this.viewPort.clear();
+            this.viewPort.createEmbeddedView(this.template);
+        }
     }
 }
