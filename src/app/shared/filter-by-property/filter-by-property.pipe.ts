@@ -8,7 +8,7 @@ export class FilterByPropertyPipe implements PipeTransform {
     transform<T, P extends keyof T>(
         items: T[] | undefined | null,
         searchingProperty: P,
-        searchValue: T[P] | null,
+        searchValue: T[P],
     ): T[] | undefined | null {
         if (!items?.length) {
             return items;
@@ -18,7 +18,7 @@ export class FilterByPropertyPipe implements PipeTransform {
             const searchValueUpperCase = searchValue.toUpperCase();
 
             return items.filter(item =>
-                (item[searchingProperty] as string).toUpperCase().startsWith(searchValueUpperCase),
+                (item[searchingProperty] as string).toUpperCase().includes(searchValueUpperCase),
             );
         }
 
