@@ -4,6 +4,7 @@ import {HttpClient} from '@angular/common/http';
 import {IProduct} from './product.interface';
 import {BASE_URL} from '../base-url/base-url.token';
 import {IProductsDto} from './products.dto';
+import {IProductDto} from './product.dto';
 
 @Injectable()
 export class ProductsApiService {
@@ -16,5 +17,11 @@ export class ProductsApiService {
         return this.httpClient
             .get<IProductsDto>(`${this.baseUrl}/products/suggestion`)
             .pipe(map(({data}) => data.items));
+    }
+
+    getProduct$(id: string): Observable<IProduct | undefined> {
+        return this.httpClient
+            .get<IProductDto>(`${this.baseUrl}/products/${id}`)
+            .pipe(map(({data}) => data));
     }
 }
