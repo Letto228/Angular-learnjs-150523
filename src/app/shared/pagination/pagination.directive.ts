@@ -77,6 +77,7 @@ export class PaginationDirective<T> implements OnChanges, OnInit, OnDestroy {
             $implicit: this.groupedItems[currentIndex],
             index: currentIndex,
             pageIndexes: this.groupedItems.map((_, index) => index),
+            appPaginationChankSize: this.appPaginationChankSize,
             appPaginationOf: this.appPaginationOf as T[],
             next: () => {
                 this.next();

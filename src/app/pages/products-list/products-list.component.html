@@ -2,10 +2,10 @@
     <ng-container
         *appPagination="
             let productsGroup of products | filterByProperty : 'name' : '';
-            chankSize: 6;
+            chankSize: 6 as chankLength;
             let pageIndexes = pageIndexes;
             let activeIndex = index;
-            let next = next;
+            next as nextLocal;
             let back = back;
             let selectIndex = selectIndex
         "
@@ -32,7 +32,7 @@
                     {{ index + 1 }}
                 </button>
             </div>
-            <button mat-icon-button (click)="next()">
+            <button mat-icon-button (click)="nextLocal()">
                 <mat-icon>chevron_right</mat-icon>
             </button>
         </div>

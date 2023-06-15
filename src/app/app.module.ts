@@ -1,18 +1,16 @@
-import {NgModule} from '@angular/core';
+import {NgModule, inject} from '@angular/core';
 import {BrowserModule} from '@angular/platform-browser';
 
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import {HttpClientModule} from '@angular/common/http';
+import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import {AppRoutingModule} from './app-routing.module';
 import {AppComponent} from './app.component';
 import {HeaderModule} from './components/header/header.module';
 import {ProductsListModule} from './pages/products-list/products-list.module';
 import {SidenavModule} from './components/sidenav/sidenav.module';
 import {PopupHostModule} from './components/popup-host/popup-host.module';
+import {BaseUrlInterceptor} from './shared/base-url/base-url.interceptor';
 import {ProductsStoreService} from './shared/products/products-store.service';
-import {ProductsApiService} from './shared/products/products-api.service';
-import {baseUrl} from './shared/base-url/base-url.const';
-import {BASE_URL} from './shared/base-url/base-url.token';
 
 @NgModule({
     declarations: [AppComponent],
@@ -27,13 +25,65 @@ import {BASE_URL} from './shared/base-url/base-url.token';
         HttpClientModule,
     ],
     providers: [
-        ProductsStoreService,
-        ProductsApiService,
+        // ...SidenavModule.providers
+        // ...PopupHostModule.providers
+        // ProductsStoreService,
         {
-            provide: BASE_URL,
-            useValue: baseUrl,
+            provide: 'ProductsStoreService',
+            // useExisting: ProductsStoreService,
+            // useFactory: (productsStoreService: ProductsStoreService) => productsStoreService,
+            // deps: [ProductsStoreService],
+            useFactory: () => inject(ProductsStoreService),
         },
+        // ProductsApiService,
+        // {
+        //     provide: BASE_URL,
+        //     useValue: baseUrl,
+        // },
+        {
+            provide: HTTP_INTERCEPTORS,
+            useClass: BaseUrlInterceptor,
+            multi: true,
+        },
+        // {
+        //     provide: HTTP_INTERCEPTORS,
+        //     useClass: TestInterceptor,
+        //     multi: true,
+        // },
+        // {
+        //     provide: HTTP_INTERCEPTORS,
+        //     useClass: ErrorInterceptor,
+        //     multi: true,
+        // },
+        // {
+        //     provide: 'name',
+        //     useValue: 'AppModule',
+        // },
     ],
     bootstrap: [AppComponent],
 })
 export class AppModule {}
+
+/* eslint-disable prettier/prettier */
+
+// NullInjector
+
+// |
+
+// PlatformInjector
+
+// |
+
+// RootInjector (AppModuleInjector)
+
+// AppElementInjector
+
+// |                                   \
+
+// SidenavElemntInjector                HeaderElemntInjector
+
+// |
+
+// ProductsListElementInjector
+
+/* eslint-enable prettier/prettier */
