@@ -27,49 +27,12 @@ import {HttpClientModule} from '@angular/common/http';
         HttpClientModule,
     ],
     providers: [
-        // ...HttpClientModule.providers,
-        // {
-        //     provide: ProductsStoreService, // token
-        //     useClass: ProductsStoreService, // value: new ProductsStoreService();
-        // },
         ProductsStoreService,
         ProductsApiService,
         {
             provide: BASE_URL,
             useValue: baseUrl,
         },
-        // {
-        //     provide: 'name',
-        //     useValue: 'Alesha',
-        // },
-        // {
-        //     provide: 'ProductsStoreServiceString', // псевдоним для ProductsStoreService
-        //     useExisting: ProductsStoreService, // value: inject(ProductsStoreService)
-        // },
-        // {
-        //     provide: 'useClass',
-        //     useFactory: () => new ProductsStoreService(),
-        // },
-        // {
-        //     provide: 'useValue',
-        //     useFactory: () => 'Alesha',
-        // },
-        // {
-        //     provide: 'useExisting',
-        //     useFactory: (productsStoreServiceString: ProductsStoreService) =>
-        //         productsStoreServiceString,
-        //     deps: ['ProductsStoreServiceString'],
-        // },
-        // {
-        //     provide: 'multiToken',
-        //     useValue: 'first',
-        //     multi: true,
-        // },
-        // {
-        //     provide: 'multiToken',
-        //     useValue: 'last',
-        //     multi: true,
-        // },
     ],
     bootstrap: [AppComponent],
 })

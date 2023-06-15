@@ -17,8 +17,5 @@ export class ProductsStoreService {
         this.productsApiService.getProducts$().subscribe(products => {
             this.productsStore$.next(products);
         });
-        // setTimeout(() => {
-        //     this.productsStore$.next(productsMock);
-        // }, 2000);
     }
 }
