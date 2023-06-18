@@ -6,8 +6,8 @@
 
 <!-- Раскомментировать при выполнении ДЗ -->
 
-<ng-container
-    *appPagination="
+<ng-container *ngIf="products; else loader;">
+    <div *appPagination="
         let currentItems of products;
         let setChunkSize = setChunkSize;
         let chunkSizes = chunkSizes;
@@ -15,10 +15,10 @@
         let currentPage = currentPage;
         let pages = pages;
         let setPage = setPage;
-        chunkSize: 4
-    "
->
-    <div *ngIf="currentItems?.length; else loader" class="scroll-container">
+        chunkSize: 4;
+    " class="scroll-container">
+
+    <div *ngIf="currentItems.length; else emptyProducts">
         <div *ngIf="chunkSizes" class="pagination-chunks-sizes">
             <button
                 *ngFor="let size of chunkSizes; let i = index"
@@ -47,8 +47,13 @@
             </button>
         </div>
     </div>
+    </div>
 </ng-container>
 
 <ng-template #loader>
     <mat-spinner></mat-spinner>
+</ng-template>
+
+<ng-template #emptyProducts>
+    Нет товаров
 </ng-template>

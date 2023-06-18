@@ -1,6 +1,5 @@
 export interface IPaginationContext<T> {
-    $implicit: T[] | null | undefined;
-    appPaginationOf: T[] | null | undefined;
+    $implicit: T[];
     chunkSizes: number[];
     currentChunkSize: number;
     setChunkSize: (index: number) => void;

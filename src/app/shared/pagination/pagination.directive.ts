@@ -1,10 +1,7 @@
 import {
-    ChangeDetectorRef,
     Directive,
     Input,
     OnChanges,
-    OnInit,
-    SimpleChanges,
     TemplateRef,
     ViewContainerRef,
 } from '@angular/core';
@@ -13,36 +10,37 @@ import {IPaginationContext} from './pagination-context.interface';
 @Directive({
     selector: '[appPagination]',
 })
-export class PaginationDirective<T> implements OnChanges, OnInit {
+
+export class PaginationDirective<T> implements OnChanges {
     @Input() appPaginationOf: T[] | undefined | null = [];
 
     private currentItems: T[] = [];
 
-    readonly chunkSizes: number[] = [4, 8, 12, 16, 20];
+    private readonly chunkSizes = [4, 8, 12, 16, 20];
+
+    private _chunkSize = 4;
 
     // Количество элементов в чанке
-    @Input() appPaginationChunkSize: number = this.chunkSizes[0];
+    @Input() set appPaginationChunkSize(number : 4 | 8 | 12 | 16 | 20 ) {
+        this._chunkSize = number;
+    }
 
-    pages: number[] = [];
+    private pages: number[] = [];
 
-    currentPage = 1;
+    private currentPage = 1;
 
     constructor(
         private readonly viewContainer: ViewContainerRef,
         private readonly template: TemplateRef<IPaginationContext<T>>,
-        private readonly changeDetectorRef: ChangeDetectorRef,
     ) {}
 
-    ngOnInit(): void {
-        this.viewContainer.createEmbeddedView(this.template, this.getCurrentContext());
-        this.changeDetectorRef.markForCheck();
-    }
-
-    ngOnChanges({appPaginationOf, appPaginationChunkSize}: SimpleChanges) {
-        if (appPaginationOf || appPaginationChunkSize) {
-            this.setPages();
-            this.setCurrentItems();
+    ngOnChanges() {
+        if (!this.appPaginationOf || !this.appPaginationOf?.length) {
+            return;
         }
+
+        this.setPages();
+        this.setCurrentItems();
     }
 
     private updateView() {
@@ -52,15 +50,13 @@ export class PaginationDirective<T> implements OnChanges, OnInit {
 
         this.viewContainer.createEmbeddedView(this.template, this.getCurrentContext());
 
-        this.changeDetectorRef.markForCheck();
     }
 
     private getCurrentContext(): IPaginationContext<T> {
         return {
             $implicit: this.currentItems,
-            appPaginationOf: this.currentItems,
             chunkSizes: this.chunkSizes,
-            currentChunkSize: this.appPaginationChunkSize,
+            currentChunkSize: this._chunkSize,
             setChunkSize: (index: number) => {
                 this.setChunkSize(index);
             },
@@ -70,33 +66,33 @@ export class PaginationDirective<T> implements OnChanges, OnInit {
                 this.setPage(index);
             },
         };
+
     }
 
     private setPages(): void {
-        if (!this.appPaginationOf || !this.appPaginationOf?.length) {
-            return;
-        }
 
         this.currentPage = 1;
-        const pagesCount = Math.ceil(this.appPaginationOf!.length / this.appPaginationChunkSize);
+        this.pages = this.getPagesBySize();
+    }
 
-        this.pages = [];
+    private getPagesBySize(): number[] {
 
+        const pagesCount = Math.ceil(this.appPaginationOf!.length / this._chunkSize);
+
+        let pages : number[] = [];
         if (pagesCount > 1) {
             for (let i = 1; i <= pagesCount; i++) {
-                this.pages.push(i);
+                pages.push(i);
             }
         }
+
+        return pages;
     }
 
     private setCurrentItems(): void {
-        if (!this.appPaginationOf || !this.appPaginationOf?.length) {
-            return;
-        }
-
-        this.currentItems = this.appPaginationOf.slice(
-            this.appPaginationChunkSize * (this.currentPage - 1),
-            this.appPaginationChunkSize * this.currentPage,
+        this.currentItems = this.appPaginationOf!.slice(
+            this._chunkSize * (this.currentPage - 1),
+            this._chunkSize * this.currentPage,
         );
 
         this.updateView();
@@ -112,9 +108,9 @@ export class PaginationDirective<T> implements OnChanges, OnInit {
     setChunkSize(chunkSizeIndex: number): void {
         if (
             this.chunkSizes[chunkSizeIndex] &&
-            this.chunkSizes[chunkSizeIndex] !== this.appPaginationChunkSize
+            this.chunkSizes[chunkSizeIndex] !== this._chunkSize
         ) {
-            this.appPaginationChunkSize = this.chunkSizes[chunkSizeIndex];
+            this._chunkSize = this.chunkSizes[chunkSizeIndex];
             this.setPages();
             this.setCurrentItems();
         }
