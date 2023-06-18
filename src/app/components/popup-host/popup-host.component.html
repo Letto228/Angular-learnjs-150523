@@ -1,3 +1,13 @@
-<div class="content-wrapper">
-    <ng-container *ngTemplateOutlet="template"></ng-container>
-</div>
+<!-- Мой компонент -->
+<ng-container *ngIf="template && context">
+    <div class="content-wrapper">
+        <ng-container *ngTemplateOutlet="template; context: context"></ng-container>
+        <button (click)="closePopup()">X</button>
+    </div>
+</ng-container>
+
+<!-- Компонент из твоего решения (надо раскомментировать строчки из popup-host.component) -->
+<!-- <div class="content-wrapper" *ngIf="templateObject | async as templateObject">
+    <ng-container *ngTemplateOutlet="templateObject.template; context: templateObject.context"></ng-container>
+    <button (click)="closePopup()">X</button>
+</div> -->

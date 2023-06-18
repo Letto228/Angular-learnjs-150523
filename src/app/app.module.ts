@@ -11,6 +11,7 @@ import {SidenavModule} from './components/sidenav/sidenav.module';
 import {PopupHostModule} from './components/popup-host/popup-host.module';
 import {BaseUrlInterceptor} from './shared/base-url/base-url.interceptor';
 import {ProductsStoreService} from './shared/products/products-store.service';
+import {PopupService} from './components/popup-host/popup.service';
 
 @NgModule({
     declarations: [AppComponent],
@@ -25,6 +26,7 @@ import {ProductsStoreService} from './shared/products/products-store.service';
         HttpClientModule,
     ],
     providers: [
+        PopupService,
         // ...SidenavModule.providers
         // ...PopupHostModule.providers
         // ProductsStoreService,
