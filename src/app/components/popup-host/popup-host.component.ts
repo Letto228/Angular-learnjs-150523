@@ -17,7 +17,7 @@ import {PopupService} from './popup.service';
     styleUrls: ['./popup-host.component.css'],
     //  changeDetection: ChangeDetectionStrategy.OnPush,
 })
-// мое решение
+//  решение 1 без ChangeDetectionStrategy.OnPush,
 export class PopupHostComponent implements OnDestroy {
     @Input() template: TemplateRef<ITemplateContext> | null = null;
     @Input() context: ITemplateContext | null = null;
@@ -48,7 +48,7 @@ export class PopupHostComponent implements OnDestroy {
     }
 }
 
-// твое решение c ChangeDetectionStrategy.OnPush
+// решение 2 c ChangeDetectionStrategy.OnPush
 // export class PopupHostComponent {
 
 //     @HostBinding('class.empty')

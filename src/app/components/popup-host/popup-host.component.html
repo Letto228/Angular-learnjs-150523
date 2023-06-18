@@ -1,4 +1,4 @@
-<!-- Мой компонент -->
+<!-- Компонент из решения 1 -->
 <ng-container *ngIf="template && context">
     <div class="content-wrapper">
         <ng-container *ngTemplateOutlet="template; context: context"></ng-container>
@@ -6,7 +6,7 @@
     </div>
 </ng-container>
 
-<!-- Компонент из твоего решения (надо раскомментировать строчки из popup-host.component) -->
+<!-- Компонент из решения 2 (надо раскомментировать строчки из popup-host.component) -->
 <!-- <div class="content-wrapper" *ngIf="templateObject | async as templateObject">
     <ng-container *ngTemplateOutlet="templateObject.template; context: templateObject.context"></ng-container>
     <button (click)="closePopup()">X</button>
