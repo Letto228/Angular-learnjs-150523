@@ -7,13 +7,7 @@ import {IProductDto} from './product.dto';
 
 @Injectable({providedIn: 'root'})
 export class ProductsApiService {
-    constructor(
-        // @Inject(BASE_URL) private readonly baseUrl: string,
-        private readonly httpClient: HttpClient,
-    ) {
-        // eslint-disable-next-line no-console
-        // console.log('ProductsApiService');
-    }
+    constructor(private readonly httpClient: HttpClient) {}
 
     getProducts$(): Observable<IProduct[]> {
         return this.httpClient

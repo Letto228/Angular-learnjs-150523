@@ -23,9 +23,6 @@ import {FilterByPropertyModule} from '../../shared/filter-by-property/filter-by-
         MyAsyncModule,
         FilterByPropertyModule,
     ],
-    // providers: [
-    //     ...CardModule.providers
-    // ],
     exports: [ProductsListComponent],
 })
 export class ProductsListModule {}
