@@ -11,9 +11,16 @@
         "
     >
         <div class="cards-container">
+            <!-- <app-card
+                *ngFor="let product of productsGroup; trackBy: trackBy"
+                class="card"
+                [product]="product"
+                (click)="navigateToProduct()"
+            ></app-card> -->
             <app-card
                 *ngFor="let product of productsGroup; trackBy: trackBy"
                 class="card"
+                [routerLink]="'/product/' + product._id"
                 [product]="product"
             ></app-card>
         </div>

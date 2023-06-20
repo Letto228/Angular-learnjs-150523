@@ -1,4 +1,5 @@
-import {ChangeDetectionStrategy, Component, OnInit} from '@angular/core';
+import {ChangeDetectionStrategy, Component, Inject, OnInit} from '@angular/core';
+import {Router} from '@angular/router';
 import {IProduct} from '../../shared/products/product.interface';
 import {ProductsStoreService} from '../../shared/products/products-store.service';
 
@@ -11,7 +12,14 @@ import {ProductsStoreService} from '../../shared/products/products-store.service
 export class ProductsListComponent implements OnInit {
     readonly products$ = this.productsStoreService.products$;
 
-    constructor(private readonly productsStoreService: ProductsStoreService) {}
+    constructor(
+        private readonly productsStoreService: ProductsStoreService,
+        private readonly router: Router,
+        @Inject('name') private readonly name: string,
+    ) {
+        // eslint-disable-next-line no-console
+        console.log('ProductsListComponent', this.name);
+    }
 
     ngOnInit(): void {
         this.productsStoreService.loadProducts();
@@ -19,5 +27,12 @@ export class ProductsListComponent implements OnInit {
 
     trackBy(_index: number, item: IProduct) {
         return item._id;
+    }
+
+    navigateToProduct() {
+        // this.router.navigate(['/product/id']);
+        // this.router.navigate(['/product', 'id']);
+        // this.router.navigateByUrl(['/product', 'id'].join('/'));
+        this.router.navigateByUrl('/product/id');
     }
 }
