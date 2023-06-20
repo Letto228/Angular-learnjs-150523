@@ -4,14 +4,17 @@ import {HttpClient} from '@angular/common/http';
 import {IProduct} from './product.interface';
 import {IProductsDto} from './products.dto';
 import {IProductDto} from './product.dto';
+import {getParamsFromObject} from '../params/get-params-from-object';
 
 @Injectable({providedIn: 'root'})
 export class ProductsApiService {
     constructor(private readonly httpClient: HttpClient) {}
 
-    getProducts$(): Observable<IProduct[]> {
+    getProducts$(subCategoryId?: string | null): Observable<IProduct[]> {
         return this.httpClient
-            .get<IProductsDto>(`/products/suggestion`)
+            .get<IProductsDto>(`/products`, {
+                params: getParamsFromObject({subCat: subCategoryId}),
+            })
             .pipe(map(({data}) => data.items));
     }
 
