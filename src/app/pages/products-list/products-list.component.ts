@@ -48,12 +48,7 @@ export class ProductsListComponent implements OnInit, OnDestroy {
     initializeListeners() {
         this.subscription = this.activatedRoute.paramMap.subscribe(params => {
             this.subCat = params.get('subCat');
-
-            if (this.subCat) {
-                this.productsStoreService.loadProducts(this.subCat);
-            } else {
-                this.productsStoreService.loadProducts();
-            }
+            this.productsStoreService.loadProducts(this.subCat);
         });
     }
 }
