@@ -4,10 +4,11 @@ import {
     Component,
     HostBinding,
     Input,
+    OnDestroy,
     TemplateRef,
 } from '@angular/core';
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
-import {tap} from 'rxjs';
+import {Subscription, tap} from 'rxjs';
 import {ITemplateContext, ITemplateOutlet} from './popup-interfaces';
 import {PopupService} from './popup.service';
 
@@ -18,9 +19,10 @@ import {PopupService} from './popup.service';
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
 //  решение 1 но теперь с ChangeDetectionStrategy.OnPush
-export class PopupHostComponent {
+export class PopupHostComponent implements OnDestroy {
     @Input() template: TemplateRef<ITemplateContext> | null = null;
     @Input() context: ITemplateContext | null = null;
+    subscription!: Subscription;
 
     @HostBinding('class.empty')
     get isTemplateNullable() {
@@ -35,13 +37,19 @@ export class PopupHostComponent {
         private readonly popupService: PopupService,
         private readonly changeDetector: ChangeDetectorRef,
     ) {
-        this.popupService.openAsObservable.subscribe((value: ITemplateOutlet | null) => {
-            this.template = value ? value.template : null;
-            this.context = value ? value.context : null;
-            // eslint-disable-next-line no-console
-            console.log(this.template, this.context);
-            this.changeDetector.markForCheck();
-        });
+        this.subscription = this.popupService.openAsObservable.subscribe(
+            (value: ITemplateOutlet | null) => {
+                this.template = value ? value.template : null;
+                this.context = value ? value.context : null;
+                // eslint-disable-next-line no-console
+                console.log(this.template, this.context);
+                this.changeDetector.markForCheck();
+            },
+        );
+    }
+
+    ngOnDestroy() {
+        this.subscription.unsubscribe();
     }
 }
 
