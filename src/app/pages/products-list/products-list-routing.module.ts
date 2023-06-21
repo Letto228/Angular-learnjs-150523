@@ -7,6 +7,10 @@ const routes: Routes = [
         path: '',
         component: ProductsListComponent,
     },
+    {
+        path: ':subCat',
+        component: ProductsListComponent,
+    },
 ];
 
 @NgModule({
