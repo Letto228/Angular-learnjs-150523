@@ -1,13 +1,13 @@
 import {
-    // ChangeDetectionStrategy,
+    ChangeDetectionStrategy,
+    ChangeDetectorRef,
     Component,
     HostBinding,
     Input,
-    OnDestroy,
     TemplateRef,
 } from '@angular/core';
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
-import {Subscription, tap} from 'rxjs';
+import {tap} from 'rxjs';
 import {ITemplateContext, ITemplateOutlet} from './popup-interfaces';
 import {PopupService} from './popup.service';
 
@@ -15,10 +15,10 @@ import {PopupService} from './popup.service';
     selector: 'app-popup-host',
     templateUrl: './popup-host.component.html',
     styleUrls: ['./popup-host.component.css'],
-    //  changeDetection: ChangeDetectionStrategy.OnPush,
+    changeDetection: ChangeDetectionStrategy.OnPush,
 })
-//  решение 1 без ChangeDetectionStrategy.OnPush,
-export class PopupHostComponent implements OnDestroy {
+//  решение 1 но теперь с ChangeDetectionStrategy.OnPush
+export class PopupHostComponent {
     @Input() template: TemplateRef<ITemplateContext> | null = null;
     @Input() context: ITemplateContext | null = null;
 
@@ -31,20 +31,17 @@ export class PopupHostComponent implements OnDestroy {
         this.popupService.closePopup();
     }
 
-    subscription!: Subscription;
-
-    constructor(private readonly popupService: PopupService) {
-        // попробовала просто на behaviorSubject подписаться а не на asObservable, тоже ок
+    constructor(
+        private readonly popupService: PopupService,
+        private readonly changeDetector: ChangeDetectorRef,
+    ) {
         this.popupService.openAsObservable.subscribe((value: ITemplateOutlet | null) => {
             this.template = value ? value.template : null;
             this.context = value ? value.context : null;
             // eslint-disable-next-line no-console
             console.log(this.template, this.context);
+            this.changeDetector.markForCheck();
         });
-    }
-
-    ngOnDestroy(): void {
-        this.subscription.unsubscribe();
     }
 }
 
