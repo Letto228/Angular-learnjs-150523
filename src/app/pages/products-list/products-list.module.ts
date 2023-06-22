@@ -4,6 +4,7 @@ import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import {MatIconModule} from '@angular/material/icon';
 import {MatButtonModule} from '@angular/material/button';
 import {RouterModule} from '@angular/router';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {ProductsListComponent} from './products-list.component';
 import {CardModule} from './card/card.module';
 import {PaginationModule} from '../../shared/pagination/pagination.module';
@@ -24,6 +25,8 @@ import {CounterInputModule} from '../../shared/counter-input/counter-input.modul
         RouterModule,
         ProductsListRoutingModule,
         CounterInputModule,
+        ReactiveFormsModule,
+        FormsModule,
     ],
     exports: [ProductsListComponent],
 })

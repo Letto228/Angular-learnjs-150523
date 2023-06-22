@@ -53,3 +53,11 @@
     display: flex;
     overflow: auto;
 }
+
+.ng-untouched {
+    color: aqua;
+}
+
+.ng-touched {
+    color: red;
+}

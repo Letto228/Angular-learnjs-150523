@@ -1,9 +1,16 @@
-<app-counter-input></app-counter-input>
+<app-counter-input [formControl]="counterControl"></app-counter-input>
+<app-counter-input [(ngModel)]="counter"></app-counter-input>
+<!-- <app-counter-input [(ngModel)]="counter" [ngModelOptions]="{
+    updateOn: 'blur'
+}"></app-counter-input> -->
+<input [formControl]="textControl" />
+{{ this.textControl.value }}
+
 <div *ngIf="products$ | async as products; else loader" class="scroll-container">
     <ng-container
         *appPagination="
             let productsGroup of products | filterByProperty : 'name' : '';
-            chankSize: 6;
+            chankSize: (counterControlValue$ | async) || 0;
             let pageIndexes = pageIndexes;
             let activeIndex = index;
             next as nextLocal;
@@ -11,6 +18,17 @@
             let selectIndex = selectIndex
         "
     >
+        <!-- <ng-container
+        *appPagination="
+            let productsGroup of products | filterByProperty : 'name' : '';
+            chankSize: counter;
+            let pageIndexes = pageIndexes;
+            let activeIndex = index;
+            next as nextLocal;
+            let back = back;
+            let selectIndex = selectIndex
+        "
+    > -->
         <div class="cards-container">
             <app-card
                 *ngFor="let product of productsGroup; trackBy: trackBy"
