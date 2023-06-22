@@ -9,6 +9,7 @@ import {CardModule} from './card/card.module';
 import {PaginationModule} from '../../shared/pagination/pagination.module';
 import {FilterByPropertyModule} from '../../shared/filter-by-property/filter-by-property.module';
 import {ProductsListRoutingModule} from './products-list-routing.module';
+import {CounterInputModule} from '../../shared/counter-input/counter-input.module';
 
 @NgModule({
     declarations: [ProductsListComponent],
@@ -22,6 +23,7 @@ import {ProductsListRoutingModule} from './products-list-routing.module';
         FilterByPropertyModule,
         RouterModule,
         ProductsListRoutingModule,
+        CounterInputModule,
     ],
     exports: [ProductsListComponent],
 })
