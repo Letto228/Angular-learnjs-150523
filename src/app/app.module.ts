@@ -23,10 +23,6 @@ import {BaseUrlInterceptor} from './shared/base-url/base-url.interceptor';
     ],
     providers: [
         {
-            provide: 'name',
-            useValue: 'AppModule',
-        },
-        {
             provide: HTTP_INTERCEPTORS,
             useClass: BaseUrlInterceptor,
             multi: true,
@@ -35,31 +31,3 @@ import {BaseUrlInterceptor} from './shared/base-url/base-url.interceptor';
     bootstrap: [AppComponent],
 })
 export class AppModule {}
-
-/* eslint-disable prettier/prettier */
-
-// NullInjector
-
-// |
-
-// PlatformInjector
-
-// |
-
-// RootInjector (AppModuleInjector)
-
-// |                                   \
-
-// ProductsListModuleInjector           ProductModuleInjector
-
-// AppElementInjector
-
-// |                                                \
-
-// SidenavElemntInjector                            HeaderElemntInjector
-
-// |                                \
-
-// ProductsListElementInjector       ProductElementInjector
-
-/* eslint-enable prettier/prettier */

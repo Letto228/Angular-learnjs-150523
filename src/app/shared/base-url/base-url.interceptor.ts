@@ -13,22 +13,5 @@ export class BaseUrlInterceptor implements HttpInterceptor {
         });
 
         return next.handle(newRequest);
-        // .pipe(
-        // tap(responce => {
-        //     // eslint-disable-next-line no-console
-        //     console.log(responce);
-
-        //     if (responce instanceof HttpResponse) {
-        //         // eslint-disable-next-line no-console
-        //         console.log('is resp', responce);
-        //     }
-        // }),
-        // catchError((error: unknown) => {
-        //     // eslint-disable-next-line no-console
-        //     console.log(error);
-
-        //     return of(new HttpResponse({body: null}));
-        // }),
-        // );
     }
 }
