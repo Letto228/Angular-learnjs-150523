@@ -1,7 +1,10 @@
 export interface IPaginationContext<T> {
-    $implicit: T;
-    index: number;
+    $implicit: T[];
     appPaginationOf: T[];
-    next: () => void;
-    back: () => void;
+    currentPageIndex: number;
+    pageIndexes: number[];
+    goToNextPage: () => void;
+    goToPrevPage: () => void;
+    goToPage: (pageIndex: number) => void;
+    isCurrentPage: (pageIndex: number) => boolean;
 }

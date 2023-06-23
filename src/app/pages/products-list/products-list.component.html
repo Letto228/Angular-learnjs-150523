@@ -1,32 +1,42 @@
-<!-- <ng-template let-productsFromNgIf [ngIf]="getFilteredProducts" [ngIfElse]="loader"> -->
-<!-- <div
-    *ngIf="getFilteredProducts; else: loader; let productsFromNgIf = ngIf"
-    class="scroll-container"
-> -->
-
-<!-- Раскомментировать при выполнении ДЗ -->
-<!-- <ng-container *appPagination="let chank of productsFromContext; chankSize: 4"> -->
-<div *ngIf="getFilteredProducts as productsFromNgIf; else loader" class="scroll-container">
-    <!-- <ng-template ngFor [ngForOf]="productsFromNgIf" [ngForTrackBy]="trackBy" let-product> -->
-    <app-card
-        *ngFor="
-            let product of productsFromNgIf as ngForOfValue;
-            trackBy: trackBy;
-            let localIndex = index
+<div *ngIf="getFilteredProducts; else loader" class="scroll-container">
+    <ng-container
+        *appPagination="
+            let productGroup of getFilteredProducts;
+            chankSize: 3;
+            let currentPageIndex = currentPageIndex;
+            let pageIndexes = pageIndexes;
+            let goToNextPage = goToNextPage;
+            let goToPrevPage = goToPrevPage;
+            let goToPage = goToPage;
+            let isCurrentPage = isCurrentPage
         "
-        class="card"
-        [product]="ngForOfValue[localIndex]"
-    ></app-card>
-    <!-- </ng-template> -->
+    >
+        <div class="cards-wrapper">
+            <app-card
+                *ngFor="let product of productGroup; trackBy: trackBy"
+                class="card"
+                [product]="product"
+            ></app-card>
+        </div>
+        <div class="pagination">
+            <button mat-icon-button (click)="goToPrevPage()">
+                <mat-icon>chevron_left</mat-icon>
+            </button>
+            <div class="pages">
+                <span
+                    *ngFor="let pageIndex of pageIndexes"
+                    [ngClass]="isCurrentPage(pageIndex) ? 'selected' : 'active'"
+                    (click)="!isCurrentPage(pageIndex) ? goToPage(pageIndex) : null"
+                >
+                    {{ pageIndex + 1 }}
+                </span>
+            </div>
+            <button mat-icon-button (click)="goToNextPage()">
+                <mat-icon>chevron_right</mat-icon>
+            </button>
+        </div>
+    </ng-container>
 </div>
-<!-- </ng-container> -->
-
-<!-- </ng-template> -->
-
-<!-- <div *appDumpNgIf="testUser; let user = value">
-    {{testUser.name}}
-</div> -->
-
 <ng-template #loader>
     <mat-spinner></mat-spinner>
 </ng-template>
