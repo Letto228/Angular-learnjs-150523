@@ -96,16 +96,14 @@ export class PaginationDirective<T> implements OnChanges, OnInit, OnDestroy {
 
     private goToNextPage(): void {
         const nextIndex = this.currentIndex$.value + 1;
-        // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-        const newIndex = nextIndex < this.appPaginationOf!.length ? nextIndex : 0;
+        const newIndex = nextIndex < this.groupedItems.length ? nextIndex : 0;
 
         this.currentIndex$.next(newIndex);
     }
 
     private goToNexPrevPage(): void {
         const previousIndex = this.currentIndex$.value - 1;
-        // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-        const newIndex = previousIndex >= 0 ? previousIndex : this.appPaginationOf!.length - 1;
+        const newIndex = previousIndex >= 0 ? previousIndex : this.groupedItems.length - 1;
 
         this.currentIndex$.next(newIndex);
     }
