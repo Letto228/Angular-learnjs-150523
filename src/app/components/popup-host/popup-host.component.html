@@ -1,3 +1,6 @@
-<div class="content-wrapper">
-    <ng-container *ngTemplateOutlet="template"></ng-container>
+<div *ngIf="content$ | async as content" class="content-wrapper">
+    <button mat-icon-button aria-label="Close popup icon" class="close-icon" (click)="closePopup()">
+        <mat-icon>close</mat-icon>
+    </button>
+    <ng-container *ngTemplateOutlet="content.template; context: content.context"></ng-container>
 </div>
