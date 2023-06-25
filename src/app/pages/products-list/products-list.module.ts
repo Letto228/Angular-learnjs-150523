@@ -11,6 +11,7 @@ import {PaginationModule} from '../../shared/pagination/pagination.module';
 import {FilterByPropertyModule} from '../../shared/filter-by-property/filter-by-property.module';
 import {ProductsListRoutingModule} from './products-list-routing.module';
 import {CounterInputModule} from '../../shared/counter-input/counter-input.module';
+import {FilterModule} from './filter/filter.module';
 
 @NgModule({
     declarations: [ProductsListComponent],
@@ -27,6 +28,7 @@ import {CounterInputModule} from '../../shared/counter-input/counter-input.modul
         CounterInputModule,
         ReactiveFormsModule,
         FormsModule,
+        FilterModule,
     ],
     exports: [ProductsListComponent],
 })
