@@ -1,19 +1,18 @@
 <ng-container *ngIf="products$ | async as products; else loader">
     <!-- easy -->
-    <!-- <ng-container
-		*appPagination="
-			let productsGroup of (products | productsFilter : name);
-			chankSize: 6;
-			let pageIndexes = pageIndexes;
-			let activeIndex = index;
-			let next = next;
-			let back = back;
-			let selectIndex = selectIndex
-		"
-	> -->
-
-    <!-- hard -->
-    <!-- <ng-container
+    <ng-container
+        *appPagination="
+            let productsGroup of products | filterByProduct : 'Перчатки Husqvarna 5793800-09';
+            chankSize: 6;
+            let pageIndexes = pageIndexes;
+            let activeIndex = index;
+            let next = next;
+            let back = back;
+            let selectIndex = selectIndex
+        "
+    >
+        <!-- hard -->
+        <!-- <ng-container
 		*appPagination="
 			let productsGroup of products | filterByProperty : propertyName : searchPropertyValue;
 			chankSize: 6;
@@ -25,7 +24,7 @@
 		"
 	> -->
 
-    <ng-container
+        <!-- <ng-container
         *appPagination="
             let productsGroup of products;
             chankSize: 6;
@@ -35,7 +34,7 @@
             let back = back;
             let selectIndex = selectIndex
         "
-    >
+    > -->
         <div class="cards-container">
             <app-card
                 *ngFor="let product of productsGroup; trackBy: trackBy"

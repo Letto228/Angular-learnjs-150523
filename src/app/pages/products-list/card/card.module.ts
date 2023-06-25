@@ -5,7 +5,6 @@ import {MatButtonModule} from '@angular/material/button';
 import {MatCardModule} from '@angular/material/card';
 import {CarouselModule} from '../../../shared/carousel/carousel.module';
 import {CurrencyModule} from '../../../shared/currency/currency.module';
-import {FilterByProductModule} from 'src/app/shared/filter-by-product/filter-by-product.module';
 import {CardComponent} from './card.component';
 
 @NgModule({
@@ -17,7 +16,6 @@ import {CardComponent} from './card.component';
         MatIconModule,
         CarouselModule,
         CurrencyModule,
-        FilterByProductModule,
     ],
     // providers: [
     //     Service1,
