@@ -11,7 +11,6 @@ import {SidenavModule} from './components/sidenav/sidenav.module';
 import {PopupHostModule} from './components/popup-host/popup-host.module';
 import {BaseUrlInterceptor} from './shared/base-url/base-url.interceptor';
 import {ProductsStoreService} from './shared/products/products-store.service';
-import {PopupService} from './shared/popup/popup.service';
 
 @NgModule({
     declarations: [AppComponent],
@@ -60,7 +59,6 @@ import {PopupService} from './shared/popup/popup.service';
         //     provide: 'name',
         //     useValue: 'AppModule',
         // },
-        PopupService,
     ],
     bootstrap: [AppComponent],
 })

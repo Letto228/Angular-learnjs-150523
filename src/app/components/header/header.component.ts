@@ -23,7 +23,7 @@ export class HeaderComponent {
 
     constructor(private readonly popupService: PopupService) {}
 
-    openPopup(template: TemplateRef<unknown>): void {
+    openPopup(template: TemplateRef<IPopupContext>): void {
         this.popupService.openPopup({
             template,
             context: this.getPopupContext(),

@@ -5,6 +5,6 @@ export interface IPopupContext {
 }
 
 export interface IPopup {
-    template: TemplateRef<any>;
+    template: TemplateRef<IPopupContext>;
     context: IPopupContext;
 }
