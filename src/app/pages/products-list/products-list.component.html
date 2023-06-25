@@ -2,7 +2,7 @@
     <!-- easy -->
     <ng-container
         *appPagination="
-            let productsGroup of products | filterByProduct : 'Перчатки Husqvarna 5793800-09';
+            let productsGroup of products | filterByProduct : propertyName : searchPropertyValue;
             chankSize: 6;
             let pageIndexes = pageIndexes;
             let activeIndex = index;

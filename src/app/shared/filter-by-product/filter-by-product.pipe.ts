@@ -1,18 +1,24 @@
 import {Pipe, PipeTransform} from '@angular/core';
-import {IProduct} from '../products/product.interface';
 
 @Pipe({name: 'filterByProduct'})
 export class FilterByProductPipe implements PipeTransform {
-    transform(
-        value: IProduct[] | undefined | null,
-        searchProductName: string,
-    ): IProduct[] | undefined | null {
-        if (!value?.length || !searchProductName) {
-            return value;
+    transform<T, P extends keyof T>(
+        items: T[] | undefined | null,
+        categoryName: P,
+        value: T[P],
+    ): T[] | undefined | null {
+        if (!items?.length) {
+            return items;
         }
 
-        const upperCase: string = searchProductName.toUpperCase();
+        if (typeof categoryName === 'string') {
+            const valueUpperCase = (value as string).toUpperCase();
 
-        return value.filter(item => item.name.toLocaleUpperCase().includes(upperCase));
+            return items.filter(item =>
+                (item[categoryName] as string).toUpperCase().includes(valueUpperCase),
+            );
+        }
+
+        return items.filter(item => item[categoryName] === value);
     }
 }
