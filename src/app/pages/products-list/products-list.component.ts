@@ -1,7 +1,9 @@
-import {ChangeDetectionStrategy, Component, Inject, OnInit} from '@angular/core';
-import {Router} from '@angular/router';
+import {ChangeDetectionStrategy, Component, Inject} from '@angular/core';
+import {ActivatedRoute, Router} from '@angular/router';
 import {IProduct} from '../../shared/products/product.interface';
 import {ProductsStoreService} from '../../shared/products/products-store.service';
+import {map, switchMap, tap} from 'rxjs';
+import {ISubCategory} from '../../shared/categories/sub-category.interface';
 
 @Component({
     selector: 'app-products-list',
@@ -9,20 +11,25 @@ import {ProductsStoreService} from '../../shared/products/products-store.service
     styleUrls: ['./products-list.component.css'],
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class ProductsListComponent implements OnInit {
-    readonly products$ = this.productsStoreService.products$;
+export class ProductsListComponent {
+    readonly products$ = this.activatedRoute.paramMap.pipe(
+        map(paramMap => paramMap.get('id')),
+        tap((subCatId: ISubCategory['_id'] | null) => {
+            return this.productsStoreService.loadProducts(subCatId);
+        }),
+        switchMap(() => {
+            return this.productsStoreService.products$;
+        }),
+    );
 
     constructor(
         private readonly productsStoreService: ProductsStoreService,
         private readonly router: Router,
+        private readonly activatedRoute: ActivatedRoute,
         @Inject('name') private readonly name: string,
     ) {
         // eslint-disable-next-line no-console
         console.log('ProductsListComponent', this.name);
-    }
-
-    ngOnInit(): void {
-        this.productsStoreService.loadProducts();
     }
 
     trackBy(_index: number, item: IProduct) {
