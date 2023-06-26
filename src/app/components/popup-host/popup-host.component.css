@@ -1,4 +1,4 @@
-.popup-container {
+:host {
     position: fixed;
     top: 0;
     bottom: 0;
@@ -11,7 +11,7 @@
     z-index: 1;
 }
 
-.popup-container.empty {
+:host(.empty) {
     display: none;
 }
 
