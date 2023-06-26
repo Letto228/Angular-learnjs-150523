@@ -8,6 +8,7 @@ import {CardModule} from './card/card.module';
 import {DumpNgIfModule} from '../../shared/dump-ng-if/dump-ng-if.module';
 import {PaginationModule} from '../../shared/pagination/pagination.module';
 import {MyAsyncModule} from '../../shared/my-async/my-async.module';
+import {FilterByPropertyModule} from 'src/app/shared/filter-by-product/filter-by-property.module';
 
 @NgModule({
     declarations: [ProductsListComponent],
@@ -20,6 +21,7 @@ import {MyAsyncModule} from '../../shared/my-async/my-async.module';
         MatIconModule,
         MatButtonModule,
         MyAsyncModule,
+        FilterByPropertyModule,
     ],
     // providers: [
     //     ...CardModule.providers
