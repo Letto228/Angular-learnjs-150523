@@ -1,7 +1,7 @@
 import {Pipe, PipeTransform} from '@angular/core';
 
-@Pipe({name: 'filterByProduct'})
-export class FilterByProductPipe implements PipeTransform {
+@Pipe({name: 'filterByProperty'})
+export class FilterByProperty implements PipeTransform {
     transform<T, P extends keyof T>(
         items: T[] | undefined | null,
         categoryName: P,
@@ -11,8 +11,8 @@ export class FilterByProductPipe implements PipeTransform {
             return items;
         }
 
-        if (typeof categoryName === 'string') {
-            const valueUpperCase = (value as string).toUpperCase();
+        if (this.checkString(value)) {
+            const valueUpperCase = value.toUpperCase();
 
             return items.filter(item =>
                 (item[categoryName] as string).toUpperCase().includes(valueUpperCase),
@@ -20,5 +20,9 @@ export class FilterByProductPipe implements PipeTransform {
         }
 
         return items.filter(item => item[categoryName] === value);
+    }
+
+    checkString(item: any): item is string {
+        return typeof item === 'string';
     }
 }
