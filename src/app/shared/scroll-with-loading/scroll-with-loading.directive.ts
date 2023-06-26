@@ -13,18 +13,10 @@ export class ScrollWithLoadingDirective {
         '$event.target.scrollHeight',
         '$event.target.scrollTop',
     ])
-    onScroll(clientHeight: number, scrollHeight: number, scrollTop: number) {
-        this.checkCurrentBorderOffset(clientHeight, scrollHeight, scrollTop);
-    }
-
-    @Output() loadData: EventEmitter<LoadDirection> = new EventEmitter();
-
-    private checkCurrentBorderOffset(
-        clientHeight: number,
-        scrollHeight: number,
-        scrollTop: number,
-    ): void {
+    checkCurrentBorderOffset(clientHeight: number, scrollHeight: number, scrollTop: number): void {
         const isScrollingDown = this.isScrollingDown(scrollTop);
+
+        this.prevScrollTopValue = scrollTop;
 
         if (!isScrollingDown && scrollTop <= this.maxBorderOffset) {
             this.loadData.emit(LoadDirection.Top);
@@ -39,11 +31,9 @@ export class ScrollWithLoadingDirective {
         }
     }
 
+    @Output() loadData: EventEmitter<LoadDirection> = new EventEmitter<LoadDirection>();
+
     private isScrollingDown(scrollTop: number): boolean {
-        const isDown = this.prevScrollTopValue < scrollTop;
-
-        this.prevScrollTopValue = scrollTop;
-
-        return isDown;
+        return this.prevScrollTopValue < scrollTop;
     }
 }
