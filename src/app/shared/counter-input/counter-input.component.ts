@@ -21,7 +21,9 @@ export class CounterInputComponent implements ControlValueAccessor {
     counter = 0;
     isDisabled = false;
 
+    // eslint-disable-next-line @typescript-eslint/no-empty-function
     private onChange: (value: number) => void = () => {};
+    // eslint-disable-next-line @typescript-eslint/no-empty-function
     private onTouch: () => void = () => {};
 
     constructor(private readonly changeDetectorRef: ChangeDetectorRef) {}
@@ -58,5 +60,7 @@ export class CounterInputComponent implements ControlValueAccessor {
 
     setDisabledState(isDisabled: boolean) {
         this.isDisabled = isDisabled;
+
+        this.changeDetectorRef.markForCheck();
     }
 }

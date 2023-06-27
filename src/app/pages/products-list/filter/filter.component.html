@@ -1,25 +1,79 @@
-<form class="filter">
+<form class="filter" [formGroup]="filterForm" (ngSubmit)="log(this.filterForm.value)">
+    <!-- <mat-form-field appearance="fill">
+        <mat-label>Search</mat-label>
+        <input matInput [formControl]="textControl" />
+    </mat-form-field>
+    {{textControl.valid}}
+    {{(textControlErrors$ | async) | json}} -->
+    <!-- <mat-form-field appearance="fill">
+        <mat-label>Search</mat-label>
+        <input
+            #textInput="ngModel"
+            matInput
+            [(ngModel)]="text"
+            appIsStringAsyncValidator
+            required
+            [minlength]="3"
+        />
+    </mat-form-field>
+    {{textInput.valid}}
+    {{textInput.errors | json}} -->
+
     <mat-form-field appearance="fill">
         <mat-label>Search</mat-label>
-        <input matInput />
+        <input matInput formControlName="search" />
     </mat-form-field>
 
-    <div *ngIf="brands; else loaderTemplateRef" class="checkbox-container">
-        <mat-checkbox *ngFor="let brand of brands">
+    <div *ngIf="brands; else loaderTemplateRef" formArrayName="brands" class="checkbox-container">
+        <mat-checkbox *ngFor="let brand of brands; let index = index" [formControlName]="index">
             {{ brand }}
         </mat-checkbox>
     </div>
-    <div class="price-range">
+    <div formGroupName="priceRange" class="price-range">
         <div>
             Min
-            <app-counter-input></app-counter-input>
+            <!-- <app-counter-input [formControl]="filterForm.get('priceRange')?.get('min')"></app-counter-input> -->
+            <app-counter-input formControlName="min"></app-counter-input>
         </div>
         <div>
             Max
-            <app-counter-input></app-counter-input>
+            <app-counter-input formControlName="max"></app-counter-input>
         </div>
     </div>
+
+    <button mat-button type="submit">Применить</button>
 </form>
+
+<!-- <form #form="ngForm" class="filter" (ngSubmit)="log(form.value)">
+    <mat-form-field appearance="fill">
+        <mat-label>Search</mat-label>
+        <input matInput ngModel name="search" />
+    </mat-form-field>
+
+    <div *ngIf="brands; else loaderTemplateRef" ngModelGroup="brands" class="checkbox-container">
+        <mat-checkbox
+            *ngFor="let brand of brands; let index = index"
+            [ngModel]="false"
+            [name]="index.toString()"
+        >
+            {{ brand }}
+        </mat-checkbox>
+    </div>
+    <div ngModelGroup="priceRange" class="price-range">
+        <div>
+            Min
+            <app-counter-input [ngModel]="0" name="min"></app-counter-input>
+        </div>
+        <div>
+            Max
+            <app-counter-input [ngModel]="999999" name="max"></app-counter-input>
+        </div>
+    </div>
+
+    <button mat-button type="submit">Применить</button>
+</form> -->
+
+<!-- {{form.value | json}} -->
 
 <ng-template #loaderTemplateRef>
     <mat-spinner diameter="60" class="loader"></mat-spinner>
