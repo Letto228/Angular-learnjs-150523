@@ -47,4 +47,17 @@ export class FilterComponent implements OnChanges {
 
         this.filterForm.setControl('brands', brandsForm);
     }
+
+    sendFilterData(): void {
+        this.changeFilter.emit({
+            name: this.filterForm.value.search || '',
+            brands: this.filterForm.value!.brands?.length
+                ? this.brands!.filter((value, i) => this.filterForm.value.brands![i])
+                : [],
+            priceRange: {
+                min: this.filterForm.value.priceRange?.min || 0,
+                max: this.filterForm.value.priceRange?.max || 0,
+            },
+        });
+    }
 }
