@@ -7,8 +7,6 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {MatButtonModule} from '@angular/material/button';
 import {FilterComponent} from './filter.component';
 import {CounterInputModule} from '../../../shared/counter-input/counter-input.module';
-import {IsStringValidatorModule} from '../../../shared/test-validators/is-string/is-string-validator.module';
-import {IsStringAsyncValidatorModule} from '../../../shared/test-validators/is-string-async/is-string-async-validator.module';
 
 @NgModule({
     declarations: [FilterComponent],
@@ -19,8 +17,6 @@ import {IsStringAsyncValidatorModule} from '../../../shared/test-validators/is-s
         MatProgressSpinnerModule,
         CounterInputModule,
         ReactiveFormsModule,
-        IsStringValidatorModule,
-        IsStringAsyncValidatorModule,
         FormsModule,
         MatButtonModule,
     ],
