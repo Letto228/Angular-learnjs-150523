@@ -281,6 +281,12 @@ module.exports = {
             },
         },
         {
+            files: ['*.spec.ts'],
+            rules: {
+                'unicorn/no-empty-file': 'off',
+            },
+        },
+        {
             files: ['*.html'],
             plugins: ['@html-eslint'],
             parser: '@html-eslint/parser',
