@@ -18,6 +18,7 @@ module.exports = {
     },
     plugins: ['file-progress', '@babel'],
     rules: {
+        'dot-notation': 0,
         'no-unused-expressions': [
             'error',
             {

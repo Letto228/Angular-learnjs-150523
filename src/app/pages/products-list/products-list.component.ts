@@ -1,4 +1,4 @@
-import {ChangeDetectionStrategy, Component} from '@angular/core';
+import {ChangeDetectionStrategy, Component, OnDestroy} from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
 import {map, tap, switchMap} from 'rxjs';
 import {IProduct} from '../../shared/products/product.interface';
@@ -11,7 +11,7 @@ import {BrandsService} from '../../shared/brands/brands.service';
     styleUrls: ['./products-list.component.css'],
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class ProductsListComponent {
+export class ProductsListComponent implements OnDestroy {
     readonly products$ = this.activatedRoute.paramMap.pipe(
         map(paramMap => paramMap.get('subCategoryId')),
         tap(subCategoryId => {
@@ -28,6 +28,12 @@ export class ProductsListComponent {
         switchMap(() => this.brandsService.brands$),
     );
 
+    nameFilter = '';
+
+    readonly queryParamMapSubscription = this.activatedRoute.queryParamMap.subscribe(queryParam => {
+        this.nameFilter = queryParam.get('name') || '';
+    });
+
     constructor(
         private readonly productsStoreService: ProductsStoreService,
         private readonly activatedRoute: ActivatedRoute,
@@ -36,5 +42,9 @@ export class ProductsListComponent {
 
     trackBy(_index: number, item: IProduct) {
         return item._id;
+    }
+
+    ngOnDestroy() {
+        this.queryParamMapSubscription.unsubscribe();
     }
 }
