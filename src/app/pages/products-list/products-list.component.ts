@@ -1,5 +1,6 @@
+import {map, switchMap, tap} from 'rxjs';
 import {ChangeDetectionStrategy, Component, Inject, OnInit} from '@angular/core';
-import {Router} from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 import {IProduct} from '../../shared/products/product.interface';
 import {ProductsStoreService} from '../../shared/products/products-store.service';
 
@@ -10,11 +11,20 @@ import {ProductsStoreService} from '../../shared/products/products-store.service
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ProductsListComponent implements OnInit {
-    readonly products$ = this.productsStoreService.products$;
+    readonly products$ = this.activeRouter.paramMap.pipe(
+        map(param => param.get('id')),
+        tap(id => {
+            if (id) {
+                this.productsStoreService.loadProducts(id);
+            }
+        }),
+        switchMap(() => this.productsStoreService.products$),
+    );
 
     constructor(
         private readonly productsStoreService: ProductsStoreService,
         private readonly router: Router,
+        private readonly activeRouter: ActivatedRoute,
         @Inject('name') private readonly name: string,
     ) {
         // eslint-disable-next-line no-console

@@ -33,12 +33,6 @@ const routes: Routes = [
             import('./pages/products-list/products-list.module').then(m => m.ProductsListModule),
     },
     {
-        path: 'products-list/:id',
-        pathMatch: 'full', // `http://localhost:4200`
-        loadChildren: () =>
-            import('./pages/products-list/products-list.module').then(m => m.ProductsListModule),
-    },
-    {
         path: 'product/:id',
         loadChildren: () => import('./pages/product/product.module').then(m => m.ProductModule),
         // component: ProductComponent,

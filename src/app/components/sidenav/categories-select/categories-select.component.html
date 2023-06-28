@@ -12,10 +12,11 @@
                 mat-button
                 hideToggle
                 class="sub-catigory"
-                (click)="subCategorySelected(subCategory._id)"
+                [routerLink]="['/products-list', subCategory._id]"
             >
                 {{ subCategory.name }}
             </button>
         </div>
     </mat-expansion-panel>
 </mat-accordion>
+<!--(click)="subCategorySelected(subCategory._id)"-->
