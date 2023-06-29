@@ -35,7 +35,6 @@ export class ProductsListComponent {
     // );
 
     //  вариант 2
-    searchQuery = '';
     setSearch(form: IProductsFilter) {
         this.setQueryparams(form);
     }
@@ -48,8 +47,11 @@ export class ProductsListComponent {
                 max: form.priceRange.max,
             },
         });
-        this.searchQuery = form.name;
     }
+
+    readonly searchQuery$ = this.activatedRoute.queryParamMap.pipe(
+        map(queryparams => (queryparams.get('search') !== null ? queryparams.get('search') : '')),
+    );
 
     constructor(
         private readonly productsStoreService: ProductsStoreService,
