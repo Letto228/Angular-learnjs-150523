@@ -36,10 +36,6 @@ export class ProductsListComponent {
 
     //  вариант 2
     setSearch(form: IProductsFilter) {
-        this.setQueryparams(form);
-    }
-
-    setQueryparams(form: IProductsFilter) {
         this.router.navigate(['products-list'], {
             queryParams: {
                 search: form.name,
