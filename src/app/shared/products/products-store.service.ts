@@ -1,14 +1,20 @@
 import {BehaviorSubject, Observable, filter} from 'rxjs';
 import {Injectable} from '@angular/core';
+import {Store} from '@ngrx/store';
 import {IProduct} from './product.interface';
 import {ProductsApiService} from './products-api.service';
+import {IState} from '../../store/reducer';
+import {addProducts} from '../../store/products/products.actions';
 
 @Injectable({providedIn: 'root'})
 export class ProductsStoreService {
     private readonly productsStore$ = new BehaviorSubject<IProduct[] | null>(null);
     private readonly currentProductStore$ = new BehaviorSubject<IProduct | null>(null);
 
-    constructor(private readonly productsApiService: ProductsApiService) {}
+    constructor(
+        private readonly productsApiService: ProductsApiService,
+        private readonly store$: Store<IState>,
+    ) {}
 
     get products$(): Observable<IProduct[] | null> {
         return this.productsStore$.asObservable();
@@ -22,6 +28,7 @@ export class ProductsStoreService {
         this.productsStore$.next(null);
 
         this.productsApiService.getProducts$(subcategoryId).subscribe(products => {
+            this.store$.dispatch(addProducts(products));
             this.productsStore$.next(products);
         });
     }
