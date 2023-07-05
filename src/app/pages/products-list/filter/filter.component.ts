@@ -47,4 +47,26 @@ export class FilterComponent implements OnChanges {
 
         this.filterForm.setControl('brands', brandsForm);
     }
+
+    sendForm() {
+        if (this.filterForm) {
+            this.changeFilter.emit({
+                brands: this.filterForm.controls.brands.value.map(String) || [],
+                priceRange: {
+                    min: this.filterForm.controls.priceRange.value.min || 1,
+                    max: this.filterForm.controls.priceRange.value.max || 9999,
+                },
+                name: this.filterForm.value.search || '',
+            });
+        }
+        // console.log(this.filterForm.controls.brands.value)
+        // this.changeFilter.emit({
+        //   name: filterForm;
+        //   brands: string[];
+        //   priceRange: {
+        //     min: number;
+        //     max: number;
+        //   };
+        // })
+    }
 }
