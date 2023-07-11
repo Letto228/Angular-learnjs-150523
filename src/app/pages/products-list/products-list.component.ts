@@ -30,8 +30,8 @@ export class ProductsListComponent implements OnInit {
 
     name = 'Мышь';
 
-    readonly propertyName = 'feedbacksCount' as const; // keyof IProduct
-    searchPropertyValue = 2;
+    readonly propertyName = 'name' as const; // keyof IProduct
+    searchPropertyValue = 'а';
 
     constructor(
         // @Inject(ChangeDetectorRef) private readonly changeDetectorRef: ChangeDetectorRef,
