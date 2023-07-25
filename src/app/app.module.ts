@@ -21,5 +21,6 @@ import {PopupHostModule} from './components/popup-host/popup-host.module';
         PopupHostModule,
     ],
     bootstrap: [AppComponent],
+    exports: [],
 })
 export class AppModule {}
