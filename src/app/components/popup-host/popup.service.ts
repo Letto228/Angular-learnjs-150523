@@ -1,12 +1,11 @@
 import {Injectable, TemplateRef} from '@angular/core';
-import {Subject} from 'rxjs';
+import {BehaviorSubject} from 'rxjs';
 
 @Injectable({
     providedIn: 'root',
 })
 export class PopupService {
-    templateUpdated$: Subject<TemplateRef<unknown> | null> = new Subject();
-    // templateUpdated2$: BehaviorSubject<TemplateRef<unknown> | null> = new BehaviorSubject(null);
+    templateUpdated$ = new BehaviorSubject<TemplateRef<unknown> | null>(null);
 
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
     openPopup(template: TemplateRef<unknown>, context?: any): void {
