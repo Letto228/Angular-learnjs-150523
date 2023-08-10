@@ -3,7 +3,7 @@
         <app-categories-select
             class="sidenav"
             [categories]="categories$ | async"
-            (subCategorySelected)="handleSubCategorySelected($event)"
+            (subCategorySelected)="navigateToSubCategory($event)"
         ></app-categories-select>
     </mat-drawer>
     <div class="sidenav-content">

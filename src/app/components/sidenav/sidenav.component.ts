@@ -36,7 +36,7 @@ export class SidenavComponent implements OnInit {
         this.changeDetectorRef.markForCheck();
     }
 
-    handleSubCategorySelected(subCategoryId: string): void {
+    navigateToSubCategory(subCategoryId: string): void {
         this.router.navigate(['/products-list/category', subCategoryId]);
     }
 }
