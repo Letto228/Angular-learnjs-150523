@@ -1,4 +1,5 @@
-import {ChangeDetectionStrategy, Component, Input} from '@angular/core';
+import {ChangeDetectionStrategy, Component, EventEmitter, Input, Output} from '@angular/core';
+import {ISubCategory} from 'src/app/shared/categories/sub-category.interface';
 import {ICategory} from '../../../shared/categories/category.interface';
 
 @Component({
@@ -9,4 +10,9 @@ import {ICategory} from '../../../shared/categories/category.interface';
 })
 export class CategoriesSelectComponent {
     @Input() categories!: ICategory[] | null;
+    @Output() subCategorySelected = new EventEmitter<string>();
+
+    onSubCategorySelection(subCategory: ISubCategory): void {
+        this.subCategorySelected.emit(subCategory._id);
+    }
 }

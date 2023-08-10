@@ -6,6 +6,7 @@ import {
     ViewChild,
 } from '@angular/core';
 import {MatDrawer} from '@angular/material/sidenav';
+import {Router} from '@angular/router';
 import {CategoriesStoreService} from '../../shared/categories/categories-store.service';
 
 @Component({
@@ -23,6 +24,7 @@ export class SidenavComponent implements OnInit {
     constructor(
         private readonly changeDetectorRef: ChangeDetectorRef,
         private readonly categoriesStoreService: CategoriesStoreService,
+        private readonly router: Router,
     ) {}
 
     ngOnInit() {
@@ -32,5 +34,9 @@ export class SidenavComponent implements OnInit {
     toggleSidenavOpened() {
         this.matDrawerComponent.toggle();
         this.changeDetectorRef.markForCheck();
+    }
+
+    navigateToSubCategory(subCategoryId: string): void {
+        this.router.navigate(['/products-list/category', subCategoryId]);
     }
 }

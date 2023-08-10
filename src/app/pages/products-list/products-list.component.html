@@ -1,3 +1,4 @@
+<div class="subcategory">{{ subCategoryId$ | async }}</div>
 <ng-container *ngIf="products$ | async as products; else loader">
     <ng-container
         *appPagination="
@@ -45,7 +46,6 @@
         </div>
     </ng-container>
 </ng-container>
-
 <ng-template #loader>
     <mat-spinner class="loader"></mat-spinner>
 </ng-template>

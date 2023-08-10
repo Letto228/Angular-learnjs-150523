@@ -1,17 +1,16 @@
 <mat-accordion>
     <mat-expansion-panel *ngFor="let category of categories" hideToggle>
         <mat-expansion-panel-header>
-            <mat-panel-title>
-                {{ category.name }}
-            </mat-panel-title>
+            <mat-panel-title>{{ category.name }}</mat-panel-title>
         </mat-expansion-panel-header>
-        <div class="sub-catigories-container">
+        <div class="sub-categories-container">
             <!-- add redirect by click on "products-list" page with subCategory._id parametrs -->
             <button
                 *ngFor="let subCategory of category.subCategories"
                 mat-button
                 hideToggle
-                class="sub-catigory"
+                class="sub-category"
+                (click)="onSubCategorySelection(subCategory)"
             >
                 {{ subCategory.name }}
             </button>
