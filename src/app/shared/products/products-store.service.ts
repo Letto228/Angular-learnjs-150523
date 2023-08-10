@@ -18,10 +18,10 @@ export class ProductsStoreService {
         return this.currentProductStore$.asObservable();
     }
 
-    loadProducts(subcategoryId?: string | null) {
+    loadProducts(subCategoryId?: string | null) {
         this.productsStore$.next(null);
 
-        this.productsApiService.getProducts$(subcategoryId).subscribe(products => {
+        this.productsApiService.getProducts$(subCategoryId).subscribe(products => {
             this.productsStore$.next(products);
         });
     }

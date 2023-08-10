@@ -3,9 +3,9 @@
         <app-categories-select
             class="sidenav"
             [categories]="categories$ | async"
+            (subCategorySelected)="handleSubCategorySelected($event)"
         ></app-categories-select>
     </mat-drawer>
-
     <div class="sidenav-content">
         <ng-content></ng-content>
     </div>
